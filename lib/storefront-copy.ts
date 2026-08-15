@@ -12,8 +12,13 @@ export const STOREFRONT_COPY = {
       total: "الإجمالي"
     },
     categories: {
+      eyebrow: "الفهرس",
+      headlineLines: ["لكل نظرة", "إطارها."],
+      lede: "ست عائلات، من الشمسية المستقطبة إلى إطارات الأطفال. توصيل إلى 58 ولاية، وحماية UV400 حقيقية في كل قطعة.",
       moreInfo: "عرض الفئة",
-      title: "تسوّق حسب الفئة"
+      title: "تسوّق حسب الفئة",
+      unit: "فئات",
+      viewAll: "تصفّح الفهرس كاملا"
     },
     checkout: {
       address: "العنوان",
@@ -300,7 +305,7 @@ export const STOREFRONT_COPY = {
       previousCategory: "الفئة السابقة"
     },
     brandPromise: {
-      text: "رؤية... حماية UV400 حقيقية، هياكل تدوم، وسعر في المتناول."
+      claims: ["حماية UV400 حقيقية،", "هياكل تدوم،", "وسعر في المتناول."]
     },
     returns: {
       damagedItems: {
@@ -729,8 +734,13 @@ export const STOREFRONT_COPY = {
       total: "Total"
     },
     categories: {
+      eyebrow: "Le catalogue",
+      headlineLines: ["Chaque regard", "a sa monture."],
+      lede: "Six familles, du solaire polarisé aux montures pour enfants. Livrées dans les 58 wilayas, toutes en UV400 réel.",
       moreInfo: "Voir la catégorie",
-      title: "Acheter par catégorie"
+      title: "Acheter par catégorie",
+      unit: "catégories",
+      viewAll: "Voir tout le catalogue"
     },
     checkout: {
       address: "Adresse",
@@ -1018,7 +1028,11 @@ export const STOREFRONT_COPY = {
       previousCategory: "Catégorie précédente"
     },
     brandPromise: {
-      text: "Roya — une vraie protection UV400, des montures qui durent, et un prix qui a du sens."
+      claims: [
+        "Une vraie protection UV400,",
+        "des montures qui durent,",
+        "et un prix qui a du sens."
+      ]
     },
     returns: {
       damagedItems: {
@@ -1434,8 +1448,13 @@ export const STOREFRONT_COPY = {
       total: "Total"
     },
     categories: {
+      eyebrow: "The catalogue",
+      headlineLines: ["A frame for", "every way of seeing."],
+      lede: "Six families, from polarised sun to children's frames. Delivered to all 58 wilayas, every one of them real UV400.",
       moreInfo: "View category",
-      title: "Shop by category"
+      title: "Shop by category",
+      unit: "categories",
+      viewAll: "Browse the full catalogue"
     },
     checkout: {
       address: "Address",
@@ -1723,7 +1742,11 @@ export const STOREFRONT_COPY = {
       previousCategory: "Previous category"
     },
     brandPromise: {
-      text: "Roya — real UV400 protection, frames built to last, and a price that makes sense."
+      claims: [
+        "Real UV400 protection,",
+        "frames built to last,",
+        "and a price that makes sense."
+      ]
     },
     returns: {
       damagedItems: {

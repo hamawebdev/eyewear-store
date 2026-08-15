@@ -12,13 +12,38 @@ export const dynamic = "force-dynamic";
 function CategoriesSkeleton() {
   return (
     <section className="bg-background py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 text-center md:mb-16">
-          <div className="mx-auto h-10 w-72 animate-pulse rounded-lg bg-muted md:h-14 md:w-96" />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center gap-4 sm:gap-6">
+          <div className="h-3 w-24 animate-pulse rounded bg-muted" />
+          <div className="h-px flex-1 bg-border" />
+          <div className="h-3 w-20 animate-pulse rounded bg-muted" />
         </div>
-        <div className="grid grid-cols-1 gap-x-12 gap-y-16 md:grid-cols-2 lg:gap-x-16 lg:gap-y-24">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="mx-auto aspect-[432/488] w-full max-w-[432px] animate-pulse rounded-3xl bg-muted [transform:translateZ(0)]" />
+        <div className="mt-8 grid gap-8 md:mt-10 md:grid-cols-[1.25fr_1fr] md:items-end md:gap-12 lg:gap-16">
+          <div className="space-y-3">
+            <div className="h-10 w-full max-w-md animate-pulse rounded bg-muted lg:h-14" />
+            <div className="h-10 w-3/4 max-w-sm animate-pulse rounded bg-muted lg:h-14" />
+          </div>
+          <div className="space-y-2">
+            <div className="h-4 w-full animate-pulse rounded bg-muted" />
+            <div className="h-4 w-2/3 animate-pulse rounded bg-muted" />
+          </div>
+        </div>
+        <div className="mt-14 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-5 sm:gap-y-12 md:mt-20 lg:grid-cols-3 lg:gap-6">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div
+              key={i}
+              className={i === 0 ? "col-span-2 lg:row-span-2" : undefined}
+            >
+              <div
+                className={`animate-pulse rounded-[2px] bg-muted [transform:translateZ(0)] ${
+                  i === 0 ? "aspect-[16/10] lg:aspect-[4/5]" : "aspect-[4/5]"
+                }`}
+              />
+              <div className="mt-4 border-t border-border pt-3 sm:mt-5">
+                <div className="h-3 w-24 animate-pulse rounded bg-muted" />
+                <div className="mt-2 h-6 w-2/3 animate-pulse rounded bg-muted" />
+              </div>
+            </div>
           ))}
         </div>
       </div>

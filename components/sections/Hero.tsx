@@ -23,6 +23,12 @@ export default async function Hero() {
           />
         </picture>
         <HeroVideo />
+        {/* Mobile footage is a bright cream scene; this scrim keeps the white
+            heading legible. Desktop footage is already dark, so it is exempt. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-black/35 via-black/50 to-black/45 md:hidden"
+        />
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-10 lg:px-14">
           <h1 className="max-w-4xl font-serif text-5xl font-black leading-[0.95] tracking-tight text-white drop-shadow-[0_6px_20px_rgba(0,0,0,0.45)] sm:text-6xl lg:text-7xl">
             {copy.hero.headingLines.map((line) => (

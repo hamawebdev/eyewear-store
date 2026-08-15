@@ -125,6 +125,8 @@
   --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
   --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+  /* Contact shadow under the category plate artwork. */
+  --plate-shadow: hsl(210 25% 8% / 0.14);
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 }
@@ -184,6 +186,7 @@
   --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
   --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+  --plate-shadow: hsl(210 40% 2% / 0.5);
 }
 
 @theme inline {
@@ -415,8 +418,41 @@
     font-synthesis: none;
   }
 
+  /* Escape hatches from the .homepage-serif blanket override above. It forces
+     the display serif onto every descendant with !important, which would swallow
+     the spec labels and body copy in the categories index. Two classes beat one
+     class + universal, so these win without escalating further.
+     Note: the Arabic rules below are more specific still and deliberately win
+     over .font-spec — Arabic labels belong in Rubik, not a Latin mono. */
+  /* Grounded shadow for the category plates: follows the alpha of a cutout
+     product shot, so the frames sit on the plate instead of floating. One
+     light source, tinted from the foreground token rather than flat black. */
+  .plate-art-shadow {
+    filter: drop-shadow(0 18px 22px var(--plate-shadow));
+  }
+
+  .font-spec,
+  .homepage-serif .font-spec {
+    font-family: var(--font-mono) !important;
+    font-weight: 500 !important;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .font-body,
+  .homepage-serif .font-body {
+    font-family: var(--font-sans) !important;
+    font-weight: 400 !important;
+  }
+
   .storefront-shell[data-language="ar"] {
     font-family: var(--font-arabic-sans);
+  }
+
+  /* Arabic script is cursive: letter-spacing pulls the joins apart and reads as
+     broken type. The tracking utilities across the storefront are set for the
+     Latin builds, so neutralise all of them in the Arabic one. */
+  .storefront-shell[data-language="ar"] [class*="tracking-"] {
+    letter-spacing: normal;
   }
 
   .storefront-shell[data-language="ar"] .font-serif,
