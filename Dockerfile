@@ -23,6 +23,16 @@ FROM base AS builder
 ENV NODE_OPTIONS="--max-old-space-size=4096"
 ENV NODE_ENV=production
 
+# NEXT_PUBLIC_* values are inlined into the client bundle at build time, so they
+# must arrive as build args — setting them only as runtime env has no effect.
+# Changing any of these requires a rebuild, not just a restart.
+ARG NEXT_PUBLIC_APP_URL=""
+ARG NEXT_PUBLIC_STORE_CURRENCY="DZD"
+ARG NEXT_PUBLIC_META_PIXEL_ID=""
+ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL \
+    NEXT_PUBLIC_STORE_CURRENCY=$NEXT_PUBLIC_STORE_CURRENCY \
+    NEXT_PUBLIC_META_PIXEL_ID=$NEXT_PUBLIC_META_PIXEL_ID
+
 # 1. Copy dependencies first (cached layer)
 COPY --from=deps /app/node_modules ./node_modules
 
