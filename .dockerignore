@@ -75,3 +75,7 @@ scripts
 # Docker local files
 docker-compose*
 .dockerignore
+# Agent tooling (not part of the app)
+.agents
+.claude
+skills-lock.json

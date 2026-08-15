@@ -11,14 +11,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # ── Dependencies ──────────────────────────────────────────────────────
 FROM base AS deps
 COPY package.json package-lock.json ./
-RUN --mount=type=cache,target=/root/.npm npm ci
+RUN --mount=type=cache,target=/root/.npm npm ci --prefer-offline --no-audit --fund=false
 
 # ── Builder ───────────────────────────────────────────────────────────
 FROM base AS builder
 
-# Give Node enough RAM so webpack doesn't thrash/OOM while
-# bundling the Payload admin panel (the #1 bottleneck).
-ENV NODE_OPTIONS="--max-old-space-size=8192"
+# Bound the webpack heap. Payload admin bundling is the memory bottleneck, but
+# this build shares an 8GB host with other running apps — an unbounded/oversized
+# heap lets Node balloon until the host swaps and every other service stalls.
+# 4GB is enough headroom for the admin bundle while leaving the host responsive.
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 ENV NODE_ENV=production
 
 # 1. Copy dependencies first (cached layer)
@@ -74,5 +76,10 @@ RUN mkdir -p /app/media \
 USER nextjs
 
 EXPOSE 3000
+
+# Swarm/Dokploy rolling updates use this to decide when the new task is live,
+# so a broken deploy never replaces a healthy container.
+HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \
+    CMD node -e "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
 
 CMD ["node", "server.js"]
