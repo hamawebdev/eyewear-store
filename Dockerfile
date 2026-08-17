@@ -19,8 +19,15 @@ FROM base AS builder
 # Bound the webpack heap. Payload admin bundling is the memory bottleneck, but
 # this build shares an 8GB host with other running apps — an unbounded/oversized
 # heap lets Node balloon until the host swaps and every other service stalls.
-# 4GB is enough headroom for the admin bundle while leaving the host responsive.
-ENV NODE_OPTIONS="--max-old-space-size=4096"
+#
+# Measured peak RSS for a cold `next build` of this app:
+#   --max-old-space-size=4096 -> 2.70 GB (90s)
+#   --max-old-space-size=2048 -> 2.14 GB (84s)
+#   --max-old-space-size=1536 -> 1.81 GB (94s)
+# The build only needs ~1.8GB; a 4GB ceiling just lets V8 defer GC and carry
+# ~900MB of garbage, which is what pushed the shared host into swap. 2048 keeps
+# a margin above the 1.81GB floor at no measurable time cost.
+ENV NODE_OPTIONS="--max-old-space-size=2048"
 ENV NODE_ENV=production
 
 # NEXT_PUBLIC_* values are inlined into the client bundle at build time, so they

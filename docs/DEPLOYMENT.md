@@ -57,16 +57,36 @@ Applying migrations needs network access to the database. The database has **no
 external port** in normal operation, so temporarily set one in Dokploy
 (`eyewear-db` → Advanced → External Port), run the migration, then clear it again.
 
-## Adding the domain
+> Clearing the port in the UI only updates the config — the service keeps
+> publishing the port until it is redeployed. Verify from off-host afterwards
+> (`nc -vz <host> <port>`) rather than assuming it closed. Both `eyewear`
+> databases were found publicly reachable on 2026-08-17 because this step was
+> missed.
 
-1. Point the DNS A record at the Dokploy host.
-2. Dokploy → project `eyewear` → app `web` → **Domains** → add the domain,
-   container port `3000`, and enable HTTPS (Let's Encrypt).
-3. Set `NEXT_PUBLIC_APP_URL=https://<your-domain>` in the app's Environment.
-4. **Redeploy.** `NEXT_PUBLIC_*` values are inlined into the client bundle at
-   build time, so a restart alone will not pick up the new value. The Dockerfile
-   also accepts them as build args (`NEXT_PUBLIC_APP_URL`,
-   `NEXT_PUBLIC_STORE_CURRENCY`, `NEXT_PUBLIC_META_PIXEL_ID`).
+## Where the image is built
+
+Images are built by GitHub Actions ([`../.github/workflows/build-and-push.yml`](../.github/workflows/build-and-push.yml))
+and pushed to `ghcr.io/hamawebdev/eyewear-store`. Dokploy pulls the finished
+image rather than building it.
+
+This is deliberate. The Dokploy host runs ~9 apps plus several databases on 8GB.
+A cold `next build` of this app peaks around 2.1GB, which pushed the host into
+swap: builds that take ~90 seconds on a normal machine ran for 50+ minutes and
+then failed, while slowing every other service on the box. Building off-host
+removes that pressure entirely.
+
+`NEXT_PUBLIC_*` values are inlined into the client bundle at build time, so they
+are passed as **build args in the workflow**, not as Dokploy runtime env. Changing
+one means a rebuild, not a restart.
+
+## The domain
+
+`herizioptic.com` (apex, canonical) and `www.herizioptic.com` both point at the
+Dokploy host and are bound to app `web` on container port `3000` with Let's
+Encrypt certificates. `www` 301-redirects to the apex via a Dokploy redirect.
+
+DNS is managed at Hostinger (nameservers `pixel`/`byte.dns-parking.com`); the
+apex `A` record holds the host IP and `www` is a CNAME to the apex.
 
 ## Health
 
