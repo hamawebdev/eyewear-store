@@ -37,6 +37,12 @@ export const metadata: Metadata = {
     siteName: BRAND.name,
     locale: "ar_DZ",
     type: "website"
+  },
+  // Google Search Console ownership for herizioptic.com. Public by design — it
+  // only proves control of the site, so it is safe to keep in the repo. Needed to
+  // request re-indexing after the Roya -> Herizi rename.
+  verification: {
+    google: "KroSfXNBYkGVA7OAnkN3YPOHqiPkhqD3bO4UceIyqrE"
   }
 };
 
@@ -58,8 +64,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang={htmlLang} dir={htmlDir}>
       <head>
-        {/* The previous facebook-domain-verification tag belonged to the old
-            domain. Add the new one from Meta Business Manager here. */}
+        {/* No facebook-domain-verification tag yet for this domain — add the
+            value from Meta Business Manager here when the pixel is set up. */}
         <link
           rel="preload"
           href="/fonts/Adelle_Bold.woff"
