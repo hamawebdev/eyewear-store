@@ -1,236 +1,46 @@
 {
-  "localeSupport": ["ar", "fr", "en"],
+  "localeSupport": [
+    "ar",
+    "fr",
+    "en"
+  ],
   "categories": [
     {
-      "slug": "sunglasses",
-      "name": { "fr": "Lunettes de soleil", "ar": "نظارات شمسية", "en": "Sunglasses" },
-      "headline": { "fr": "Soleil\nmaîtrisé", "ar": "شمس\nتحت السيطرة", "en": "Sun,\ntamed" },
-      "outlinedPill": {
-        "fr": "Collection solaire",
-        "ar": "تشكيلة النظارات الشمسية",
-        "en": "Sun collection"
+      "slug": "men",
+      "name": {
+        "fr": "Homme",
+        "ar": "رجال",
+        "en": "Men"
+      },
+      "headline": {
+        "fr": "Lignes\nnettes",
+        "ar": "خطوط\nواضحة",
+        "en": "Clean\nlines"
+      },
+      "collectionLabel": {
+        "fr": "Collection homme",
+        "ar": "تشكيلة الرجال",
+        "en": "Men's collection"
       },
       "description": {
-        "fr": "Des solaires filtrant 100 % des UVA et UVB, choisies pour tenir la lumière forte de l'été algérien sans sacrifier le style.",
-        "ar": "نظارات شمسية تحجب 100% من الأشعة فوق البنفسجية، مختارة لتصمد أمام شمس الجزائر القوية دون التنازل عن الأناقة.",
-        "en": "Sunglasses that block 100% of UVA and UVB rays, picked to handle a strong Algerian summer without giving up on style."
+        "fr": "Des montures larges et structurées, taillées pour les visages masculins et pensées pour tenir du bureau au plein soleil.",
+        "ar": "إطارات عريضة ومهيكلة، مصممة لملامح الرجال لتصمد من المكتب إلى الشمس الساطعة.",
+        "en": "Wide, structured frames cut for men's faces and built to hold up from the office to full sun."
       },
-      "products": [
-        {
-          "slug": "aviateur-classique",
-          "name": { "fr": "Aviateur Classique", "ar": "أفياتور كلاسيك", "en": "Classic Aviator" },
-          "badge": { "fr": "Best-seller", "ar": "الأكثر مبيعا", "en": "Best seller" },
-          "description": {
-            "fr": "La goutte d'eau intemporelle en métal léger, avec des verres dégradés qui adoucissent la lumière sans assombrir les couleurs.",
-            "ar": "التصميم الكلاسيكي الخالد بإطار معدني خفيف وعدسات متدرجة تلطّف الضوء دون أن تطفئ الألوان.",
-            "en": "The timeless teardrop in lightweight metal, with gradient lenses that soften glare without dulling colour."
-          },
-          "frameShape": "aviator",
-          "gender": "unisex",
-          "frameColor": "gold",
-          "featuredRank": 1,
-          "features": [
-            { "fr": "Verres catégorie 3, UV400", "ar": "عدسات فئة 3 بحماية UV400", "en": "Category 3 lenses, UV400" },
-            { "fr": "Monture métal 18 g", "ar": "إطار معدني بوزن 18 غرام", "en": "18 g metal frame" },
-            { "fr": "Plaquettes nez ajustables", "ar": "دعامات أنف قابلة للتعديل", "en": "Adjustable nose pads" },
-            { "fr": "58-14-140 mm", "ar": "58-14-140 ملم", "en": "58-14-140 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Or", "labelAr": "ذهبي", "labelEn": "Gold", "price": 7900, "isDefault": true },
-            { "label": "Noir", "labelAr": "أسود", "labelEn": "Black", "price": 7500 },
-            { "label": "Argent", "labelAr": "فضي", "labelEn": "Silver", "price": 7500 }
-          ]
-        },
-        {
-          "slug": "wayfarer-noir",
-          "name": { "fr": "Wayfarer Noir", "ar": "وايفارر أسود", "en": "Black Wayfarer" },
-          "badge": { "fr": "Iconique", "ar": "أيقوني", "en": "Iconic" },
-          "description": {
-            "fr": "Un acétate épais et franc qui va à presque tous les visages, pensé pour un port quotidien du matin au coucher du soleil.",
-            "ar": "أسيتات سميك وواضح يناسب معظم أشكال الوجه، مصمم للاستعمال اليومي من الصباح حتى الغروب.",
-            "en": "Thick, confident acetate that suits almost any face, built for everyday wear from morning to sunset."
-          },
-          "frameShape": "wayfarer",
-          "gender": "unisex",
-          "frameColor": "black",
-          "featuredRank": 2,
-          "features": [
-            { "fr": "Acétate italien poli main", "ar": "أسيتات إيطالي مصقول يدويا", "en": "Hand-polished Italian acetate" },
-            { "fr": "Verres polarisés", "ar": "عدسات مستقطبة", "en": "Polarised lenses" },
-            { "fr": "Charnières renforcées 5 barillets", "ar": "مفصلات معززة بخمسة محاور", "en": "Reinforced 5-barrel hinges" },
-            { "fr": "52-18-145 mm", "ar": "52-18-145 ملم", "en": "52-18-145 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Noir mat", "labelAr": "أسود مطفي", "labelEn": "Matte black", "price": 6900, "isDefault": true },
-            { "label": "Noir brillant", "labelAr": "أسود لامع", "labelEn": "Gloss black", "price": 6900 },
-            { "label": "Écaille", "labelAr": "بني مرقّط", "labelEn": "Tortoise", "price": 7200 }
-          ]
-        },
-        {
-          "slug": "oeil-de-chat-sahara",
-          "name": { "fr": "Œil de Chat Sahara", "ar": "عين القطة صحراء", "en": "Sahara Cat-Eye" },
-          "badge": { "fr": "Nouveau", "ar": "جديد", "en": "New" },
-          "description": {
-            "fr": "Une remontée franche aux coins et une teinte ambrée chaude, pour un regard net qui reste élégant en plein jour.",
-            "ar": "ارتفاع واضح عند الزوايا ولون كهرماني دافئ، لإطلالة واثقة تبقى أنيقة في وضح النهار.",
-            "en": "A decisive upsweep at the corners in a warm amber tone, for a sharp look that stays elegant in full daylight."
-          },
-          "frameShape": "cat-eye",
-          "gender": "women",
-          "frameColor": "tortoise",
-          "featuredRank": 3,
-          "features": [
-            { "fr": "Verres dégradés catégorie 2", "ar": "عدسات متدرجة فئة 2", "en": "Category 2 gradient lenses" },
-            { "fr": "Acétate écaille véritable", "ar": "أسيتات بنقشة صدفية أصلية", "en": "Genuine tortoise acetate" },
-            { "fr": "Branches effilées 140 mm", "ar": "أذرع مستدقة 140 ملم", "en": "Tapered 140 mm temples" },
-            { "fr": "54-16-140 mm", "ar": "54-16-140 ملم", "en": "54-16-140 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Écaille", "labelAr": "بني مرقّط", "labelEn": "Tortoise", "price": 6500, "isDefault": true },
-            { "label": "Noir", "labelAr": "أسود", "labelEn": "Black", "price": 6200 }
-          ]
-        },
-        {
-          "slug": "sport-polarise",
-          "name": { "fr": "Sport Polarisé", "ar": "رياضية مستقطبة", "en": "Polarised Sport" },
-          "badge": { "fr": "Polarisé", "ar": "مستقطبة", "en": "Polarised" },
-          "description": {
-            "fr": "Une monture enveloppante qui ne bouge pas à la course ni au volant, avec un filtre polarisant qui coupe les reflets de la route.",
-            "ar": "إطار ملتف لا يتحرك أثناء الجري أو القيادة، مع فلتر مستقطب يقطع انعكاسات الطريق.",
-            "en": "A wrap frame that stays put whether you run or drive, with a polarising filter that kills road glare."
-          },
-          "frameShape": "rectangle",
-          "gender": "men",
-          "frameColor": "black",
-          "features": [
-            { "fr": "Filtre polarisant 99 %", "ar": "فلتر استقطاب بنسبة 99%", "en": "99% polarising filter" },
-            { "fr": "Embouts caoutchouc antidérapants", "ar": "أطراف مطاطية مانعة للانزلاق", "en": "Non-slip rubber tips" },
-            { "fr": "Monture TR90 flexible", "ar": "إطار TR90 مرن", "en": "Flexible TR90 frame" },
-            { "fr": "62-15-135 mm", "ar": "62-15-135 ملم", "en": "62-15-135 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Noir", "labelAr": "أسود", "labelEn": "Black", "price": 8500, "isDefault": true },
-            { "label": "Bleu", "labelAr": "أزرق", "labelEn": "Blue", "price": 8500 }
-          ]
-        },
-        {
-          "slug": "ronde-medina",
-          "name": { "fr": "Ronde Médina", "ar": "مدوّرة مدينة", "en": "Medina Round" },
-          "badge": { "fr": "Rétro", "ar": "ريترو", "en": "Retro" },
-          "description": {
-            "fr": "Un cercle fin en métal doré, discret sur le visage, qui donne un caractère rétro sans peser sur le nez.",
-            "ar": "دائرة رفيعة من المعدن الذهبي، خفيفة على الوجه، تمنح طابعا ريترو دون ثقل على الأنف.",
-            "en": "A thin gold metal circle that sits light on the face and lends a retro character without weighing on the nose."
-          },
-          "frameShape": "round",
-          "gender": "unisex",
-          "frameColor": "gold",
-          "features": [
-            { "fr": "Monture 16 g", "ar": "إطار بوزن 16 غرام", "en": "16 g frame" },
-            { "fr": "Verres minéraux teintés", "ar": "عدسات معدنية ملوّنة", "en": "Tinted mineral lenses" },
-            { "fr": "Pont double", "ar": "جسر مزدوج", "en": "Double bridge" },
-            { "fr": "50-21-145 mm", "ar": "50-21-145 ملم", "en": "50-21-145 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Or", "labelAr": "ذهبي", "labelEn": "Gold", "price": 5900, "isDefault": true },
-            { "label": "Argent", "labelAr": "فضي", "labelEn": "Silver", "price": 5900 }
-          ]
-        },
-        {
-          "slug": "oversize-alger",
-          "name": { "fr": "Oversize Alger", "ar": "أوفرسايز الجزائر", "en": "Alger Oversize" },
-          "badge": { "fr": "Large", "ar": "عريضة", "en": "Oversized" },
-          "description": {
-            "fr": "Des verres larges qui couvrent bien le contour de l'œil, utiles en bord de mer comme en ville en plein midi.",
-            "ar": "عدسات عريضة تغطي محيط العين جيدا، مفيدة على شاطئ البحر وفي المدينة عند الظهيرة.",
-            "en": "Wide lenses with real coverage around the eye — as useful on the seafront as in the city at midday."
-          },
-          "frameShape": "square",
-          "gender": "women",
-          "frameColor": "black",
-          "features": [
-            { "fr": "Verres catégorie 3", "ar": "عدسات فئة 3", "en": "Category 3 lenses" },
-            { "fr": "Large couverture latérale", "ar": "تغطية جانبية واسعة", "en": "Broad side coverage" },
-            { "fr": "Acétate 6 mm", "ar": "أسيتات بسماكة 6 ملم", "en": "6 mm acetate" },
-            { "fr": "58-16-140 mm", "ar": "58-16-140 ملم", "en": "58-16-140 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Noir", "labelAr": "أسود", "labelEn": "Black", "price": 6800, "isDefault": true },
-            { "label": "Écaille", "labelAr": "بني مرقّط", "labelEn": "Tortoise", "price": 6800 },
-            { "label": "Transparent", "labelAr": "شفاف", "labelEn": "Transparent", "price": 6500 }
-          ]
-        },
-        {
-          "slug": "hexagonale-atlas",
-          "name": { "fr": "Hexagonale Atlas", "ar": "سداسية أطلس", "en": "Atlas Hexagonal" },
-          "badge": { "fr": "Édition limitée", "ar": "إصدار محدود", "en": "Limited run" },
-          "description": {
-            "fr": "Six angles nets sur une monture fine en acier, pour ceux qui veulent une forme reconnaissable sans excès.",
-            "ar": "ستة زوايا واضحة على إطار رفيع من الفولاذ، لمن يريد شكلا مميزا دون مبالغة.",
-            "en": "Six clean angles on a slim steel frame, for anyone who wants a recognisable shape without going loud."
-          },
-          "frameShape": "hexagonal",
-          "gender": "unisex",
-          "frameColor": "silver",
-          "features": [
-            { "fr": "Acier inoxydable", "ar": "فولاذ مقاوم للصدأ", "en": "Stainless steel" },
-            { "fr": "Verres plats miroir", "ar": "عدسات مسطحة عاكسة", "en": "Flat mirror lenses" },
-            { "fr": "Charnières à ressort", "ar": "مفصلات نابضة", "en": "Spring hinges" },
-            { "fr": "54-19-145 mm", "ar": "54-19-145 ملم", "en": "54-19-145 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Argent", "labelAr": "فضي", "labelEn": "Silver", "price": 6200, "isDefault": true },
-            { "label": "Or rose", "labelAr": "ذهبي وردي", "labelEn": "Rose gold", "price": 6500 }
-          ]
-        },
-        {
-          "slug": "club-oran",
-          "name": { "fr": "Club Oran", "ar": "كلوب وهران", "en": "Oran Club" },
-          "badge": { "fr": "Mixte matières", "ar": "مواد مختلطة", "en": "Mixed material" },
-          "description": {
-            "fr": "Un haut en acétate et un bas en métal fin : la forme habillée qui passe du bureau à la terrasse sans changer de lunettes.",
-            "ar": "أعلى من الأسيتات وأسفل من المعدن الرفيع: شكل أنيق ينتقل من المكتب إلى المقهى دون تغيير النظارة.",
-            "en": "Acetate on top, thin metal below — the dressed-up shape that goes from the office to the terrace unchanged."
-          },
-          "frameShape": "square",
-          "gender": "men",
-          "frameColor": "brown",
-          "features": [
-            { "fr": "Sourcils acétate, cercle métal", "ar": "حاجب أسيتات وإطار معدني", "en": "Acetate brow, metal rim" },
-            { "fr": "Verres marron catégorie 3", "ar": "عدسات بنية فئة 3", "en": "Category 3 brown lenses" },
-            { "fr": "Traitement anti-rayures", "ar": "طلاء مقاوم للخدوش", "en": "Scratch-resistant coating" },
-            { "fr": "51-20-145 mm", "ar": "51-20-145 ملم", "en": "51-20-145 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Marron", "labelAr": "بني", "labelEn": "Brown", "price": 7200, "isDefault": true },
-            { "label": "Noir et or", "labelAr": "أسود وذهبي", "labelEn": "Black and gold", "price": 7500 }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "optical-frames",
-      "name": { "fr": "Montures optiques", "ar": "هياكل طبية", "en": "Optical Frames" },
-      "headline": { "fr": "Montures\nà votre mesure", "ar": "هياكل\nعلى مقاسك", "en": "Frames\nthat fit" },
-      "outlinedPill": { "fr": "Montures seules", "ar": "هياكل فقط", "en": "Frames only" },
-      "description": {
-        "fr": "Des montures vendues seules, livrées avec verres de démonstration : vous choisissez la forme chez nous, votre opticien monte vos verres.",
-        "ar": "هياكل تُباع لوحدها مع عدسات عرض: تختار الشكل عندنا، ويركّب لك أخصائي البصريات عدساتك.",
-        "en": "Frames sold on their own with demo lenses: choose the shape here, and let your optician fit your lenses."
-      },
+      "image": "public/categories/men.jpg",
       "products": [
         {
           "slug": "monture-acetate-noire",
-          "name": { "fr": "Monture Acétate Noire", "ar": "هيكل أسيتات أسود", "en": "Black Acetate Frame" },
-          "badge": { "fr": "Polyvalente", "ar": "متعددة الاستعمال", "en": "Versatile" },
+          "name": {
+            "fr": "Monture Acétate Noire",
+            "ar": "هيكل أسيتات أسود",
+            "en": "Black Acetate Frame"
+          },
+          "badge": {
+            "fr": "Polyvalente",
+            "ar": "متعددة الاستعمال",
+            "en": "Versatile"
+          },
           "description": {
             "fr": "La rectangulaire sobre qui ne se remarque pas trop et se marie avec presque toutes les corrections courantes.",
             "ar": "الشكل المستطيل الهادئ الذي لا يلفت الانتباه كثيرا ويناسب معظم التصحيحات الشائعة.",
@@ -241,203 +51,56 @@
           "frameColor": "black",
           "featuredRank": 4,
           "features": [
-            { "fr": "Acétate 5 mm", "ar": "أسيتات بسماكة 5 ملم", "en": "5 mm acetate" },
-            { "fr": "Verres de démonstration inclus", "ar": "عدسات عرض مرفقة", "en": "Demo lenses included" },
-            { "fr": "Compatible verres progressifs", "ar": "تقبل العدسات التدريجية", "en": "Takes progressive lenses" },
-            { "fr": "53-17-142 mm", "ar": "53-17-142 ملم", "en": "53-17-142 mm" }
+            {
+              "fr": "Acétate 5 mm",
+              "ar": "أسيتات بسماكة 5 ملم",
+              "en": "5 mm acetate"
+            },
+            {
+              "fr": "Verres de démonstration inclus",
+              "ar": "عدسات عرض مرفقة",
+              "en": "Demo lenses included"
+            },
+            {
+              "fr": "Compatible verres progressifs",
+              "ar": "تقبل العدسات التدريجية",
+              "en": "Takes progressive lenses"
+            },
+            {
+              "fr": "53-17-142 mm",
+              "ar": "53-17-142 ملم",
+              "en": "53-17-142 mm"
+            }
           ],
           "pricingMode": "options",
           "options": [
-            { "label": "Noir", "labelAr": "أسود", "labelEn": "Black", "price": 5500, "isDefault": true },
-            { "label": "Bleu nuit", "labelAr": "أزرق داكن", "labelEn": "Navy", "price": 5500 }
-          ]
-        },
-        {
-          "slug": "monture-titane-fine",
-          "name": { "fr": "Monture Titane Fine", "ar": "هيكل تيتانيوم رفيع", "en": "Slim Titanium Frame" },
-          "badge": { "fr": "Ultra-légère", "ar": "خفيفة جدا", "en": "Ultra-light" },
-          "description": {
-            "fr": "Douze grammes sur le nez : la monture qu'on oublie après une heure, pour ceux qui portent leurs lunettes toute la journée.",
-            "ar": "اثنا عشر غراما على الأنف: هيكل تنساه بعد ساعة، لمن يضع نظارته طوال اليوم.",
-            "en": "Twelve grams on the nose — the frame you forget after an hour, for all-day wearers."
-          },
-          "frameShape": "rectangle",
-          "gender": "unisex",
-          "frameColor": "silver",
-          "features": [
-            { "fr": "Titane bêta 12 g", "ar": "تيتانيوم بيتا بوزن 12 غرام", "en": "12 g beta titanium" },
-            { "fr": "Sans nickel, anti-allergique", "ar": "خال من النيكل ومضاد للحساسية", "en": "Nickel-free, hypoallergenic" },
-            { "fr": "Branches flexibles", "ar": "أذرع مرنة", "en": "Flexible temples" },
-            { "fr": "54-18-145 mm", "ar": "54-18-145 ملم", "en": "54-18-145 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Argent", "labelAr": "فضي", "labelEn": "Silver", "price": 12500, "isDefault": true },
-            { "label": "Gris graphite", "labelAr": "رمادي غرافيت", "labelEn": "Graphite", "price": 12500 }
-          ]
-        },
-        {
-          "slug": "monture-ecaille",
-          "name": { "fr": "Monture Écaille", "ar": "هيكل بنقشة صدفية", "en": "Tortoise Frame" },
-          "badge": { "fr": "Chaleureuse", "ar": "دافئة", "en": "Warm" },
-          "description": {
-            "fr": "Un motif écaille qui réchauffe le teint et reste habillé, dans une forme carrée assez large pour équilibrer un visage fin.",
-            "ar": "نقشة صدفية تمنح دفئا للبشرة وتبقى أنيقة، بشكل مربّع عريض يوازن الوجه النحيف.",
-            "en": "A tortoise pattern that warms the complexion, in a square wide enough to balance a narrow face."
-          },
-          "frameShape": "square",
-          "gender": "unisex",
-          "frameColor": "tortoise",
-          "features": [
-            { "fr": "Acétate écaille multicouche", "ar": "أسيتات صدفي متعدد الطبقات", "en": "Multi-layer tortoise acetate" },
-            { "fr": "Verres de démonstration inclus", "ar": "عدسات عرض مرفقة", "en": "Demo lenses included" },
-            { "fr": "Charnières à ressort", "ar": "مفصلات نابضة", "en": "Spring hinges" },
-            { "fr": "55-17-145 mm", "ar": "55-17-145 ملم", "en": "55-17-145 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Écaille claire", "labelAr": "صدفي فاتح", "labelEn": "Light tortoise", "price": 6500, "isDefault": true },
-            { "label": "Écaille foncée", "labelAr": "صدفي داكن", "labelEn": "Dark tortoise", "price": 6500 }
-          ]
-        },
-        {
-          "slug": "monture-ronde-metal",
-          "name": { "fr": "Monture Ronde Métal", "ar": "هيكل معدني مدوّر", "en": "Round Metal Frame" },
-          "badge": { "fr": "Fine", "ar": "رفيعة", "en": "Slim" },
-          "description": {
-            "fr": "Un cercle fin doré qui laisse le visage respirer, à l'aise sur les corrections légères comme sur les fortes.",
-            "ar": "دائرة ذهبية رفيعة تترك مساحة للوجه، مريحة مع التصحيحات الخفيفة والقوية على حد سواء.",
-            "en": "A thin gold circle that lets the face breathe, comfortable with light and strong corrections alike."
-          },
-          "frameShape": "round",
-          "gender": "unisex",
-          "frameColor": "gold",
-          "features": [
-            { "fr": "Acier fin 1,2 mm", "ar": "فولاذ رفيع 1.2 ملم", "en": "1.2 mm thin steel" },
-            { "fr": "Plaquettes silicone", "ar": "دعامات أنف سيليكون", "en": "Silicone nose pads" },
-            { "fr": "Verres de démonstration inclus", "ar": "عدسات عرض مرفقة", "en": "Demo lenses included" },
-            { "fr": "48-21-145 mm", "ar": "48-21-145 ملم", "en": "48-21-145 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Or", "labelAr": "ذهبي", "labelEn": "Gold", "price": 4900, "isDefault": true },
-            { "label": "Noir mat", "labelAr": "أسود مطفي", "labelEn": "Matte black", "price": 4900 }
-          ]
-        },
-        {
-          "slug": "monture-oeil-de-chat-nour",
-          "name": { "fr": "Monture Œil de Chat Nour", "ar": "هيكل عين القطة نور", "en": "Nour Cat-Eye Frame" },
-          "badge": { "fr": "Féminine", "ar": "نسائية", "en": "Feminine" },
-          "description": {
-            "fr": "Une remontée douce aux tempes et une finition or rose, pensée pour rester habillée au travail comme le soir.",
-            "ar": "ارتفاع لطيف عند الصدغين ولمسة ذهبية وردية، مصممة لتبقى أنيقة في العمل وفي المساء.",
-            "en": "A gentle lift at the temples with a rose-gold finish, meant to stay polished at work and after hours."
-          },
-          "frameShape": "cat-eye",
-          "gender": "women",
-          "frameColor": "rose-gold",
-          "featuredRank": 5,
-          "features": [
-            { "fr": "Acétate et métal", "ar": "أسيتات ومعدن", "en": "Acetate and metal" },
-            { "fr": "Finition or rose", "ar": "تشطيب ذهبي وردي", "en": "Rose-gold finish" },
-            { "fr": "Verres de démonstration inclus", "ar": "عدسات عرض مرفقة", "en": "Demo lenses included" },
-            { "fr": "52-16-140 mm", "ar": "52-16-140 ملم", "en": "52-16-140 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Or rose", "labelAr": "ذهبي وردي", "labelEn": "Rose gold", "price": 6900, "isDefault": true },
-            { "label": "Bordeaux", "labelAr": "خمري", "labelEn": "Burgundy", "price": 6900 }
-          ]
-        },
-        {
-          "slug": "monture-transparente",
-          "name": { "fr": "Monture Transparente", "ar": "هيكل شفاف", "en": "Clear Frame" },
-          "badge": { "fr": "Discrète", "ar": "خفية", "en": "Discreet" },
-          "description": {
-            "fr": "Un cristal translucide qui se fait oublier sur le visage : la monture la plus facile à porter quand on hésite encore.",
-            "ar": "بلّور شفاف يكاد يختفي على الوجه: أسهل هيكل للارتداء إن كنت لا تزال مترددا.",
-            "en": "Translucent crystal that all but disappears on the face — the easiest frame to wear when you're still undecided."
-          },
-          "frameShape": "oval",
-          "gender": "unisex",
-          "frameColor": "transparent",
-          "features": [
-            { "fr": "Acétate cristal", "ar": "أسيتات بلّوري", "en": "Crystal acetate" },
-            { "fr": "Ne jaunit pas au soleil", "ar": "لا يصفرّ تحت الشمس", "en": "Won't yellow in the sun" },
-            { "fr": "Verres de démonstration inclus", "ar": "عدسات عرض مرفقة", "en": "Demo lenses included" },
-            { "fr": "51-18-142 mm", "ar": "51-18-142 ملم", "en": "51-18-142 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Cristal", "labelAr": "بلّوري", "labelEn": "Crystal", "price": 4500, "isDefault": true },
-            { "label": "Fumé clair", "labelAr": "دخاني فاتح", "labelEn": "Light smoke", "price": 4500 }
-          ]
-        },
-        {
-          "slug": "monture-carree-large",
-          "name": { "fr": "Monture Carrée Large", "ar": "هيكل مربّع عريض", "en": "Wide Square Frame" },
-          "badge": { "fr": "Grande taille", "ar": "مقاس كبير", "en": "Large fit" },
-          "description": {
-            "fr": "Une monture pensée pour les visages larges, avec un pont plus long et des branches qui ne serrent pas aux tempes.",
-            "ar": "هيكل مصمم للوجوه العريضة، بجسر أطول وأذرع لا تضغط على الصدغين.",
-            "en": "Built for wider faces, with a longer bridge and temples that don't pinch."
-          },
-          "frameShape": "square",
-          "gender": "men",
-          "frameColor": "brown",
-          "features": [
-            { "fr": "Largeur totale 148 mm", "ar": "العرض الكلي 148 ملم", "en": "148 mm total width" },
-            { "fr": "Acétate renforcé", "ar": "أسيتات معزز", "en": "Reinforced acetate" },
-            { "fr": "Verres de démonstration inclus", "ar": "عدسات عرض مرفقة", "en": "Demo lenses included" },
-            { "fr": "57-18-148 mm", "ar": "57-18-148 ملم", "en": "57-18-148 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Marron", "labelAr": "بني", "labelEn": "Brown", "price": 5900, "isDefault": true },
-            { "label": "Noir", "labelAr": "أسود", "labelEn": "Black", "price": 5900 }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "blue-light",
-      "name": { "fr": "Anti-lumière bleue", "ar": "نظارات الضوء الأزرق", "en": "Blue-Light Glasses" },
-      "headline": { "fr": "Écrans\nplus doux", "ar": "شاشات\nألطف للعين", "en": "Softer\nscreens" },
-      "outlinedPill": { "fr": "Filtre écran", "ar": "فلتر الشاشات", "en": "Screen filter" },
-      "description": {
-        "fr": "Des verres sans correction qui filtrent une partie de la lumière bleue des écrans, pour les longues journées devant un ordinateur.",
-        "ar": "عدسات بدون تصحيح تحجب جزءا من الضوء الأزرق المنبعث من الشاشات، لأيام طويلة أمام الحاسوب.",
-        "en": "Non-prescription lenses that filter part of the blue light from screens, for long days in front of a computer."
-      },
-      "products": [
-        {
-          "slug": "ecran-essentiel",
-          "name": { "fr": "Écran Essentiel", "ar": "إسكرين أساسي", "en": "Screen Essential" },
-          "badge": { "fr": "Entrée de gamme", "ar": "سعر مناسب", "en": "Entry level" },
-          "description": {
-            "fr": "La paire simple à garder au bureau, avec un filtre discret qui ne fausse pas les couleurs à l'écran.",
-            "ar": "النظارة البسيطة التي تتركها في المكتب، بفلتر خفيف لا يغيّر ألوان الشاشة.",
-            "en": "The simple pair to keep at your desk, with a subtle filter that doesn't skew on-screen colour."
-          },
-          "frameShape": "rectangle",
-          "gender": "unisex",
-          "frameColor": "black",
-          "features": [
-            { "fr": "Filtre lumière bleue 40 %", "ar": "فلتر ضوء أزرق بنسبة 40%", "en": "40% blue-light filter" },
-            { "fr": "Sans correction", "ar": "بدون تصحيح", "en": "Non-prescription" },
-            { "fr": "Traitement antireflet", "ar": "طلاء مضاد للانعكاس", "en": "Anti-reflective coating" },
-            { "fr": "53-18-140 mm", "ar": "53-18-140 ملم", "en": "53-18-140 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Noir", "labelAr": "أسود", "labelEn": "Black", "price": 3200, "isDefault": true },
-            { "label": "Gris", "labelAr": "رمادي", "labelEn": "Grey", "price": 3200 }
+            {
+              "label": "Noir",
+              "labelAr": "أسود",
+              "labelEn": "Black",
+              "price": 5500,
+              "isDefault": true
+            },
+            {
+              "label": "Bleu nuit",
+              "labelAr": "أزرق داكن",
+              "labelEn": "Navy",
+              "price": 5500
+            }
           ]
         },
         {
           "slug": "ecran-pro",
-          "name": { "fr": "Écran Pro", "ar": "إسكرين برو", "en": "Screen Pro" },
-          "badge": { "fr": "Filtre renforcé", "ar": "فلتر معزز", "en": "Stronger filter" },
+          "name": {
+            "fr": "Écran Pro",
+            "ar": "إسكرين برو",
+            "en": "Screen Pro"
+          },
+          "badge": {
+            "fr": "Filtre renforcé",
+            "ar": "فلتر معزز",
+            "en": "Stronger filter"
+          },
           "description": {
             "fr": "Un filtre plus marqué pour les journées de dix heures devant l'écran, monté sur une monture cristal légère.",
             "ar": "فلتر أقوى لأيام العشر ساعات أمام الشاشة، على هيكل بلّوري خفيف.",
@@ -448,45 +111,174 @@
           "frameColor": "transparent",
           "featuredRank": 6,
           "features": [
-            { "fr": "Filtre lumière bleue 65 %", "ar": "فلتر ضوء أزرق بنسبة 65%", "en": "65% blue-light filter" },
-            { "fr": "Sans correction", "ar": "بدون تصحيح", "en": "Non-prescription" },
-            { "fr": "Monture 18 g", "ar": "هيكل بوزن 18 غرام", "en": "18 g frame" },
-            { "fr": "54-17-145 mm", "ar": "54-17-145 ملم", "en": "54-17-145 mm" }
+            {
+              "fr": "Filtre lumière bleue 65 %",
+              "ar": "فلتر ضوء أزرق بنسبة 65%",
+              "en": "65% blue-light filter"
+            },
+            {
+              "fr": "Sans correction",
+              "ar": "بدون تصحيح",
+              "en": "Non-prescription"
+            },
+            {
+              "fr": "Monture 18 g",
+              "ar": "هيكل بوزن 18 غرام",
+              "en": "18 g frame"
+            },
+            {
+              "fr": "54-17-145 mm",
+              "ar": "54-17-145 ملم",
+              "en": "54-17-145 mm"
+            }
           ],
           "pricingMode": "options",
           "options": [
-            { "label": "Cristal", "labelAr": "بلّوري", "labelEn": "Crystal", "price": 4500, "isDefault": true },
-            { "label": "Noir mat", "labelAr": "أسود مطفي", "labelEn": "Matte black", "price": 4500 }
+            {
+              "label": "Cristal",
+              "labelAr": "بلّوري",
+              "labelEn": "Crystal",
+              "price": 4500,
+              "isDefault": true
+            },
+            {
+              "label": "Noir mat",
+              "labelAr": "أسود مطفي",
+              "labelEn": "Matte black",
+              "price": 4500
+            }
           ]
         },
         {
-          "slug": "ecran-ronde",
-          "name": { "fr": "Écran Ronde", "ar": "إسكرين مدوّرة", "en": "Screen Round" },
-          "badge": { "fr": "Confort", "ar": "مريحة", "en": "Comfort" },
-          "description": {
-            "fr": "La forme ronde en écaille, plus douce que la rectangulaire classique, pour ne pas avoir l'air d'être encore au bureau.",
-            "ar": "الشكل المدوّر بنقشة صدفية، ألطف من المستطيل الكلاسيكي، حتى لا تبدو وكأنك ما زلت في المكتب.",
-            "en": "The round tortoise shape, softer than the usual rectangle, so you don't look like you're still at work."
+          "slug": "club-oran",
+          "name": {
+            "fr": "Club Oran",
+            "ar": "كلوب وهران",
+            "en": "Oran Club"
           },
-          "frameShape": "round",
-          "gender": "unisex",
-          "frameColor": "tortoise",
+          "badge": {
+            "fr": "Mixte matières",
+            "ar": "مواد مختلطة",
+            "en": "Mixed material"
+          },
+          "description": {
+            "fr": "Un haut en acétate et un bas en métal fin : la forme habillée qui passe du bureau à la terrasse sans changer de lunettes.",
+            "ar": "أعلى من الأسيتات وأسفل من المعدن الرفيع: شكل أنيق ينتقل من المكتب إلى المقهى دون تغيير النظارة.",
+            "en": "Acetate on top, thin metal below — the dressed-up shape that goes from the office to the terrace unchanged."
+          },
+          "frameShape": "square",
+          "gender": "men",
+          "frameColor": "brown",
           "features": [
-            { "fr": "Filtre lumière bleue 45 %", "ar": "فلتر ضوء أزرق بنسبة 45%", "en": "45% blue-light filter" },
-            { "fr": "Sans correction", "ar": "بدون تصحيح", "en": "Non-prescription" },
-            { "fr": "Acétate écaille", "ar": "أسيتات صدفي", "en": "Tortoise acetate" },
-            { "fr": "50-20-145 mm", "ar": "50-20-145 ملم", "en": "50-20-145 mm" }
+            {
+              "fr": "Sourcils acétate, cercle métal",
+              "ar": "حاجب أسيتات وإطار معدني",
+              "en": "Acetate brow, metal rim"
+            },
+            {
+              "fr": "Verres marron catégorie 3",
+              "ar": "عدسات بنية فئة 3",
+              "en": "Category 3 brown lenses"
+            },
+            {
+              "fr": "Traitement anti-rayures",
+              "ar": "طلاء مقاوم للخدوش",
+              "en": "Scratch-resistant coating"
+            },
+            {
+              "fr": "51-20-145 mm",
+              "ar": "51-20-145 ملم",
+              "en": "51-20-145 mm"
+            }
           ],
           "pricingMode": "options",
           "options": [
-            { "label": "Écaille", "labelAr": "بني مرقّط", "labelEn": "Tortoise", "price": 3800, "isDefault": true },
-            { "label": "Or", "labelAr": "ذهبي", "labelEn": "Gold", "price": 3800 }
+            {
+              "label": "Marron",
+              "labelAr": "بني",
+              "labelEn": "Brown",
+              "price": 7200,
+              "isDefault": true
+            },
+            {
+              "label": "Noir et or",
+              "labelAr": "أسود وذهبي",
+              "labelEn": "Black and gold",
+              "price": 7500
+            }
+          ]
+        },
+        {
+          "slug": "ecran-essentiel",
+          "name": {
+            "fr": "Écran Essentiel",
+            "ar": "إسكرين أساسي",
+            "en": "Screen Essential"
+          },
+          "badge": {
+            "fr": "Entrée de gamme",
+            "ar": "سعر مناسب",
+            "en": "Entry level"
+          },
+          "description": {
+            "fr": "La paire simple à garder au bureau, avec un filtre discret qui ne fausse pas les couleurs à l'écran.",
+            "ar": "النظارة البسيطة التي تتركها في المكتب، بفلتر خفيف لا يغيّر ألوان الشاشة.",
+            "en": "The simple pair to keep at your desk, with a subtle filter that doesn't skew on-screen colour."
+          },
+          "frameShape": "rectangle",
+          "gender": "unisex",
+          "frameColor": "black",
+          "features": [
+            {
+              "fr": "Filtre lumière bleue 40 %",
+              "ar": "فلتر ضوء أزرق بنسبة 40%",
+              "en": "40% blue-light filter"
+            },
+            {
+              "fr": "Sans correction",
+              "ar": "بدون تصحيح",
+              "en": "Non-prescription"
+            },
+            {
+              "fr": "Traitement antireflet",
+              "ar": "طلاء مضاد للانعكاس",
+              "en": "Anti-reflective coating"
+            },
+            {
+              "fr": "53-18-140 mm",
+              "ar": "53-18-140 ملم",
+              "en": "53-18-140 mm"
+            }
+          ],
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Noir",
+              "labelAr": "أسود",
+              "labelEn": "Black",
+              "price": 3200,
+              "isDefault": true
+            },
+            {
+              "label": "Gris",
+              "labelAr": "رمادي",
+              "labelEn": "Grey",
+              "price": 3200
+            }
           ]
         },
         {
           "slug": "ecran-nuit-ambre",
-          "name": { "fr": "Écran Nuit Ambré", "ar": "إسكرين ليلي كهرماني", "en": "Amber Night Screen" },
-          "badge": { "fr": "Soirée", "ar": "للسهرة", "en": "Evening" },
+          "name": {
+            "fr": "Écran Nuit Ambré",
+            "ar": "إسكرين ليلي كهرماني",
+            "en": "Amber Night Screen"
+          },
+          "badge": {
+            "fr": "Soirée",
+            "ar": "للسهرة",
+            "en": "Evening"
+          },
           "description": {
             "fr": "Des verres ambrés pour la fin de soirée, quand la lumière de l'écran devient trop vive avant de dormir.",
             "ar": "عدسات كهرمانية لآخر الليل، حين يصبح ضوء الشاشة قويا قبل النوم.",
@@ -496,58 +288,56 @@
           "gender": "unisex",
           "frameColor": "brown",
           "features": [
-            { "fr": "Filtre lumière bleue 90 %", "ar": "فلتر ضوء أزرق بنسبة 90%", "en": "90% blue-light filter" },
-            { "fr": "Verres ambrés", "ar": "عدسات كهرمانية", "en": "Amber lenses" },
-            { "fr": "Sans correction", "ar": "بدون تصحيح", "en": "Non-prescription" },
-            { "fr": "53-18-142 mm", "ar": "53-18-142 ملم", "en": "53-18-142 mm" }
+            {
+              "fr": "Filtre lumière bleue 90 %",
+              "ar": "فلتر ضوء أزرق بنسبة 90%",
+              "en": "90% blue-light filter"
+            },
+            {
+              "fr": "Verres ambrés",
+              "ar": "عدسات كهرمانية",
+              "en": "Amber lenses"
+            },
+            {
+              "fr": "Sans correction",
+              "ar": "بدون تصحيح",
+              "en": "Non-prescription"
+            },
+            {
+              "fr": "53-18-142 mm",
+              "ar": "53-18-142 ملم",
+              "en": "53-18-142 mm"
+            }
           ],
           "pricingMode": "options",
           "options": [
-            { "label": "Marron", "labelAr": "بني", "labelEn": "Brown", "price": 4200, "isDefault": true },
-            { "label": "Noir", "labelAr": "أسود", "labelEn": "Black", "price": 4200 }
+            {
+              "label": "Marron",
+              "labelAr": "بني",
+              "labelEn": "Brown",
+              "price": 4200,
+              "isDefault": true
+            },
+            {
+              "label": "Noir",
+              "labelAr": "أسود",
+              "labelEn": "Black",
+              "price": 4200
+            }
           ]
         },
         {
-          "slug": "ecran-cat-eye",
-          "name": { "fr": "Écran Œil de Chat", "ar": "إسكرين عين القطة", "en": "Cat-Eye Screen" },
-          "badge": { "fr": "Bureau", "ar": "للمكتب", "en": "Desk-ready" },
-          "description": {
-            "fr": "Un filtre écran dans une forme habillée, pour celles qui ne veulent pas troquer leur style contre du confort.",
-            "ar": "فلتر شاشة في شكل أنيق، لمن لا تريد التنازل عن أناقتها مقابل الراحة.",
-            "en": "A screen filter in a dressed-up shape, for anyone who won't trade style for comfort."
-          },
-          "frameShape": "cat-eye",
-          "gender": "women",
-          "frameColor": "rose-gold",
-          "features": [
-            { "fr": "Filtre lumière bleue 50 %", "ar": "فلتر ضوء أزرق بنسبة 50%", "en": "50% blue-light filter" },
-            { "fr": "Sans correction", "ar": "بدون تصحيح", "en": "Non-prescription" },
-            { "fr": "Finition or rose", "ar": "تشطيب ذهبي وردي", "en": "Rose-gold finish" },
-            { "fr": "52-16-140 mm", "ar": "52-16-140 ملم", "en": "52-16-140 mm" }
-          ],
-          "pricingMode": "options",
-          "options": [
-            { "label": "Or rose", "labelAr": "ذهبي وردي", "labelEn": "Rose gold", "price": 4800, "isDefault": true },
-            { "label": "Noir", "labelAr": "أسود", "labelEn": "Black", "price": 4800 }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "readers",
-      "name": { "fr": "Lunettes de lecture", "ar": "نظارات القراءة", "en": "Reading Glasses" },
-      "headline": { "fr": "Lire\nsans effort", "ar": "قراءة\nبلا جهد", "en": "Read\nwithout strain" },
-      "outlinedPill": { "fr": "Prêtes à porter", "ar": "جاهزة للاستعمال", "en": "Ready to wear" },
-      "description": {
-        "fr": "Des loupes de lecture prêtes à porter, de +1,00 à +3,50, avec la même correction aux deux yeux. Pour une ordonnance, voyez votre opticien.",
-        "ar": "نظارات قراءة جاهزة من +1.00 إلى +3.50، بنفس القوة للعينين. أما الوصفة الطبية فمكانها عند أخصائي البصريات.",
-        "en": "Ready-made readers from +1.00 to +3.50, the same strength in both eyes. For a prescription, see your optician."
-      },
-      "products": [
-        {
           "slug": "lecture-classique",
-          "name": { "fr": "Lecture Classique", "ar": "قراءة كلاسيك", "en": "Classic Reader" },
-          "badge": { "fr": "Best-seller", "ar": "الأكثر مبيعا", "en": "Best seller" },
+          "name": {
+            "fr": "Lecture Classique",
+            "ar": "قراءة كلاسيك",
+            "en": "Classic Reader"
+          },
+          "badge": {
+            "fr": "Best-seller",
+            "ar": "الأكثر مبيعا",
+            "en": "Best seller"
+          },
           "description": {
             "fr": "La paire simple à laisser près du fauteuil ou du Coran, avec des charnières qui tiennent après des centaines d'ouvertures.",
             "ar": "النظارة البسيطة التي تتركها قرب الكرسي أو المصحف، بمفصلات تصمد بعد مئات مرات الفتح.",
@@ -557,25 +347,80 @@
           "gender": "unisex",
           "frameColor": "black",
           "features": [
-            { "fr": "Même correction aux deux yeux", "ar": "نفس القوة للعينين", "en": "Same strength in both eyes" },
-            { "fr": "Charnières à ressort", "ar": "مفصلات نابضة", "en": "Spring hinges" },
-            { "fr": "Étui souple inclus", "ar": "جراب لين مرفق", "en": "Soft case included" },
-            { "fr": "52-18-140 mm", "ar": "52-18-140 ملم", "en": "52-18-140 mm" }
+            {
+              "fr": "Même correction aux deux yeux",
+              "ar": "نفس القوة للعينين",
+              "en": "Same strength in both eyes"
+            },
+            {
+              "fr": "Charnières à ressort",
+              "ar": "مفصلات نابضة",
+              "en": "Spring hinges"
+            },
+            {
+              "fr": "Étui souple inclus",
+              "ar": "جراب لين مرفق",
+              "en": "Soft case included"
+            },
+            {
+              "fr": "52-18-140 mm",
+              "ar": "52-18-140 ملم",
+              "en": "52-18-140 mm"
+            }
           ],
           "pricingMode": "options",
           "options": [
-            { "label": "+1,00", "labelAr": "+1.00", "labelEn": "+1.00", "price": 1900 },
-            { "label": "+1,50", "labelAr": "+1.50", "labelEn": "+1.50", "price": 1900, "isDefault": true },
-            { "label": "+2,00", "labelAr": "+2.00", "labelEn": "+2.00", "price": 1900 },
-            { "label": "+2,50", "labelAr": "+2.50", "labelEn": "+2.50", "price": 2100 },
-            { "label": "+3,00", "labelAr": "+3.00", "labelEn": "+3.00", "price": 2100 },
-            { "label": "+3,50", "labelAr": "+3.50", "labelEn": "+3.50", "price": 2100 }
+            {
+              "label": "+1,00",
+              "labelAr": "+1.00",
+              "labelEn": "+1.00",
+              "price": 1900
+            },
+            {
+              "label": "+1,50",
+              "labelAr": "+1.50",
+              "labelEn": "+1.50",
+              "price": 1900,
+              "isDefault": true
+            },
+            {
+              "label": "+2,00",
+              "labelAr": "+2.00",
+              "labelEn": "+2.00",
+              "price": 1900
+            },
+            {
+              "label": "+2,50",
+              "labelAr": "+2.50",
+              "labelEn": "+2.50",
+              "price": 2100
+            },
+            {
+              "label": "+3,00",
+              "labelAr": "+3.00",
+              "labelEn": "+3.00",
+              "price": 2100
+            },
+            {
+              "label": "+3,50",
+              "labelAr": "+3.50",
+              "labelEn": "+3.50",
+              "price": 2100
+            }
           ]
         },
         {
           "slug": "lecture-pliable",
-          "name": { "fr": "Lecture Pliable", "ar": "قراءة قابلة للطي", "en": "Folding Reader" },
-          "badge": { "fr": "Format poche", "ar": "حجم الجيب", "en": "Pocket size" },
+          "name": {
+            "fr": "Lecture Pliable",
+            "ar": "قراءة قابلة للطي",
+            "en": "Folding Reader"
+          },
+          "badge": {
+            "fr": "Format poche",
+            "ar": "حجم الجيب",
+            "en": "Pocket size"
+          },
           "description": {
             "fr": "Elle se replie en deux et tient dans une poche de chemise : la paire qu'on emmène partout sans y penser.",
             "ar": "تُطوى إلى نصفين وتدخل في جيب القميص: النظارة التي تأخذها معك دون تفكير.",
@@ -585,51 +430,574 @@
           "gender": "unisex",
           "frameColor": "silver",
           "features": [
-            { "fr": "Pliage central", "ar": "طي من المنتصف", "en": "Centre fold" },
-            { "fr": "Étui rigide inclus", "ar": "علبة صلبة مرفقة", "en": "Hard case included" },
-            { "fr": "Monture 15 g", "ar": "هيكل بوزن 15 غرام", "en": "15 g frame" },
-            { "fr": "50-19-138 mm", "ar": "50-19-138 ملم", "en": "50-19-138 mm" }
+            {
+              "fr": "Pliage central",
+              "ar": "طي من المنتصف",
+              "en": "Centre fold"
+            },
+            {
+              "fr": "Étui rigide inclus",
+              "ar": "علبة صلبة مرفقة",
+              "en": "Hard case included"
+            },
+            {
+              "fr": "Monture 15 g",
+              "ar": "هيكل بوزن 15 غرام",
+              "en": "15 g frame"
+            },
+            {
+              "fr": "50-19-138 mm",
+              "ar": "50-19-138 ملم",
+              "en": "50-19-138 mm"
+            }
           ],
           "pricingMode": "options",
           "options": [
-            { "label": "+1,00", "labelAr": "+1.00", "labelEn": "+1.00", "price": 2600 },
-            { "label": "+1,50", "labelAr": "+1.50", "labelEn": "+1.50", "price": 2600, "isDefault": true },
-            { "label": "+2,00", "labelAr": "+2.00", "labelEn": "+2.00", "price": 2600 },
-            { "label": "+2,50", "labelAr": "+2.50", "labelEn": "+2.50", "price": 2800 },
-            { "label": "+3,00", "labelAr": "+3.00", "labelEn": "+3.00", "price": 2800 }
+            {
+              "label": "+1,00",
+              "labelAr": "+1.00",
+              "labelEn": "+1.00",
+              "price": 2600
+            },
+            {
+              "label": "+1,50",
+              "labelAr": "+1.50",
+              "labelEn": "+1.50",
+              "price": 2600,
+              "isDefault": true
+            },
+            {
+              "label": "+2,00",
+              "labelAr": "+2.00",
+              "labelEn": "+2.00",
+              "price": 2600
+            },
+            {
+              "label": "+2,50",
+              "labelAr": "+2.50",
+              "labelEn": "+2.50",
+              "price": 2800
+            },
+            {
+              "label": "+3,00",
+              "labelAr": "+3.00",
+              "labelEn": "+3.00",
+              "price": 2800
+            }
           ]
         },
         {
-          "slug": "lecture-ronde",
-          "name": { "fr": "Lecture Ronde", "ar": "قراءة مدوّرة", "en": "Round Reader" },
-          "badge": { "fr": "Rétro", "ar": "ريترو", "en": "Retro" },
-          "description": {
-            "fr": "Un petit cercle doré, plus élégant que la loupe de pharmacie, à garder sur le bureau sans complexe.",
-            "ar": "دائرة ذهبية صغيرة، أنيقة أكثر من نظارة الصيدلية، تتركها على المكتب دون حرج.",
-            "en": "A small gold circle, a good deal smarter than the pharmacy magnifier, and fine to leave on your desk."
+          "slug": "monture-carree-large",
+          "name": {
+            "fr": "Monture Carrée Large",
+            "ar": "هيكل مربّع عريض",
+            "en": "Wide Square Frame"
           },
-          "frameShape": "round",
-          "gender": "unisex",
-          "frameColor": "gold",
+          "badge": {
+            "fr": "Grande taille",
+            "ar": "مقاس كبير",
+            "en": "Large fit"
+          },
+          "description": {
+            "fr": "Une monture pensée pour les visages larges, avec un pont plus long et des branches qui ne serrent pas aux tempes.",
+            "ar": "هيكل مصمم للوجوه العريضة، بجسر أطول وأذرع لا تضغط على الصدغين.",
+            "en": "Built for wider faces, with a longer bridge and temples that don't pinch."
+          },
+          "frameShape": "square",
+          "gender": "men",
+          "frameColor": "brown",
           "features": [
-            { "fr": "Monture métal fin", "ar": "هيكل معدني رفيع", "en": "Thin metal frame" },
-            { "fr": "Même correction aux deux yeux", "ar": "نفس القوة للعينين", "en": "Same strength in both eyes" },
-            { "fr": "Plaquettes silicone", "ar": "دعامات أنف سيليكون", "en": "Silicone nose pads" },
-            { "fr": "46-20-140 mm", "ar": "46-20-140 ملم", "en": "46-20-140 mm" }
+            {
+              "fr": "Largeur totale 148 mm",
+              "ar": "العرض الكلي 148 ملم",
+              "en": "148 mm total width"
+            },
+            {
+              "fr": "Acétate renforcé",
+              "ar": "أسيتات معزز",
+              "en": "Reinforced acetate"
+            },
+            {
+              "fr": "Verres de démonstration inclus",
+              "ar": "عدسات عرض مرفقة",
+              "en": "Demo lenses included"
+            },
+            {
+              "fr": "57-18-148 mm",
+              "ar": "57-18-148 ملم",
+              "en": "57-18-148 mm"
+            }
           ],
           "pricingMode": "options",
           "options": [
-            { "label": "+1,00", "labelAr": "+1.00", "labelEn": "+1.00", "price": 2400 },
-            { "label": "+1,50", "labelAr": "+1.50", "labelEn": "+1.50", "price": 2400, "isDefault": true },
-            { "label": "+2,00", "labelAr": "+2.00", "labelEn": "+2.00", "price": 2400 },
-            { "label": "+2,50", "labelAr": "+2.50", "labelEn": "+2.50", "price": 2600 },
-            { "label": "+3,00", "labelAr": "+3.00", "labelEn": "+3.00", "price": 2600 }
+            {
+              "label": "Marron",
+              "labelAr": "بني",
+              "labelEn": "Brown",
+              "price": 5900,
+              "isDefault": true
+            },
+            {
+              "label": "Noir",
+              "labelAr": "أسود",
+              "labelEn": "Black",
+              "price": 5900
+            }
+          ]
+        },
+        {
+          "slug": "monture-ecaille",
+          "name": {
+            "fr": "Monture Écaille",
+            "ar": "هيكل بنقشة صدفية",
+            "en": "Tortoise Frame"
+          },
+          "badge": {
+            "fr": "Chaleureuse",
+            "ar": "دافئة",
+            "en": "Warm"
+          },
+          "description": {
+            "fr": "Un motif écaille qui réchauffe le teint et reste habillé, dans une forme carrée assez large pour équilibrer un visage fin.",
+            "ar": "نقشة صدفية تمنح دفئا للبشرة وتبقى أنيقة، بشكل مربّع عريض يوازن الوجه النحيف.",
+            "en": "A tortoise pattern that warms the complexion, in a square wide enough to balance a narrow face."
+          },
+          "frameShape": "square",
+          "gender": "unisex",
+          "frameColor": "tortoise",
+          "features": [
+            {
+              "fr": "Acétate écaille multicouche",
+              "ar": "أسيتات صدفي متعدد الطبقات",
+              "en": "Multi-layer tortoise acetate"
+            },
+            {
+              "fr": "Verres de démonstration inclus",
+              "ar": "عدسات عرض مرفقة",
+              "en": "Demo lenses included"
+            },
+            {
+              "fr": "Charnières à ressort",
+              "ar": "مفصلات نابضة",
+              "en": "Spring hinges"
+            },
+            {
+              "fr": "55-17-145 mm",
+              "ar": "55-17-145 ملم",
+              "en": "55-17-145 mm"
+            }
+          ],
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Écaille claire",
+              "labelAr": "صدفي فاتح",
+              "labelEn": "Light tortoise",
+              "price": 6500,
+              "isDefault": true
+            },
+            {
+              "label": "Écaille foncée",
+              "labelAr": "صدفي داكن",
+              "labelEn": "Dark tortoise",
+              "price": 6500
+            }
+          ]
+        },
+        {
+          "slug": "monture-titane-fine",
+          "name": {
+            "fr": "Monture Titane Fine",
+            "ar": "هيكل تيتانيوم رفيع",
+            "en": "Slim Titanium Frame"
+          },
+          "badge": {
+            "fr": "Ultra-légère",
+            "ar": "خفيفة جدا",
+            "en": "Ultra-light"
+          },
+          "description": {
+            "fr": "Douze grammes sur le nez : la monture qu'on oublie après une heure, pour ceux qui portent leurs lunettes toute la journée.",
+            "ar": "اثنا عشر غراما على الأنف: هيكل تنساه بعد ساعة، لمن يضع نظارته طوال اليوم.",
+            "en": "Twelve grams on the nose — the frame you forget after an hour, for all-day wearers."
+          },
+          "frameShape": "rectangle",
+          "gender": "unisex",
+          "frameColor": "silver",
+          "features": [
+            {
+              "fr": "Titane bêta 12 g",
+              "ar": "تيتانيوم بيتا بوزن 12 غرام",
+              "en": "12 g beta titanium"
+            },
+            {
+              "fr": "Sans nickel, anti-allergique",
+              "ar": "خال من النيكل ومضاد للحساسية",
+              "en": "Nickel-free, hypoallergenic"
+            },
+            {
+              "fr": "Branches flexibles",
+              "ar": "أذرع مرنة",
+              "en": "Flexible temples"
+            },
+            {
+              "fr": "54-18-145 mm",
+              "ar": "54-18-145 ملم",
+              "en": "54-18-145 mm"
+            }
+          ],
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Argent",
+              "labelAr": "فضي",
+              "labelEn": "Silver",
+              "price": 12500,
+              "isDefault": true
+            },
+            {
+              "label": "Gris graphite",
+              "labelAr": "رمادي غرافيت",
+              "labelEn": "Graphite",
+              "price": 12500
+            }
+          ]
+        },
+        {
+          "slug": "sport-polarise",
+          "name": {
+            "fr": "Sport Polarisé",
+            "ar": "رياضية مستقطبة",
+            "en": "Polarised Sport"
+          },
+          "badge": {
+            "fr": "Polarisé",
+            "ar": "مستقطبة",
+            "en": "Polarised"
+          },
+          "description": {
+            "fr": "Une monture enveloppante qui ne bouge pas à la course ni au volant, avec un filtre polarisant qui coupe les reflets de la route.",
+            "ar": "إطار ملتف لا يتحرك أثناء الجري أو القيادة، مع فلتر مستقطب يقطع انعكاسات الطريق.",
+            "en": "A wrap frame that stays put whether you run or drive, with a polarising filter that kills road glare."
+          },
+          "frameShape": "rectangle",
+          "gender": "men",
+          "frameColor": "black",
+          "features": [
+            {
+              "fr": "Filtre polarisant 99 %",
+              "ar": "فلتر استقطاب بنسبة 99%",
+              "en": "99% polarising filter"
+            },
+            {
+              "fr": "Embouts caoutchouc antidérapants",
+              "ar": "أطراف مطاطية مانعة للانزلاق",
+              "en": "Non-slip rubber tips"
+            },
+            {
+              "fr": "Monture TR90 flexible",
+              "ar": "إطار TR90 مرن",
+              "en": "Flexible TR90 frame"
+            },
+            {
+              "fr": "62-15-135 mm",
+              "ar": "62-15-135 ملم",
+              "en": "62-15-135 mm"
+            }
+          ],
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Noir",
+              "labelAr": "أسود",
+              "labelEn": "Black",
+              "price": 8500,
+              "isDefault": true
+            },
+            {
+              "label": "Bleu",
+              "labelAr": "أزرق",
+              "labelEn": "Blue",
+              "price": 8500
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "women",
+      "name": {
+        "fr": "Femme",
+        "ar": "نساء",
+        "en": "Women"
+      },
+      "headline": {
+        "fr": "Regard\naffirmé",
+        "ar": "إطلالة\nواثقة",
+        "en": "A confident\nlook"
+      },
+      "collectionLabel": {
+        "fr": "Collection femme",
+        "ar": "تشكيلة النساء",
+        "en": "Women's collection"
+      },
+      "description": {
+        "fr": "Œil de chat, formes rondes et acétates fins : des montures légères qui affinent le regard sans jamais l'alourdir.",
+        "ar": "عين القطة، أشكال دائرية وأسيتات رفيع: إطارات خفيفة تبرز العينين دون أن تثقلهما.",
+        "en": "Cat-eye, round shapes and slim acetates: light frames that sharpen the eyes without ever weighing them down."
+      },
+      "image": "public/categories/women.jpg",
+      "products": [
+        {
+          "slug": "oeil-de-chat-sahara",
+          "name": {
+            "fr": "Œil de Chat Sahara",
+            "ar": "عين القطة صحراء",
+            "en": "Sahara Cat-Eye"
+          },
+          "badge": {
+            "fr": "Nouveau",
+            "ar": "جديد",
+            "en": "New"
+          },
+          "description": {
+            "fr": "Une remontée franche aux coins et une teinte ambrée chaude, pour un regard net qui reste élégant en plein jour.",
+            "ar": "ارتفاع واضح عند الزوايا ولون كهرماني دافئ، لإطلالة واثقة تبقى أنيقة في وضح النهار.",
+            "en": "A decisive upsweep at the corners in a warm amber tone, for a sharp look that stays elegant in full daylight."
+          },
+          "frameShape": "cat-eye",
+          "gender": "women",
+          "frameColor": "tortoise",
+          "featuredRank": 3,
+          "features": [
+            {
+              "fr": "Verres dégradés catégorie 2",
+              "ar": "عدسات متدرجة فئة 2",
+              "en": "Category 2 gradient lenses"
+            },
+            {
+              "fr": "Acétate écaille véritable",
+              "ar": "أسيتات بنقشة صدفية أصلية",
+              "en": "Genuine tortoise acetate"
+            },
+            {
+              "fr": "Branches effilées 140 mm",
+              "ar": "أذرع مستدقة 140 ملم",
+              "en": "Tapered 140 mm temples"
+            },
+            {
+              "fr": "54-16-140 mm",
+              "ar": "54-16-140 ملم",
+              "en": "54-16-140 mm"
+            }
+          ],
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Écaille",
+              "labelAr": "بني مرقّط",
+              "labelEn": "Tortoise",
+              "price": 6500,
+              "isDefault": true
+            },
+            {
+              "label": "Noir",
+              "labelAr": "أسود",
+              "labelEn": "Black",
+              "price": 6200
+            }
+          ]
+        },
+        {
+          "slug": "monture-oeil-de-chat-nour",
+          "name": {
+            "fr": "Monture Œil de Chat Nour",
+            "ar": "هيكل عين القطة نور",
+            "en": "Nour Cat-Eye Frame"
+          },
+          "badge": {
+            "fr": "Féminine",
+            "ar": "نسائية",
+            "en": "Feminine"
+          },
+          "description": {
+            "fr": "Une remontée douce aux tempes et une finition or rose, pensée pour rester habillée au travail comme le soir.",
+            "ar": "ارتفاع لطيف عند الصدغين ولمسة ذهبية وردية، مصممة لتبقى أنيقة في العمل وفي المساء.",
+            "en": "A gentle lift at the temples with a rose-gold finish, meant to stay polished at work and after hours."
+          },
+          "frameShape": "cat-eye",
+          "gender": "women",
+          "frameColor": "rose-gold",
+          "featuredRank": 5,
+          "features": [
+            {
+              "fr": "Acétate et métal",
+              "ar": "أسيتات ومعدن",
+              "en": "Acetate and metal"
+            },
+            {
+              "fr": "Finition or rose",
+              "ar": "تشطيب ذهبي وردي",
+              "en": "Rose-gold finish"
+            },
+            {
+              "fr": "Verres de démonstration inclus",
+              "ar": "عدسات عرض مرفقة",
+              "en": "Demo lenses included"
+            },
+            {
+              "fr": "52-16-140 mm",
+              "ar": "52-16-140 ملم",
+              "en": "52-16-140 mm"
+            }
+          ],
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Or rose",
+              "labelAr": "ذهبي وردي",
+              "labelEn": "Rose gold",
+              "price": 6900,
+              "isDefault": true
+            },
+            {
+              "label": "Bordeaux",
+              "labelAr": "خمري",
+              "labelEn": "Burgundy",
+              "price": 6900
+            }
+          ]
+        },
+        {
+          "slug": "ecran-cat-eye",
+          "name": {
+            "fr": "Écran Œil de Chat",
+            "ar": "إسكرين عين القطة",
+            "en": "Cat-Eye Screen"
+          },
+          "badge": {
+            "fr": "Bureau",
+            "ar": "للمكتب",
+            "en": "Desk-ready"
+          },
+          "description": {
+            "fr": "Un filtre écran dans une forme habillée, pour celles qui ne veulent pas troquer leur style contre du confort.",
+            "ar": "فلتر شاشة في شكل أنيق، لمن لا تريد التنازل عن أناقتها مقابل الراحة.",
+            "en": "A screen filter in a dressed-up shape, for anyone who won't trade style for comfort."
+          },
+          "frameShape": "cat-eye",
+          "gender": "women",
+          "frameColor": "rose-gold",
+          "features": [
+            {
+              "fr": "Filtre lumière bleue 50 %",
+              "ar": "فلتر ضوء أزرق بنسبة 50%",
+              "en": "50% blue-light filter"
+            },
+            {
+              "fr": "Sans correction",
+              "ar": "بدون تصحيح",
+              "en": "Non-prescription"
+            },
+            {
+              "fr": "Finition or rose",
+              "ar": "تشطيب ذهبي وردي",
+              "en": "Rose-gold finish"
+            },
+            {
+              "fr": "52-16-140 mm",
+              "ar": "52-16-140 ملم",
+              "en": "52-16-140 mm"
+            }
+          ],
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Or rose",
+              "labelAr": "ذهبي وردي",
+              "labelEn": "Rose gold",
+              "price": 4800,
+              "isDefault": true
+            },
+            {
+              "label": "Noir",
+              "labelAr": "أسود",
+              "labelEn": "Black",
+              "price": 4800
+            }
+          ]
+        },
+        {
+          "slug": "ecran-ronde",
+          "name": {
+            "fr": "Écran Ronde",
+            "ar": "إسكرين مدوّرة",
+            "en": "Screen Round"
+          },
+          "badge": {
+            "fr": "Confort",
+            "ar": "مريحة",
+            "en": "Comfort"
+          },
+          "description": {
+            "fr": "La forme ronde en écaille, plus douce que la rectangulaire classique, pour ne pas avoir l'air d'être encore au bureau.",
+            "ar": "الشكل المدوّر بنقشة صدفية، ألطف من المستطيل الكلاسيكي، حتى لا تبدو وكأنك ما زلت في المكتب.",
+            "en": "The round tortoise shape, softer than the usual rectangle, so you don't look like you're still at work."
+          },
+          "frameShape": "round",
+          "gender": "unisex",
+          "frameColor": "tortoise",
+          "features": [
+            {
+              "fr": "Filtre lumière bleue 45 %",
+              "ar": "فلتر ضوء أزرق بنسبة 45%",
+              "en": "45% blue-light filter"
+            },
+            {
+              "fr": "Sans correction",
+              "ar": "بدون تصحيح",
+              "en": "Non-prescription"
+            },
+            {
+              "fr": "Acétate écaille",
+              "ar": "أسيتات صدفي",
+              "en": "Tortoise acetate"
+            },
+            {
+              "fr": "50-20-145 mm",
+              "ar": "50-20-145 ملم",
+              "en": "50-20-145 mm"
+            }
+          ],
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Écaille",
+              "labelAr": "بني مرقّط",
+              "labelEn": "Tortoise",
+              "price": 3800,
+              "isDefault": true
+            },
+            {
+              "label": "Or",
+              "labelAr": "ذهبي",
+              "labelEn": "Gold",
+              "price": 3800
+            }
           ]
         },
         {
           "slug": "lecture-legere",
-          "name": { "fr": "Lecture Légère", "ar": "قراءة خفيفة", "en": "Featherlight Reader" },
-          "badge": { "fr": "13 g", "ar": "13 غرام", "en": "13 g" },
+          "name": {
+            "fr": "Lecture Légère",
+            "ar": "قراءة خفيفة",
+            "en": "Featherlight Reader"
+          },
+          "badge": {
+            "fr": "13 g",
+            "ar": "13 غرام",
+            "en": "13 g"
+          },
           "description": {
             "fr": "Treize grammes et une monture cristal qui se voit à peine, pour lire longtemps sans marque sur le nez.",
             "ar": "ثلاثة عشر غراما وهيكل بلّوري يكاد لا يُرى، للقراءة طويلا دون أثر على الأنف.",
@@ -639,37 +1007,360 @@
           "gender": "unisex",
           "frameColor": "transparent",
           "features": [
-            { "fr": "Monture 13 g", "ar": "هيكل بوزن 13 غرام", "en": "13 g frame" },
-            { "fr": "Acétate cristal", "ar": "أسيتات بلّوري", "en": "Crystal acetate" },
-            { "fr": "Étui souple inclus", "ar": "جراب لين مرفق", "en": "Soft case included" },
-            { "fr": "49-19-140 mm", "ar": "49-19-140 ملم", "en": "49-19-140 mm" }
+            {
+              "fr": "Monture 13 g",
+              "ar": "هيكل بوزن 13 غرام",
+              "en": "13 g frame"
+            },
+            {
+              "fr": "Acétate cristal",
+              "ar": "أسيتات بلّوري",
+              "en": "Crystal acetate"
+            },
+            {
+              "fr": "Étui souple inclus",
+              "ar": "جراب لين مرفق",
+              "en": "Soft case included"
+            },
+            {
+              "fr": "49-19-140 mm",
+              "ar": "49-19-140 ملم",
+              "en": "49-19-140 mm"
+            }
           ],
           "pricingMode": "options",
           "options": [
-            { "label": "+1,00", "labelAr": "+1.00", "labelEn": "+1.00", "price": 3100 },
-            { "label": "+1,50", "labelAr": "+1.50", "labelEn": "+1.50", "price": 3100, "isDefault": true },
-            { "label": "+2,00", "labelAr": "+2.00", "labelEn": "+2.00", "price": 3100 },
-            { "label": "+2,50", "labelAr": "+2.50", "labelEn": "+2.50", "price": 3400 },
-            { "label": "+3,50", "labelAr": "+3.50", "labelEn": "+3.50", "price": 3400 }
+            {
+              "label": "+1,00",
+              "labelAr": "+1.00",
+              "labelEn": "+1.00",
+              "price": 3100
+            },
+            {
+              "label": "+1,50",
+              "labelAr": "+1.50",
+              "labelEn": "+1.50",
+              "price": 3100,
+              "isDefault": true
+            },
+            {
+              "label": "+2,00",
+              "labelAr": "+2.00",
+              "labelEn": "+2.00",
+              "price": 3100
+            },
+            {
+              "label": "+2,50",
+              "labelAr": "+2.50",
+              "labelEn": "+2.50",
+              "price": 3400
+            },
+            {
+              "label": "+3,50",
+              "labelAr": "+3.50",
+              "labelEn": "+3.50",
+              "price": 3400
+            }
+          ]
+        },
+        {
+          "slug": "lecture-ronde",
+          "name": {
+            "fr": "Lecture Ronde",
+            "ar": "قراءة مدوّرة",
+            "en": "Round Reader"
+          },
+          "badge": {
+            "fr": "Rétro",
+            "ar": "ريترو",
+            "en": "Retro"
+          },
+          "description": {
+            "fr": "Un petit cercle doré, plus élégant que la loupe de pharmacie, à garder sur le bureau sans complexe.",
+            "ar": "دائرة ذهبية صغيرة، أنيقة أكثر من نظارة الصيدلية، تتركها على المكتب دون حرج.",
+            "en": "A small gold circle, a good deal smarter than the pharmacy magnifier, and fine to leave on your desk."
+          },
+          "frameShape": "round",
+          "gender": "unisex",
+          "frameColor": "gold",
+          "features": [
+            {
+              "fr": "Monture métal fin",
+              "ar": "هيكل معدني رفيع",
+              "en": "Thin metal frame"
+            },
+            {
+              "fr": "Même correction aux deux yeux",
+              "ar": "نفس القوة للعينين",
+              "en": "Same strength in both eyes"
+            },
+            {
+              "fr": "Plaquettes silicone",
+              "ar": "دعامات أنف سيليكون",
+              "en": "Silicone nose pads"
+            },
+            {
+              "fr": "46-20-140 mm",
+              "ar": "46-20-140 ملم",
+              "en": "46-20-140 mm"
+            }
+          ],
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "+1,00",
+              "labelAr": "+1.00",
+              "labelEn": "+1.00",
+              "price": 2400
+            },
+            {
+              "label": "+1,50",
+              "labelAr": "+1.50",
+              "labelEn": "+1.50",
+              "price": 2400,
+              "isDefault": true
+            },
+            {
+              "label": "+2,00",
+              "labelAr": "+2.00",
+              "labelEn": "+2.00",
+              "price": 2400
+            },
+            {
+              "label": "+2,50",
+              "labelAr": "+2.50",
+              "labelEn": "+2.50",
+              "price": 2600
+            },
+            {
+              "label": "+3,00",
+              "labelAr": "+3.00",
+              "labelEn": "+3.00",
+              "price": 2600
+            }
+          ]
+        },
+        {
+          "slug": "monture-ronde-metal",
+          "name": {
+            "fr": "Monture Ronde Métal",
+            "ar": "هيكل معدني مدوّر",
+            "en": "Round Metal Frame"
+          },
+          "badge": {
+            "fr": "Fine",
+            "ar": "رفيعة",
+            "en": "Slim"
+          },
+          "description": {
+            "fr": "Un cercle fin doré qui laisse le visage respirer, à l'aise sur les corrections légères comme sur les fortes.",
+            "ar": "دائرة ذهبية رفيعة تترك مساحة للوجه، مريحة مع التصحيحات الخفيفة والقوية على حد سواء.",
+            "en": "A thin gold circle that lets the face breathe, comfortable with light and strong corrections alike."
+          },
+          "frameShape": "round",
+          "gender": "unisex",
+          "frameColor": "gold",
+          "features": [
+            {
+              "fr": "Acier fin 1,2 mm",
+              "ar": "فولاذ رفيع 1.2 ملم",
+              "en": "1.2 mm thin steel"
+            },
+            {
+              "fr": "Plaquettes silicone",
+              "ar": "دعامات أنف سيليكون",
+              "en": "Silicone nose pads"
+            },
+            {
+              "fr": "Verres de démonstration inclus",
+              "ar": "عدسات عرض مرفقة",
+              "en": "Demo lenses included"
+            },
+            {
+              "fr": "48-21-145 mm",
+              "ar": "48-21-145 ملم",
+              "en": "48-21-145 mm"
+            }
+          ],
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Or",
+              "labelAr": "ذهبي",
+              "labelEn": "Gold",
+              "price": 4900,
+              "isDefault": true
+            },
+            {
+              "label": "Noir mat",
+              "labelAr": "أسود مطفي",
+              "labelEn": "Matte black",
+              "price": 4900
+            }
+          ]
+        },
+        {
+          "slug": "monture-transparente",
+          "name": {
+            "fr": "Monture Transparente",
+            "ar": "هيكل شفاف",
+            "en": "Clear Frame"
+          },
+          "badge": {
+            "fr": "Discrète",
+            "ar": "خفية",
+            "en": "Discreet"
+          },
+          "description": {
+            "fr": "Un cristal translucide qui se fait oublier sur le visage : la monture la plus facile à porter quand on hésite encore.",
+            "ar": "بلّور شفاف يكاد يختفي على الوجه: أسهل هيكل للارتداء إن كنت لا تزال مترددا.",
+            "en": "Translucent crystal that all but disappears on the face — the easiest frame to wear when you're still undecided."
+          },
+          "frameShape": "oval",
+          "gender": "unisex",
+          "frameColor": "transparent",
+          "features": [
+            {
+              "fr": "Acétate cristal",
+              "ar": "أسيتات بلّوري",
+              "en": "Crystal acetate"
+            },
+            {
+              "fr": "Ne jaunit pas au soleil",
+              "ar": "لا يصفرّ تحت الشمس",
+              "en": "Won't yellow in the sun"
+            },
+            {
+              "fr": "Verres de démonstration inclus",
+              "ar": "عدسات عرض مرفقة",
+              "en": "Demo lenses included"
+            },
+            {
+              "fr": "51-18-142 mm",
+              "ar": "51-18-142 ملم",
+              "en": "51-18-142 mm"
+            }
+          ],
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Cristal",
+              "labelAr": "بلّوري",
+              "labelEn": "Crystal",
+              "price": 4500,
+              "isDefault": true
+            },
+            {
+              "label": "Fumé clair",
+              "labelAr": "دخاني فاتح",
+              "labelEn": "Light smoke",
+              "price": 4500
+            }
+          ]
+        },
+        {
+          "slug": "oversize-alger",
+          "name": {
+            "fr": "Oversize Alger",
+            "ar": "أوفرسايز الجزائر",
+            "en": "Alger Oversize"
+          },
+          "badge": {
+            "fr": "Large",
+            "ar": "عريضة",
+            "en": "Oversized"
+          },
+          "description": {
+            "fr": "Des verres larges qui couvrent bien le contour de l'œil, utiles en bord de mer comme en ville en plein midi.",
+            "ar": "عدسات عريضة تغطي محيط العين جيدا، مفيدة على شاطئ البحر وفي المدينة عند الظهيرة.",
+            "en": "Wide lenses with real coverage around the eye — as useful on the seafront as in the city at midday."
+          },
+          "frameShape": "square",
+          "gender": "women",
+          "frameColor": "black",
+          "features": [
+            {
+              "fr": "Verres catégorie 3",
+              "ar": "عدسات فئة 3",
+              "en": "Category 3 lenses"
+            },
+            {
+              "fr": "Large couverture latérale",
+              "ar": "تغطية جانبية واسعة",
+              "en": "Broad side coverage"
+            },
+            {
+              "fr": "Acétate 6 mm",
+              "ar": "أسيتات بسماكة 6 ملم",
+              "en": "6 mm acetate"
+            },
+            {
+              "fr": "58-16-140 mm",
+              "ar": "58-16-140 ملم",
+              "en": "58-16-140 mm"
+            }
+          ],
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Noir",
+              "labelAr": "أسود",
+              "labelEn": "Black",
+              "price": 6800,
+              "isDefault": true
+            },
+            {
+              "label": "Écaille",
+              "labelAr": "بني مرقّط",
+              "labelEn": "Tortoise",
+              "price": 6800
+            },
+            {
+              "label": "Transparent",
+              "labelAr": "شفاف",
+              "labelEn": "Transparent",
+              "price": 6500
+            }
           ]
         }
       ]
     },
     {
       "slug": "kids",
-      "name": { "fr": "Enfants", "ar": "نظارات الأطفال", "en": "Kids" },
-      "headline": { "fr": "Solides,\npour eux", "ar": "متينة\nلأطفالك", "en": "Tough,\nfor them" },
-      "outlinedPill": { "fr": "3 à 12 ans", "ar": "من 3 إلى 12 سنة", "en": "Ages 3 to 12" },
-      "description": {
-        "fr": "Des montures souples qui reprennent leur forme après une chute, dimensionnées pour des visages d'enfants et non des adultes réduits.",
-        "ar": "هياكل مرنة تعود إلى شكلها بعد السقوط، بمقاسات مصممة لوجوه الأطفال لا لنسخ مصغّرة من الكبار.",
-        "en": "Flexible frames that spring back after a fall, sized for children's faces rather than shrunken adult ones."
+      "name": {
+        "fr": "Enfant",
+        "ar": "أطفال",
+        "en": "Kids"
       },
+      "headline": {
+        "fr": "Solide,\net léger",
+        "ar": "متين\nوخفيف",
+        "en": "Tough,\nand light"
+      },
+      "collectionLabel": {
+        "fr": "Collection enfant",
+        "ar": "تشكيلة الأطفال",
+        "en": "Kids collection"
+      },
+      "description": {
+        "fr": "Des montures flexibles qui encaissent la cour de récréation, avec des verres protecteurs et des branches qui ne glissent pas.",
+        "ar": "إطارات مرنة تتحمل ساحة المدرسة، مع عدسات واقية وأذرع لا تنزلق.",
+        "en": "Flexible frames that survive the playground, with protective lenses and temples that stay put."
+      },
+      "image": "public/categories/kids.jpg",
       "products": [
         {
           "slug": "enfant-flex",
-          "name": { "fr": "Enfant Flex", "ar": "فليكس للأطفال", "en": "Kids Flex" },
-          "badge": { "fr": "Incassable", "ar": "لا تنكسر", "en": "Bend-proof" },
+          "name": {
+            "fr": "Enfant Flex",
+            "ar": "فليكس للأطفال",
+            "en": "Kids Flex"
+          },
+          "badge": {
+            "fr": "Incassable",
+            "ar": "لا تنكسر",
+            "en": "Bend-proof"
+          },
           "description": {
             "fr": "Une monture qu'on peut tordre sans la casser, avec un bandeau élastique fourni pour les plus petits.",
             "ar": "هيكل يمكن ثنيه دون أن ينكسر، مع شريط مطاطي مرفق للأصغر سنا.",
@@ -679,22 +1370,62 @@
           "gender": "kids",
           "frameColor": "blue",
           "features": [
-            { "fr": "Monture TR90 flexible", "ar": "هيكل TR90 مرن", "en": "Flexible TR90 frame" },
-            { "fr": "Bandeau élastique inclus", "ar": "شريط مطاطي مرفق", "en": "Elastic strap included" },
-            { "fr": "Sans vis apparentes", "ar": "بدون براغي ظاهرة", "en": "No exposed screws" },
-            { "fr": "44-16-125 mm", "ar": "44-16-125 ملم", "en": "44-16-125 mm" }
+            {
+              "fr": "Monture TR90 flexible",
+              "ar": "هيكل TR90 مرن",
+              "en": "Flexible TR90 frame"
+            },
+            {
+              "fr": "Bandeau élastique inclus",
+              "ar": "شريط مطاطي مرفق",
+              "en": "Elastic strap included"
+            },
+            {
+              "fr": "Sans vis apparentes",
+              "ar": "بدون براغي ظاهرة",
+              "en": "No exposed screws"
+            },
+            {
+              "fr": "44-16-125 mm",
+              "ar": "44-16-125 ملم",
+              "en": "44-16-125 mm"
+            }
           ],
           "pricingMode": "options",
           "options": [
-            { "label": "Bleu", "labelAr": "أزرق", "labelEn": "Blue", "price": 3400, "isDefault": true },
-            { "label": "Rouge", "labelAr": "أحمر", "labelEn": "Red", "price": 3400 },
-            { "label": "Vert", "labelAr": "أخضر", "labelEn": "Green", "price": 3400 }
+            {
+              "label": "Bleu",
+              "labelAr": "أزرق",
+              "labelEn": "Blue",
+              "price": 3400,
+              "isDefault": true
+            },
+            {
+              "label": "Rouge",
+              "labelAr": "أحمر",
+              "labelEn": "Red",
+              "price": 3400
+            },
+            {
+              "label": "Vert",
+              "labelAr": "أخضر",
+              "labelEn": "Green",
+              "price": 3400
+            }
           ]
         },
         {
           "slug": "enfant-solaire",
-          "name": { "fr": "Solaire Enfant", "ar": "شمسية للأطفال", "en": "Kids Sunglasses" },
-          "badge": { "fr": "UV400", "ar": "UV400", "en": "UV400" },
+          "name": {
+            "fr": "Solaire Enfant",
+            "ar": "شمسية للأطفال",
+            "en": "Kids Sunglasses"
+          },
+          "badge": {
+            "fr": "UV400",
+            "ar": "UV400",
+            "en": "UV400"
+          },
           "description": {
             "fr": "Une vraie protection UV400 à taille d'enfant, pour la plage et les sorties d'été plutôt qu'un jouet coloré.",
             "ar": "حماية UV400 حقيقية بمقاس الأطفال، للشاطئ ونزهات الصيف لا مجرد لعبة ملوّنة.",
@@ -704,80 +1435,319 @@
           "gender": "kids",
           "frameColor": "black",
           "features": [
-            { "fr": "Verres UV400 catégorie 3", "ar": "عدسات UV400 فئة 3", "en": "UV400 category 3 lenses" },
-            { "fr": "Verres incassables", "ar": "عدسات غير قابلة للكسر", "en": "Shatterproof lenses" },
-            { "fr": "Branches souples", "ar": "أذرع مرنة", "en": "Soft temples" },
-            { "fr": "46-15-125 mm", "ar": "46-15-125 ملم", "en": "46-15-125 mm" }
+            {
+              "fr": "Verres UV400 catégorie 3",
+              "ar": "عدسات UV400 فئة 3",
+              "en": "UV400 category 3 lenses"
+            },
+            {
+              "fr": "Verres incassables",
+              "ar": "عدسات غير قابلة للكسر",
+              "en": "Shatterproof lenses"
+            },
+            {
+              "fr": "Branches souples",
+              "ar": "أذرع مرنة",
+              "en": "Soft temples"
+            },
+            {
+              "fr": "46-15-125 mm",
+              "ar": "46-15-125 ملم",
+              "en": "46-15-125 mm"
+            }
           ],
           "pricingMode": "options",
           "options": [
-            { "label": "Noir", "labelAr": "أسود", "labelEn": "Black", "price": 2900, "isDefault": true },
-            { "label": "Rose", "labelAr": "وردي", "labelEn": "Pink", "price": 2900 }
+            {
+              "label": "Noir",
+              "labelAr": "أسود",
+              "labelEn": "Black",
+              "price": 2900,
+              "isDefault": true
+            },
+            {
+              "label": "Rose",
+              "labelAr": "وردي",
+              "labelEn": "Pink",
+              "price": 2900
+            }
           ]
         }
       ]
     },
     {
-      "slug": "accessories",
-      "name": { "fr": "Accessoires", "ar": "إكسسوارات", "en": "Accessories" },
-      "headline": { "fr": "Ce qui\nles fait durer", "ar": "ما يطيل\nعمر نظارتك", "en": "What makes\nthem last" },
-      "outlinedPill": { "fr": "Entretien et rangement", "ar": "العناية والحفظ", "en": "Care and storage" },
-      "description": {
-        "fr": "Étuis, cordons et produits d'entretien : le peu qu'il faut pour qu'une paire tienne des années au lieu d'une saison.",
-        "ar": "علب وحبال ومنتجات تنظيف: القليل الذي يجعل نظارتك تدوم سنوات بدل موسم واحد.",
-        "en": "Cases, cords and cleaning kit — the little it takes for a pair to last years instead of a season."
+      "slug": "solaire",
+      "name": {
+        "fr": "Solaire",
+        "ar": "نظارات شمسية",
+        "en": "Sunglasses"
       },
+      "headline": {
+        "fr": "Soleil\nmaîtrisé",
+        "ar": "شمس\nتحت السيطرة",
+        "en": "Sun,\ntamed"
+      },
+      "collectionLabel": {
+        "fr": "Collection solaire",
+        "ar": "تشكيلة النظارات الشمسية",
+        "en": "Sun collection"
+      },
+      "description": {
+        "fr": "Des solaires filtrant 100 % des UVA et UVB, choisies pour tenir la lumière forte de l'été algérien sans sacrifier le style.",
+        "ar": "نظارات شمسية تحجب 100% من الأشعة فوق البنفسجية، مختارة لتصمد أمام شمس الجزائر القوية دون التنازل عن الأناقة.",
+        "en": "Sunglasses that block 100% of UVA and UVB rays, picked to handle a strong Algerian summer without giving up on style."
+      },
+      "image": "public/categories/solaire.jpg",
       "products": [
         {
-          "slug": "etui-rigide",
-          "name": { "fr": "Étui Rigide", "ar": "علبة صلبة", "en": "Hard Case" },
-          "badge": { "fr": "Protection", "ar": "حماية", "en": "Protection" },
-          "description": {
-            "fr": "Une coque rigide doublée de microfibre qui encaisse le poids d'un sac sans écraser la monture.",
-            "ar": "علبة صلبة مبطنة بالميكروفايبر تتحمل ثقل الحقيبة دون أن تضغط على الهيكل.",
-            "en": "A rigid shell lined with microfibre that takes the weight of a bag without crushing the frame."
+          "slug": "aviateur-classique",
+          "name": {
+            "fr": "Aviateur Classique",
+            "ar": "أفياتور كلاسيك",
+            "en": "Classic Aviator"
           },
+          "badge": {
+            "fr": "Best-seller",
+            "ar": "الأكثر مبيعا",
+            "en": "Best seller"
+          },
+          "description": {
+            "fr": "La goutte d'eau intemporelle en métal léger, avec des verres dégradés qui adoucissent la lumière sans assombrir les couleurs.",
+            "ar": "التصميم الكلاسيكي الخالد بإطار معدني خفيف وعدسات متدرجة تلطّف الضوء دون أن تطفئ الألوان.",
+            "en": "The timeless teardrop in lightweight metal, with gradient lenses that soften glare without dulling colour."
+          },
+          "frameShape": "aviator",
+          "gender": "unisex",
+          "frameColor": "gold",
+          "featuredRank": 1,
           "features": [
-            { "fr": "Doublure microfibre", "ar": "بطانة ميكروفايبر", "en": "Microfibre lining" },
-            { "fr": "Fermeture aimantée", "ar": "إغلاق مغناطيسي", "en": "Magnetic closure" },
-            { "fr": "Convient aux grandes montures", "ar": "تناسب الهياكل الكبيرة", "en": "Fits large frames" }
+            {
+              "fr": "Verres catégorie 3, UV400",
+              "ar": "عدسات فئة 3 بحماية UV400",
+              "en": "Category 3 lenses, UV400"
+            },
+            {
+              "fr": "Monture métal 18 g",
+              "ar": "إطار معدني بوزن 18 غرام",
+              "en": "18 g metal frame"
+            },
+            {
+              "fr": "Plaquettes nez ajustables",
+              "ar": "دعامات أنف قابلة للتعديل",
+              "en": "Adjustable nose pads"
+            },
+            {
+              "fr": "58-14-140 mm",
+              "ar": "58-14-140 ملم",
+              "en": "58-14-140 mm"
+            }
           ],
-          "pricingMode": "simple",
-          "simplePrice": 900
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Or",
+              "labelAr": "ذهبي",
+              "labelEn": "Gold",
+              "price": 7900,
+              "isDefault": true
+            },
+            {
+              "label": "Noir",
+              "labelAr": "أسود",
+              "labelEn": "Black",
+              "price": 7500
+            },
+            {
+              "label": "Argent",
+              "labelAr": "فضي",
+              "labelEn": "Silver",
+              "price": 7500
+            }
+          ]
         },
         {
-          "slug": "cordon-lunettes",
-          "name": { "fr": "Cordon à Lunettes", "ar": "حبل نظارات", "en": "Eyewear Cord" },
-          "badge": { "fr": "Pratique", "ar": "عملي", "en": "Practical" },
-          "description": {
-            "fr": "Un cordon fin en coton tressé pour garder ses lunettes au cou entre deux usages, plutôt que sur le front.",
-            "ar": "حبل رفيع من القطن المجدول لإبقاء النظارة على الرقبة بين الاستعمالين، بدل الجبين.",
-            "en": "A thin braided cotton cord to keep your glasses at your neck between uses, rather than on your forehead."
+          "slug": "wayfarer-noir",
+          "name": {
+            "fr": "Wayfarer Noir",
+            "ar": "وايفارر أسود",
+            "en": "Black Wayfarer"
           },
+          "badge": {
+            "fr": "Iconique",
+            "ar": "أيقوني",
+            "en": "Iconic"
+          },
+          "description": {
+            "fr": "Un acétate épais et franc qui va à presque tous les visages, pensé pour un port quotidien du matin au coucher du soleil.",
+            "ar": "أسيتات سميك وواضح يناسب معظم أشكال الوجه، مصمم للاستعمال اليومي من الصباح حتى الغروب.",
+            "en": "Thick, confident acetate that suits almost any face, built for everyday wear from morning to sunset."
+          },
+          "frameShape": "wayfarer",
+          "gender": "unisex",
+          "frameColor": "black",
+          "featuredRank": 2,
           "features": [
-            { "fr": "Coton tressé 70 cm", "ar": "قطن مجدول بطول 70 سم", "en": "70 cm braided cotton" },
-            { "fr": "Embouts silicone universels", "ar": "أطراف سيليكون عالمية", "en": "Universal silicone ends" },
-            { "fr": "Lavable", "ar": "قابل للغسل", "en": "Washable" }
+            {
+              "fr": "Acétate italien poli main",
+              "ar": "أسيتات إيطالي مصقول يدويا",
+              "en": "Hand-polished Italian acetate"
+            },
+            {
+              "fr": "Verres polarisés",
+              "ar": "عدسات مستقطبة",
+              "en": "Polarised lenses"
+            },
+            {
+              "fr": "Charnières renforcées 5 barillets",
+              "ar": "مفصلات معززة بخمسة محاور",
+              "en": "Reinforced 5-barrel hinges"
+            },
+            {
+              "fr": "52-18-145 mm",
+              "ar": "52-18-145 ملم",
+              "en": "52-18-145 mm"
+            }
           ],
-          "pricingMode": "simple",
-          "simplePrice": 600
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Noir mat",
+              "labelAr": "أسود مطفي",
+              "labelEn": "Matte black",
+              "price": 6900,
+              "isDefault": true
+            },
+            {
+              "label": "Noir brillant",
+              "labelAr": "أسود لامع",
+              "labelEn": "Gloss black",
+              "price": 6900
+            },
+            {
+              "label": "Écaille",
+              "labelAr": "بني مرقّط",
+              "labelEn": "Tortoise",
+              "price": 7200
+            }
+          ]
         },
         {
-          "slug": "kit-nettoyage",
-          "name": { "fr": "Kit de Nettoyage", "ar": "طقم تنظيف", "en": "Cleaning Kit" },
-          "badge": { "fr": "Entretien", "ar": "صيانة", "en": "Upkeep" },
-          "description": {
-            "fr": "Spray sans alcool et deux chiffons microfibre, la bonne façon de nettoyer un verre traité sans en abîmer la couche.",
-            "ar": "بخاخ خال من الكحول وقطعتا ميكروفايبر، الطريقة الصحيحة لتنظيف عدسة مطلية دون إتلاف طبقتها.",
-            "en": "Alcohol-free spray and two microfibre cloths — the right way to clean a coated lens without stripping it."
+          "slug": "hexagonale-atlas",
+          "name": {
+            "fr": "Hexagonale Atlas",
+            "ar": "سداسية أطلس",
+            "en": "Atlas Hexagonal"
           },
+          "badge": {
+            "fr": "Édition limitée",
+            "ar": "إصدار محدود",
+            "en": "Limited run"
+          },
+          "description": {
+            "fr": "Six angles nets sur une monture fine en acier, pour ceux qui veulent une forme reconnaissable sans excès.",
+            "ar": "ستة زوايا واضحة على إطار رفيع من الفولاذ، لمن يريد شكلا مميزا دون مبالغة.",
+            "en": "Six clean angles on a slim steel frame, for anyone who wants a recognisable shape without going loud."
+          },
+          "frameShape": "hexagonal",
+          "gender": "unisex",
+          "frameColor": "silver",
           "features": [
-            { "fr": "Spray 30 ml sans alcool", "ar": "بخاخ 30 مل خال من الكحول", "en": "30 ml alcohol-free spray" },
-            { "fr": "2 chiffons microfibre", "ar": "قطعتان من الميكروفايبر", "en": "2 microfibre cloths" },
-            { "fr": "Sûr pour verres traités", "ar": "آمن على العدسات المطلية", "en": "Safe on coated lenses" }
+            {
+              "fr": "Acier inoxydable",
+              "ar": "فولاذ مقاوم للصدأ",
+              "en": "Stainless steel"
+            },
+            {
+              "fr": "Verres plats miroir",
+              "ar": "عدسات مسطحة عاكسة",
+              "en": "Flat mirror lenses"
+            },
+            {
+              "fr": "Charnières à ressort",
+              "ar": "مفصلات نابضة",
+              "en": "Spring hinges"
+            },
+            {
+              "fr": "54-19-145 mm",
+              "ar": "54-19-145 ملم",
+              "en": "54-19-145 mm"
+            }
           ],
-          "pricingMode": "simple",
-          "simplePrice": 1200
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Argent",
+              "labelAr": "فضي",
+              "labelEn": "Silver",
+              "price": 6200,
+              "isDefault": true
+            },
+            {
+              "label": "Or rose",
+              "labelAr": "ذهبي وردي",
+              "labelEn": "Rose gold",
+              "price": 6500
+            }
+          ]
+        },
+        {
+          "slug": "ronde-medina",
+          "name": {
+            "fr": "Ronde Médina",
+            "ar": "مدوّرة مدينة",
+            "en": "Medina Round"
+          },
+          "badge": {
+            "fr": "Rétro",
+            "ar": "ريترو",
+            "en": "Retro"
+          },
+          "description": {
+            "fr": "Un cercle fin en métal doré, discret sur le visage, qui donne un caractère rétro sans peser sur le nez.",
+            "ar": "دائرة رفيعة من المعدن الذهبي، خفيفة على الوجه، تمنح طابعا ريترو دون ثقل على الأنف.",
+            "en": "A thin gold metal circle that sits light on the face and lends a retro character without weighing on the nose."
+          },
+          "frameShape": "round",
+          "gender": "unisex",
+          "frameColor": "gold",
+          "features": [
+            {
+              "fr": "Monture 16 g",
+              "ar": "إطار بوزن 16 غرام",
+              "en": "16 g frame"
+            },
+            {
+              "fr": "Verres minéraux teintés",
+              "ar": "عدسات معدنية ملوّنة",
+              "en": "Tinted mineral lenses"
+            },
+            {
+              "fr": "Pont double",
+              "ar": "جسر مزدوج",
+              "en": "Double bridge"
+            },
+            {
+              "fr": "50-21-145 mm",
+              "ar": "50-21-145 ملم",
+              "en": "50-21-145 mm"
+            }
+          ],
+          "pricingMode": "options",
+          "options": [
+            {
+              "label": "Or",
+              "labelAr": "ذهبي",
+              "labelEn": "Gold",
+              "price": 5900,
+              "isDefault": true
+            },
+            {
+              "label": "Argent",
+              "labelAr": "فضي",
+              "labelEn": "Silver",
+              "price": 5900
+            }
+          ]
         }
       ]
     }

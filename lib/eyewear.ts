@@ -32,9 +32,46 @@ const toAdminLabel = (value: string) =>
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ");
 
-export const toSelectOptions = (values: readonly string[]) =>
+// French names for the admin select fields. The English side stays derived from the
+// value itself, which is what these selects showed before they were translated.
+export const FRAME_SHAPE_LABELS_FR: Record<FrameShape, string> = {
+  aviator: "Aviateur",
+  "cat-eye": "Œil-de-chat",
+  hexagonal: "Hexagonale",
+  oval: "Ovale",
+  rectangle: "Rectangulaire",
+  round: "Ronde",
+  square: "Carrée",
+  wayfarer: "Wayfarer"
+};
+
+export const GENDER_LABELS_FR: Record<Gender, string> = {
+  kids: "Enfant",
+  men: "Homme",
+  unisex: "Mixte",
+  women: "Femme"
+};
+
+export const FRAME_COLOR_LABELS_FR: Record<FrameColor, string> = {
+  black: "Noir",
+  blue: "Bleu",
+  brown: "Marron",
+  gold: "Doré",
+  "rose-gold": "Or rose",
+  silver: "Argenté",
+  tortoise: "Écaille",
+  transparent: "Transparent"
+};
+
+export const toSelectOptions = (
+  values: readonly string[],
+  frenchLabels: Record<string, string>
+) =>
   values.map((value) => ({
-    label: toAdminLabel(value),
+    label: {
+      en: toAdminLabel(value),
+      fr: frenchLabels[value] ?? toAdminLabel(value)
+    },
     value
   }));
 

@@ -583,10 +583,6 @@ function getProviderCredentials_(providerName) {
   const config = registry[providerName];
   if (!config) throw new Error('Unknown provider: ' + providerName);
 
-  if (config.family === PROVIDER_FAMILIES.ECOTRACK) {
-    return { token: 'PiW0gkd7PkUG3SmWfKIa0O0SdFFuQFgKrtQmrLohKbqn0A2OGNgIVKHIcdDY' };
-  }
-
   const props = PropertiesService.getScriptProperties();
   const prefix = 'CRED_' + providerName.replace(/\s+/g, '_') + '_';
   const creds = {};

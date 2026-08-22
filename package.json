@@ -1,5 +1,5 @@
 {
-  "name": "roya-eyewear",
+  "name": "herizi-eyewear",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -11,7 +11,11 @@
     "db:reset": "bash scripts/reset-payload-db.sh",
     "db:sync": "PAYLOAD_ENABLE_DB_PUSH=true tsx scripts/sync-payload-schema.ts",
     "seed:wilayas": "PAYLOAD_ENABLE_DB_PUSH=true tsx scripts/seed-wilayas.ts",
-    "seed:catalog": "PAYLOAD_ENABLE_DB_PUSH=true tsx scripts/seed-catalog.ts"
+    "seed:catalog": "PAYLOAD_ENABLE_DB_PUSH=true tsx scripts/seed-catalog.ts",
+    "seed:categories": "tsx scripts/seed-catalog.ts --categories-only",
+    "seed:categories:fresh": "tsx scripts/seed-categories.ts",
+    "categories:cleanup": "tsx scripts/cleanup-legacy-categories.ts",
+    "categories:images": "tsx scripts/upload-category-images.ts"
   },
   "dependencies": {
     "@fontsource/rubik": "^5.2.8",
@@ -20,6 +24,7 @@
     "@hugeicons/react": "^1.1.6",
     "@payloadcms/db-postgres": "^3.79.0",
     "@payloadcms/next": "^3.79.0",
+    "@payloadcms/translations": "3.79.0",
     "@payloadcms/ui": "3.79.0",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",

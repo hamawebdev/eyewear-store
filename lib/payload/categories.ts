@@ -16,9 +16,6 @@ import type {
 export const mapCategoryDocument = async (doc: PayloadCategoryDocument): Promise<Category> =>
   CategorySchema.parse({
     id: String(doc.id),
-    backgroundImage: await getPayloadMediaImage(doc.backgroundImage, {
-      altFallback: ""
-    }),
     description: buildLocalizedText({
       ar: doc.descriptionAr,
       fr: doc.description,
@@ -37,10 +34,10 @@ export const mapCategoryDocument = async (doc: PayloadCategoryDocument): Promise
       fr: doc.name,
       en: doc.nameEn ?? doc.name
     }),
-    outlinedPill: buildLocalizedText({
-      ar: doc.outlinedPillAr?.trim() || doc.nameAr,
-      fr: doc.outlinedPill?.trim() || doc.name,
-      en: doc.outlinedPillEn?.trim() || doc.nameEn || doc.name
+    collectionLabel: buildLocalizedText({
+      ar: doc.collectionLabelAr?.trim() || doc.nameAr,
+      fr: doc.collectionLabel?.trim() || doc.name,
+      en: doc.collectionLabelEn?.trim() || doc.nameEn || doc.name
     }),
     slug: doc.slug,
     sortOrder: doc.sortOrder

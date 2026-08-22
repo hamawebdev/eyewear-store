@@ -438,6 +438,15 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /* Brand display face for sections outside the homepage's .homepage-serif
+     scope, so the storefront does not fall back to Georgia off the home page. */
+  .font-display {
+    font-family: var(--font-homepage-display);
+    font-weight: var(--font-homepage-weight);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
   .font-body,
   .homepage-serif .font-body {
     font-family: var(--font-sans) !important;
@@ -456,6 +465,7 @@
   }
 
   .storefront-shell[data-language="ar"] .font-serif,
+  .storefront-shell[data-language="ar"] .font-display,
   .storefront-shell[data-language="ar"].homepage-serif,
   .storefront-shell[data-language="ar"] .homepage-serif,
   .storefront-shell[data-language="ar"] .homepage-serif *,

@@ -1,7 +1,9 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import "./globals.css";
+import { ADMIN_LANGUAGE_COOKIE, normalizeAdminLanguage } from "@/lib/admin-i18n";
+import { PATHNAME_HEADER, isAdminPathname } from "@/lib/admin-routes";
 import {
   getStorefrontHtmlLang,
   getStorefrontDirection,
@@ -10,7 +12,7 @@ import {
 } from "@/lib/storefront-language";
 import MetaPixel from "@/components/meta/MetaPixel";
 import MetaPageView from "@/components/meta/MetaPageView";
-import { BRAND, getSiteUrl } from "@/lib/brand";
+import { BRAND, getSiteUrl, getSocialProfiles } from "@/lib/brand";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
@@ -39,13 +41,22 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const cookieStore = await cookies();
+  const [cookieStore, headerList] = await Promise.all([cookies(), headers()]);
+  const isAdmin = isAdminPathname(headerList.get(PATHNAME_HEADER));
+
+  // The Payload admin sits under this same <html>, but it is French/English only.
+  // Without this branch it would inherit the storefront's language and direction,
+  // and since the storefront defaults to Arabic the admin would render mirrored.
   const initialLanguage = normalizeStorefrontLanguage(
     cookieStore.get(STOREFRONT_LANGUAGE_COOKIE)?.value
   );
+  const htmlLang = isAdmin
+    ? normalizeAdminLanguage(cookieStore.get(ADMIN_LANGUAGE_COOKIE)?.value)
+    : getStorefrontHtmlLang(initialLanguage);
+  const htmlDir = isAdmin ? "ltr" : getStorefrontDirection(initialLanguage);
 
   return (
-    <html lang={getStorefrontHtmlLang(initialLanguage)} dir={getStorefrontDirection(initialLanguage)}>
+    <html lang={htmlLang} dir={htmlDir}>
       <head>
         {/* The previous facebook-domain-verification tag belonged to the old
             domain. Add the new one from Meta Business Manager here. */}
@@ -85,6 +96,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               logo: `${getSiteUrl()}/logo.svg`,
               ...(BRAND.email ? { email: BRAND.email } : {}),
               ...(BRAND.phones.length > 0 ? { telephone: BRAND.phones } : {}),
+              ...(getSocialProfiles().length > 0 ? { sameAs: getSocialProfiles() } : {}),
               address: {
                 "@type": "PostalAddress",
                 addressCountry: "DZ"

@@ -1,6 +1,15 @@
 import type { CollectionBeforeValidateHook, CollectionConfig, PayloadRequest } from "payload";
 import { slugifyText } from "@/lib/slug";
-import { FRAME_COLORS, FRAME_SHAPES, GENDERS, toSelectOptions } from "@/lib/eyewear";
+import {
+  FRAME_COLOR_LABELS_FR,
+  FRAME_COLORS,
+  FRAME_SHAPE_LABELS_FR,
+  FRAME_SHAPES,
+  GENDER_LABELS_FR,
+  GENDERS,
+  toSelectOptions
+} from "@/lib/eyewear";
+import { tAdmin, type AdminFieldKey } from "@/lib/admin-i18n";
 import { isAdmin } from "./access";
 
 type ProductOptionInput = {
@@ -80,24 +89,27 @@ const getTrimmedString = (value: unknown) =>
 
 const assertArabicValue = ({
   arabic,
-  fieldLabel,
+  fieldKey,
   french,
+  req,
   required = false
 }: {
   arabic: unknown;
-  fieldLabel: string;
+  fieldKey: AdminFieldKey;
   french?: unknown;
+  req: PayloadRequest;
   required?: boolean;
 }) => {
   const arabicValue = getTrimmedString(arabic);
   const frenchValue = getTrimmedString(french);
+  const field = tAdmin(req, fieldKey);
 
   if (required && !arabicValue) {
-    throw new Error(`An Arabic ${fieldLabel} is required.`);
+    throw new Error(tAdmin(req, "herizi:error:arabicRequired", { field }));
   }
 
   if (frenchValue && !arabicValue) {
-    throw new Error(`An Arabic ${fieldLabel} is required when the French ${fieldLabel} is set.`);
+    throw new Error(tAdmin(req, "herizi:error:arabicRequiredWithFrench", { field }));
   }
 
   return arabicValue;
@@ -160,7 +172,7 @@ const buildUniqueSlug = async ({
   const baseSlug = slugifyText(getTrimmedString(requestedSlug) ?? name);
 
   if (!baseSlug) {
-    throw new Error("A valid product name is required to generate a slug.");
+    throw new Error(tAdmin(req, "herizi:error:productSlugSource"));
   }
 
   let candidate = baseSlug;
@@ -196,24 +208,27 @@ const syncProductPricing: CollectionBeforeValidateHook = async ({ data, original
     getTrimmedString(nextData.name) ?? getTrimmedString(originalDoc?.name);
   const productNameAr = assertArabicValue({
     arabic: nextData.nameAr ?? originalDoc?.nameAr,
-    fieldLabel: "product name",
+    fieldKey: "herizi:field:productName",
     french: productName,
+    req,
     required: true
   });
   const productNameEn = getTrimmedString(nextData.nameEn ?? originalDoc?.nameEn);
   const productBadge = getTrimmedString(nextData.badge) ?? getTrimmedString(originalDoc?.badge);
   const productBadgeAr = assertArabicValue({
     arabic: nextData.badgeAr ?? originalDoc?.badgeAr,
-    fieldLabel: "product badge",
-    french: productBadge
+    fieldKey: "herizi:field:productBadge",
+    french: productBadge,
+    req
   });
   const productBadgeEn = getTrimmedString(nextData.badgeEn ?? originalDoc?.badgeEn);
   const productDescription =
     getTrimmedString(nextData.description) ?? getTrimmedString(originalDoc?.description);
   const productDescriptionAr = assertArabicValue({
     arabic: nextData.descriptionAr ?? originalDoc?.descriptionAr,
-    fieldLabel: "product description",
-    french: productDescription
+    fieldKey: "herizi:field:productDescription",
+    french: productDescription,
+    req
   });
   const productDescriptionEn = getTrimmedString(nextData.descriptionEn ?? originalDoc?.descriptionEn);
 
@@ -242,8 +257,9 @@ const syncProductPricing: CollectionBeforeValidateHook = async ({ data, original
 
     const textAr = assertArabicValue({
       arabic: feature.textAr,
-      fieldLabel: "product feature",
+      fieldKey: "herizi:field:productFeature",
       french: text,
+      req,
       required: true
     });
     const textEn = getTrimmedString(feature.textEn);
@@ -283,7 +299,7 @@ const syncProductPricing: CollectionBeforeValidateHook = async ({ data, original
     const simplePrice = toPositiveNumber(nextData.simplePrice ?? originalDoc?.simplePrice);
 
     if (!simplePrice) {
-      throw new Error("Simple pricing requires a product price.");
+      throw new Error(tAdmin(req, "herizi:error:simplePriceRequired"));
     }
 
     nextData.displayPrice = simplePrice;
@@ -313,8 +329,9 @@ const syncProductPricing: CollectionBeforeValidateHook = async ({ data, original
 
       const labelAr = assertArabicValue({
         arabic: option.labelAr,
-        fieldLabel: "product option label",
+        fieldKey: "herizi:field:productOptionLabel",
         french: label,
+        req,
         required: true
       }) ?? label;
       const labelEn = getTrimmedString(option.labelEn) ?? label;
@@ -332,13 +349,13 @@ const syncProductPricing: CollectionBeforeValidateHook = async ({ data, original
     }, []);
 
     if (options.length === 0) {
-      throw new Error("Option pricing requires at least one option.");
+      throw new Error(tAdmin(req, "herizi:error:optionsRequireOne"));
     }
 
     const defaultOptions = options.filter((option: ProductOptionInput) => option.isDefault);
 
     if (defaultOptions.length !== 1) {
-      throw new Error("Option pricing requires exactly one default option.");
+      throw new Error(tAdmin(req, "herizi:error:optionsRequireDefault"));
     }
 
     const defaultOption = defaultOptions[0];
@@ -357,6 +374,10 @@ const syncProductPricing: CollectionBeforeValidateHook = async ({ data, original
 
 export const Products: CollectionConfig = {
   slug: "products",
+  labels: {
+    plural: { en: "Products", fr: "Produits" },
+    singular: { en: "Product", fr: "Produit" }
+  },
   admin: {
     defaultColumns: [
       "name",
@@ -385,7 +406,7 @@ export const Products: CollectionConfig = {
         {
           name: "name",
           type: "text",
-          label: "French name",
+          label: { en: "French name", fr: "Nom (français)" },
           required: true,
           admin: {
             width: "33%"
@@ -394,7 +415,7 @@ export const Products: CollectionConfig = {
         {
           name: "nameAr",
           type: "text",
-          label: "Arabic name",
+          label: { en: "Arabic name", fr: "Nom (arabe)" },
           required: true,
           admin: {
             width: "33%"
@@ -403,7 +424,7 @@ export const Products: CollectionConfig = {
         {
           name: "nameEn",
           type: "text",
-          label: "English name",
+          label: { en: "English name", fr: "Nom (anglais)" },
           admin: {
             width: "34%"
           }
@@ -416,8 +437,12 @@ export const Products: CollectionConfig = {
       required: true,
       unique: true,
       index: true,
+      label: { en: "Slug", fr: "Slug" },
       admin: {
-        description: "Automatically generated from the product name and kept stable after create.",
+        description: {
+          en: "Automatically generated from the product name and kept stable after create.",
+          fr: "Généré automatiquement à partir du nom du produit et conservé tel quel après la création."
+        },
         position: "sidebar",
         readOnly: true
       }
@@ -426,7 +451,8 @@ export const Products: CollectionConfig = {
       name: "category",
       type: "relationship",
       relationTo: "categories",
-      required: true
+      required: true,
+      label: { en: "Category", fr: "Catégorie" }
     },
     {
       type: "row",
@@ -434,16 +460,21 @@ export const Products: CollectionConfig = {
         {
           name: "frameShape",
           type: "select",
-          options: toSelectOptions(FRAME_SHAPES),
+          label: { en: "Frame shape", fr: "Forme de la monture" },
+          options: toSelectOptions(FRAME_SHAPES, FRAME_SHAPE_LABELS_FR),
           admin: {
-            description: "Drives the storefront frame-shape filter.",
+            description: {
+              en: "Drives the storefront frame-shape filter.",
+              fr: "Alimente le filtre « forme de monture » de la boutique."
+            },
             width: "33%"
           }
         },
         {
           name: "gender",
           type: "select",
-          options: toSelectOptions(GENDERS),
+          label: { en: "Gender", fr: "Genre" },
+          options: toSelectOptions(GENDERS, GENDER_LABELS_FR),
           admin: {
             width: "33%"
           }
@@ -451,9 +482,13 @@ export const Products: CollectionConfig = {
         {
           name: "frameColor",
           type: "select",
-          options: toSelectOptions(FRAME_COLORS),
+          label: { en: "Frame colour", fr: "Couleur de la monture" },
+          options: toSelectOptions(FRAME_COLORS, FRAME_COLOR_LABELS_FR),
           admin: {
-            description: "The dominant frame colour. Per-variant colours live in the options list.",
+            description: {
+              en: "The dominant frame colour. Per-variant colours live in the options list.",
+              fr: "La couleur dominante de la monture. Les couleurs par variante se règlent dans la liste des options."
+            },
             width: "34%"
           }
         }
@@ -465,7 +500,7 @@ export const Products: CollectionConfig = {
         {
           name: "badge",
           type: "text",
-          label: "French badge",
+          label: { en: "French badge", fr: "Badge (français)" },
           admin: {
             width: "33%"
           }
@@ -473,16 +508,19 @@ export const Products: CollectionConfig = {
         {
           name: "badgeAr",
           type: "text",
-          label: "Arabic badge",
+          label: { en: "Arabic badge", fr: "Badge (arabe)" },
           admin: {
-            description: "Required whenever the French badge is filled.",
+            description: {
+              en: "Required whenever the French badge is filled.",
+              fr: "Obligatoire dès que le badge français est renseigné."
+            },
             width: "33%"
           }
         },
         {
           name: "badgeEn",
           type: "text",
-          label: "English badge",
+          label: { en: "English badge", fr: "Badge (anglais)" },
           admin: {
             width: "34%"
           }
@@ -499,8 +537,12 @@ export const Products: CollectionConfig = {
           required: true,
           min: 0,
           max: 5,
+          label: { en: "Rating", fr: "Note" },
           admin: {
-            description: "Derived automatically from approved product reviews.",
+            description: {
+              en: "Derived automatically from approved product reviews.",
+              fr: "Calculée automatiquement à partir des avis approuvés."
+            },
             readOnly: true
           }
         },
@@ -510,8 +552,12 @@ export const Products: CollectionConfig = {
           defaultValue: 0,
           required: true,
           min: 0,
+          label: { en: "Reviews", fr: "Nombre d'avis" },
           admin: {
-            description: "Derived automatically from approved product reviews.",
+            description: {
+              en: "Derived automatically from approved product reviews.",
+              fr: "Calculé automatiquement à partir des avis approuvés."
+            },
             readOnly: true
           }
         }
@@ -523,7 +569,7 @@ export const Products: CollectionConfig = {
         {
           name: "description",
           type: "textarea",
-          label: "French description",
+          label: { en: "French description", fr: "Description (français)" },
           admin: {
             width: "33%"
           }
@@ -531,16 +577,19 @@ export const Products: CollectionConfig = {
         {
           name: "descriptionAr",
           type: "textarea",
-          label: "Arabic description",
+          label: { en: "Arabic description", fr: "Description (arabe)" },
           admin: {
-            description: "Required whenever the French description is filled.",
+            description: {
+              en: "Required whenever the French description is filled.",
+              fr: "Obligatoire dès que la description française est renseignée."
+            },
             width: "33%"
           }
         },
         {
           name: "descriptionEn",
           type: "textarea",
-          label: "English description",
+          label: { en: "English description", fr: "Description (anglais)" },
           admin: {
             width: "34%"
           }
@@ -551,45 +600,54 @@ export const Products: CollectionConfig = {
       name: "primaryImage",
       type: "relationship",
       relationTo: "media",
+      label: { en: "Primary image", fr: "Image principale" },
       admin: {
-        description: "Optional product image. When empty, the storefront falls back to a placeholder."
+        description: {
+          en: "Optional product image. When empty, the storefront falls back to a placeholder.",
+          fr: "Image du produit, facultative. Si elle est vide, la boutique affiche une image de remplacement."
+        }
       }
     },
     {
       name: "gallery",
       type: "relationship",
       relationTo: "media",
-      hasMany: true
+      hasMany: true,
+      label: { en: "Gallery", fr: "Galerie" }
     },
     {
       name: "artboardImage",
       type: "relationship",
       relationTo: "media",
+      label: { en: "Artboard image", fr: "Image d'artboard" },
       admin: {
-        description:
-          "Optional product-specific artboard image shown in the detail page highlight area."
+        description: {
+          en: "Optional product-specific artboard image shown in the detail page highlight area.",
+          fr: "Image d'artboard propre au produit, affichée dans la zone de mise en avant de la fiche produit. Facultative."
+        }
       }
     },
     {
       name: "features",
       type: "array",
+      label: { en: "Features", fr: "Caractéristiques" },
       fields: [
         {
           name: "text",
           type: "text",
-          label: "French text",
+          label: { en: "French text", fr: "Texte (français)" },
           required: true
         },
         {
           name: "textAr",
           type: "text",
-          label: "Arabic text",
+          label: { en: "Arabic text", fr: "Texte (arabe)" },
           required: true
         },
         {
           name: "textEn",
           type: "text",
-          label: "English text"
+          label: { en: "English text", fr: "Texte (anglais)" }
         }
       ]
     },
@@ -597,16 +655,24 @@ export const Products: CollectionConfig = {
       name: "featuredRank",
       type: "number",
       min: 1,
+      label: { en: "Featured rank", fr: "Rang de mise en avant" },
       admin: {
-        description: "Lower numbers appear first in homepage and featured merchandising.",
+        description: {
+          en: "Lower numbers appear first in homepage and featured merchandising.",
+          fr: "Les valeurs les plus basses apparaissent en premier sur la page d'accueil et dans les mises en avant."
+        },
         position: "sidebar"
       }
     },
     {
       name: "defaultStockType",
       type: "text",
+      label: { en: "Default stock type", fr: "Type de stock par défaut" },
       admin: {
-        description: "Default stock type copied into new order records.",
+        description: {
+          en: "Default stock type copied into new order records.",
+          fr: "Type de stock recopié par défaut dans les nouvelles commandes."
+        },
         position: "sidebar"
       }
     },
@@ -617,8 +683,12 @@ export const Products: CollectionConfig = {
           name: "defaultWeightGrams",
           type: "number",
           min: 0,
+          label: { en: "Default weight (g)", fr: "Poids par défaut (g)" },
           admin: {
-            description: "Per-unit shipping weight used to prefill order parcels.",
+            description: {
+              en: "Per-unit shipping weight used to prefill order parcels.",
+              fr: "Poids d'expédition à l'unité, utilisé pour préremplir les colis."
+            },
             width: "33%"
           }
         },
@@ -626,15 +696,19 @@ export const Products: CollectionConfig = {
           name: "defaultDeclaredValue",
           type: "number",
           min: 0,
+          label: { en: "Default declared value", fr: "Valeur déclarée par défaut" },
           admin: {
-            description: "Optional declared value copied into order defaults.",
+            description: {
+              en: "Optional declared value copied into order defaults.",
+              fr: "Valeur déclarée facultative, recopiée dans les valeurs par défaut des commandes."
+            },
             width: "33%"
           }
         },
         {
           name: "defaultFragile",
           type: "checkbox",
-          label: "Fragile by default",
+          label: { en: "Fragile by default", fr: "Fragile par défaut" },
           admin: {
             width: "34%"
           }
@@ -644,7 +718,7 @@ export const Products: CollectionConfig = {
     {
       name: "defaultInsuranceEnabled",
       type: "checkbox",
-      label: "Insurance enabled by default",
+      label: { en: "Insurance enabled by default", fr: "Assurance activée par défaut" },
       admin: {
         position: "sidebar"
       }
@@ -653,13 +727,14 @@ export const Products: CollectionConfig = {
       name: "pricingMode",
       type: "radio",
       defaultValue: "simple",
+      label: { en: "Pricing mode", fr: "Mode de tarification" },
       options: [
         {
-          label: "Simple price",
+          label: { en: "Simple price", fr: "Prix simple" },
           value: "simple"
         },
         {
-          label: "Options",
+          label: { en: "Options", fr: "Options" },
           value: "options"
         }
       ],
@@ -675,6 +750,7 @@ export const Products: CollectionConfig = {
           name: "simplePrice",
           type: "number",
           min: 0,
+          label: { en: "Simple price", fr: "Prix simple" },
           admin: {
             width: "50%"
           }
@@ -683,6 +759,7 @@ export const Products: CollectionConfig = {
           name: "simpleOriginalPrice",
           type: "number",
           min: 0,
+          label: { en: "Simple original price", fr: "Prix barré" },
           admin: {
             width: "50%"
           }
@@ -692,6 +769,7 @@ export const Products: CollectionConfig = {
     {
       name: "options",
       type: "array",
+      label: { en: "Options", fr: "Options" },
       admin: {
         condition: showOptionPricing
       },
@@ -699,35 +777,37 @@ export const Products: CollectionConfig = {
         {
           name: "label",
           type: "text",
-          label: "French label",
+          label: { en: "French label", fr: "Libellé (français)" },
           required: true
         },
         {
           name: "labelAr",
           type: "text",
-          label: "Arabic label",
+          label: { en: "Arabic label", fr: "Libellé (arabe)" },
           required: true
         },
         {
           name: "labelEn",
           type: "text",
-          label: "English label"
+          label: { en: "English label", fr: "Libellé (anglais)" }
         },
         {
           name: "price",
           type: "number",
           required: true,
-          min: 0
+          min: 0,
+          label: { en: "Price", fr: "Prix" }
         },
         {
           name: "originalPrice",
           type: "number",
-          min: 0
+          min: 0,
+          label: { en: "Original price", fr: "Prix barré" }
         },
         {
           name: "isDefault",
           type: "checkbox",
-          label: "Default option"
+          label: { en: "Default option", fr: "Option par défaut" }
         }
       ]
     },
@@ -738,8 +818,12 @@ export const Products: CollectionConfig = {
           name: "displayPrice",
           type: "number",
           required: true,
+          label: { en: "Display price", fr: "Prix affiché" },
           admin: {
-            description: "Synced automatically from the simple price or the default option.",
+            description: {
+              en: "Synced automatically from the simple price or the default option.",
+              fr: "Synchronisé automatiquement depuis le prix simple ou l'option par défaut."
+            },
             position: "sidebar",
             readOnly: true
           }
@@ -747,6 +831,7 @@ export const Products: CollectionConfig = {
         {
           name: "displayOriginalPrice",
           type: "number",
+          label: { en: "Display original price", fr: "Prix barré affiché" },
           admin: {
             position: "sidebar",
             readOnly: true

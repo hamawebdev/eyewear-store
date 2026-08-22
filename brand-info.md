@@ -1,4 +1,4 @@
-# Roya — brand brief
+# Herizi — brand brief
 
 This file replaced the previous owner's brand questionnaire. It records what the
 storefront currently assumes; update it as the real brand decisions land.
@@ -7,10 +7,9 @@ storefront currently assumes; update it as the real brand decisions land.
 
 | | |
 | --- | --- |
-| Name | Roya |
-| Arabic name | رؤية |
-| Trading name | Roya Optique |
-| Meaning | "vision" / "sight" in Arabic |
+| Name | Herizi |
+| Arabic name | حريزي |
+| Trading name | Herizi Optic |
 | Market | Algeria, delivery to all wilayas |
 
 ## Taglines

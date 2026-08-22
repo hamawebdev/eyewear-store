@@ -163,8 +163,8 @@ export const ProductReviews: CollectionConfig = {
     beforeValidate: [enforceReviewDefaults],
   },
   labels: {
-    plural: "Product Reviews",
-    singular: "Product Review",
+    plural: { en: "Product Reviews", fr: "Avis produits" },
+    singular: { en: "Product Review", fr: "Avis produit" },
   },
   fields: [
     {
@@ -172,11 +172,13 @@ export const ProductReviews: CollectionConfig = {
       type: "relationship",
       relationTo: "products",
       required: true,
+      label: { en: "Product", fr: "Produit" },
     },
     {
       name: "authorName",
       type: "text",
       required: true,
+      label: { en: "Author name", fr: "Nom de l'auteur" },
     },
     {
       name: "rating",
@@ -184,11 +186,13 @@ export const ProductReviews: CollectionConfig = {
       required: true,
       min: 1,
       max: 5,
+      label: { en: "Rating", fr: "Note" },
     },
     {
       name: "content",
       type: "textarea",
       required: true,
+      label: { en: "Content", fr: "Contenu" },
     },
     {
       type: "row",
@@ -198,17 +202,18 @@ export const ProductReviews: CollectionConfig = {
           type: "select",
           defaultValue: "pending",
           required: true,
+          label: { en: "Status", fr: "Statut" },
           options: [
             {
-              label: "Pending",
+              label: { en: "Pending", fr: "En attente" },
               value: "pending",
             },
             {
-              label: "Approved",
+              label: { en: "Approved", fr: "Approuvé" },
               value: "approved",
             },
             {
-              label: "Rejected",
+              label: { en: "Rejected", fr: "Rejeté" },
               value: "rejected",
             },
           ],
@@ -220,6 +225,7 @@ export const ProductReviews: CollectionConfig = {
           name: "submittedAt",
           type: "date",
           required: true,
+          label: { en: "Submitted at", fr: "Envoyé le" },
           defaultValue: () => new Date().toISOString(),
           admin: {
             readOnly: true,

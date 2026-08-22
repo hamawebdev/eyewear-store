@@ -88,7 +88,8 @@ export default function HomePage() {
       <Suspense fallback={<FeaturedProductsSkeleton />}>
         <FeaturedProducts />
       </Suspense>
-      <LazyTestimonials />
+      {/* Client feedback section hidden for now (not deleted) — re-enable by uncommenting. */}
+      {/* <LazyTestimonials /> */}
       <LazyFaq />
     </main>
   );

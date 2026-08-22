@@ -1,10 +1,10 @@
-# Roya
+# Herizi
 
-An e-commerce platform for **Roya** (رؤية), a ready-to-wear eyewear brand based in Algeria. The store sells sunglasses, optical frames, blue-light glasses, reading glasses, kids' eyewear and accessories, with cash-on-delivery shipping across the wilayas.
+An e-commerce platform for **Herizi** (حريزي), a ready-to-wear eyewear brand based in Algeria. The store sells sunglasses, optical frames, blue-light glasses, reading glasses, kids' eyewear and accessories, with cash-on-delivery shipping across the wilayas.
 
-## About Roya
+## About Herizi
 
-**Roya** (رؤية — "vision") sells ready-to-wear eyewear: no prescription fitting, no lens grinding. Optical frames are sold on their own with demo lenses so customers can have their own lenses fitted by an optician, and reading glasses are sold by dioptre strength.
+**Herizi** (حريزي) sells ready-to-wear eyewear: no prescription fitting, no lens grinding. Optical frames are sold on their own with demo lenses so customers can have their own lenses fitted by an optician, and reading glasses are sold by dioptre strength.
 
 ## Tech Stack
 
@@ -124,4 +124,4 @@ META_CAPI_PIXEL_ID=
 
 ## License
 
-Private project for the Roya eyewear store.
+Private project for the Herizi eyewear store.

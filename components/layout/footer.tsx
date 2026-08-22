@@ -1,6 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Logo from "@/components/logo";
+import SocialLinks from "@/components/social-links";
 import { useStorefrontLanguage } from "@/components/storefront-language-provider";
 import { getStorefrontCopy } from "@/lib/storefront-copy";
 
@@ -23,11 +24,16 @@ export default function Footer() {
               </p>
             </div>
           </div>
+
+          {/* Social profiles */}
+          <div className="col-span-1 md:col-span-2">
+            <SocialLinks label={copy.footer.follow} className="md:items-end" />
+          </div>
         </div>
 
         <div className="text-muted-foreground mt-8 border-t border-gray-200 pt-8 text-center">
           <p>
-            &copy; Roya {new Date().getFullYear()} {copy.footer.copyright}
+            &copy; Herizi {new Date().getFullYear()} {copy.footer.copyright}
           </p>
         </div>
       </div>

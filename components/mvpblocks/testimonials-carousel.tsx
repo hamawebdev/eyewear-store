@@ -47,7 +47,7 @@ function createAvatarDataUri({
 
 const defaultTestimonials = [
   {
-    text: "Nadara ta3 Roya khfifa bzzaf 3la lwedjh, nensaha m3a lwe9t. W chems ma3adch tdayeqni fe blasti.",
+    text: "Nadara ta3 Herizi khfifa bzzaf 3la lwedjh, nensaha m3a lwe9t. W chems ma3adch tdayeqni fe blasti.",
     imageSrc: createAvatarDataUri({
       variant: "woman",
       background: "#FCE7F3",

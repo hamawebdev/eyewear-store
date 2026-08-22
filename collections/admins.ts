@@ -3,6 +3,10 @@ import { isAdmin, ADMIN_COLLECTION_SLUG } from "./access";
 
 export const Admins: CollectionConfig = {
   slug: ADMIN_COLLECTION_SLUG,
+  labels: {
+    plural: { en: "Admins", fr: "Administrateurs" },
+    singular: { en: "Admin", fr: "Administrateur" },
+  },
   admin: {
     useAsTitle: "email",
   },
@@ -20,6 +24,7 @@ export const Admins: CollectionConfig = {
     {
       name: "name",
       type: "text",
+      label: { en: "Name", fr: "Nom" },
     },
   ],
 };

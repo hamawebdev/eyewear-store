@@ -16,7 +16,8 @@ import {
   type ServerFunctionClientArgs
 } from "payload";
 import { applyLocaleFiltering } from "payload/shared";
-import { headers } from "next/headers";
+import { cookies as nextCookies, headers } from "next/headers";
+import { ADMIN_LANGUAGE_COOKIE } from "@/lib/admin-i18n";
 import configPromise from "@payload-config";
 import { importMap } from "./importMap";
 
@@ -93,6 +94,20 @@ export default async function PayloadAdminLayout({ children }: { children: React
     });
   }
 
+  // Payload's language picker calls this to persist the choice. Without it the
+  // picker throws and the admin stays in whatever language it loaded with.
+  async function switchLanguageServerAction(language: string) {
+    "use server";
+
+    const cookieStore = await nextCookies();
+
+    cookieStore.set({
+      name: ADMIN_LANGUAGE_COOKIE,
+      path: "/",
+      value: language
+    });
+  }
+
   return (
     <>
       <RootProvider
@@ -105,6 +120,7 @@ export default async function PayloadAdminLayout({ children }: { children: React
         locale={req.locale || undefined}
         permissions={permissions}
         serverFunction={serverFunction}
+        switchLanguageServerAction={switchLanguageServerAction}
         theme={theme}
         translations={i18n.translations}
         user={user}

@@ -1,6 +1,9 @@
 import path from "node:path";
 import { buildConfig, type Payload } from "payload";
 import { postgresAdapter } from "@payloadcms/db-postgres";
+import { en } from "@payloadcms/translations/languages/en";
+import { fr } from "@payloadcms/translations/languages/fr";
+import { DEFAULT_ADMIN_LANGUAGE, adminTranslations } from "./lib/admin-i18n";
 import { Admins } from "./collections/admins";
 import { ADMIN_COLLECTION_SLUG } from "./collections/access";
 import { Categories } from "./collections/categories";
@@ -93,6 +96,13 @@ export default buildConfig({
     push: SHOULD_PUSH_SCHEMA
   }),
   collections: [Admins, Media, Categories, Products, ProductReviews, Wilayas],
+  // The admin interface is offered in French and English. Arabic is a content
+  // language on the storefront only, so it is intentionally absent here.
+  i18n: {
+    fallbackLanguage: DEFAULT_ADMIN_LANGUAGE,
+    supportedLanguages: { en, fr },
+    translations: adminTranslations
+  },
   routes: {
     admin: "/admin",
     api: "/api"

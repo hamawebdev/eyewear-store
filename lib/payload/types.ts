@@ -15,7 +15,6 @@ export type PayloadMediaReference =
 
 export type PayloadCategoryDocument = {
   id: number | string;
-  backgroundImage?: PayloadMediaReference;
   createdAt: string;
   description: string;
   descriptionAr: string;
@@ -27,9 +26,9 @@ export type PayloadCategoryDocument = {
   name: string;
   nameAr: string;
   nameEn?: string | null;
-  outlinedPill?: string | null;
-  outlinedPillAr?: string | null;
-  outlinedPillEn?: string | null;
+  collectionLabel?: string | null;
+  collectionLabelAr?: string | null;
+  collectionLabelEn?: string | null;
   slug: string;
   sortOrder: number;
   updatedAt: string;

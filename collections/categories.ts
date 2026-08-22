@@ -5,6 +5,7 @@ import type {
   PayloadRequest
 } from "payload";
 import { slugifyText } from "@/lib/slug";
+import { tAdmin, type AdminFieldKey } from "@/lib/admin-i18n";
 import { isAdmin } from "./access";
 
 type CategoryDocument = {
@@ -18,9 +19,9 @@ type CategoryDocument = {
   name?: string;
   nameAr?: string;
   nameEn?: string;
-  outlinedPill?: string;
-  outlinedPillAr?: string;
-  outlinedPillEn?: string;
+  collectionLabel?: string;
+  collectionLabelAr?: string;
+  collectionLabelEn?: string;
   slug?: string;
 };
 
@@ -34,9 +35,9 @@ type CategoryInput = {
   name?: string;
   nameAr?: string;
   nameEn?: string;
-  outlinedPill?: string;
-  outlinedPillAr?: string;
-  outlinedPillEn?: string;
+  collectionLabel?: string;
+  collectionLabelAr?: string;
+  collectionLabelEn?: string;
   slug?: string;
 };
 
@@ -45,24 +46,27 @@ const getTrimmedString = (value: unknown) =>
 
 const assertArabicValue = ({
   arabic,
-  fieldLabel,
+  fieldKey,
   french,
+  req,
   required = false
 }: {
   arabic: unknown;
-  fieldLabel: string;
+  fieldKey: AdminFieldKey;
   french?: unknown;
+  req: PayloadRequest;
   required?: boolean;
 }) => {
   const arabicValue = getTrimmedString(arabic);
   const frenchValue = getTrimmedString(french);
+  const field = tAdmin(req, fieldKey);
 
   if (required && !arabicValue) {
-    throw new Error(`An Arabic ${fieldLabel} is required.`);
+    throw new Error(tAdmin(req, "herizi:error:arabicRequired", { field }));
   }
 
   if (frenchValue && !arabicValue) {
-    throw new Error(`An Arabic ${fieldLabel} is required when the French ${fieldLabel} is set.`);
+    throw new Error(tAdmin(req, "herizi:error:arabicRequiredWithFrench", { field }));
   }
 
   return arabicValue;
@@ -87,7 +91,7 @@ const buildUniqueSlug = async ({
   const baseSlug = slugifyText(getTrimmedString(requestedSlug) ?? name);
 
   if (!baseSlug) {
-    throw new Error("A valid category name is required to generate a slug.");
+    throw new Error(tAdmin(req, "herizi:error:categorySlugSource"));
   }
 
   let candidate = baseSlug;
@@ -124,8 +128,9 @@ const syncCategorySlug: CollectionBeforeValidateHook = async ({ data, originalDo
     (typeof originalDoc?.name === "string" && originalDoc.name.trim());
   const categoryNameAr = assertArabicValue({
     arabic: nextData.nameAr ?? originalDoc?.nameAr,
-    fieldLabel: "category name",
+    fieldKey: "herizi:field:categoryName",
     french: categoryName,
+    req,
     required: true
   });
   const categoryNameEn = getTrimmedString(nextData.nameEn ?? originalDoc?.nameEn);
@@ -133,32 +138,35 @@ const syncCategorySlug: CollectionBeforeValidateHook = async ({ data, originalDo
     getTrimmedString(nextData.headline) ?? getTrimmedString(originalDoc?.headline);
   const categoryHeadlineAr = assertArabicValue({
     arabic: nextData.headlineAr ?? originalDoc?.headlineAr,
-    fieldLabel: "category headline",
+    fieldKey: "herizi:field:categoryHeadline",
     french: categoryHeadline,
+    req,
     required: true
   });
   const categoryHeadlineEn = getTrimmedString(nextData.headlineEn ?? originalDoc?.headlineEn);
-  const categoryOutlinedPill =
-    getTrimmedString(nextData.outlinedPill) ?? getTrimmedString(originalDoc?.outlinedPill);
-  const categoryOutlinedPillAr = assertArabicValue({
-    arabic: nextData.outlinedPillAr ?? originalDoc?.outlinedPillAr,
-    fieldLabel: "category outlined pill",
-    french: categoryOutlinedPill,
+  const categoryCollectionLabel =
+    getTrimmedString(nextData.collectionLabel) ?? getTrimmedString(originalDoc?.collectionLabel);
+  const categoryCollectionLabelAr = assertArabicValue({
+    arabic: nextData.collectionLabelAr ?? originalDoc?.collectionLabelAr,
+    fieldKey: "herizi:field:categoryCollectionLabel",
+    french: categoryCollectionLabel,
+    req,
     required: true
   });
-  const categoryOutlinedPillEn = getTrimmedString(nextData.outlinedPillEn ?? originalDoc?.outlinedPillEn);
+  const categoryCollectionLabelEn = getTrimmedString(nextData.collectionLabelEn ?? originalDoc?.collectionLabelEn);
   const categoryDescription =
     getTrimmedString(nextData.description) ?? getTrimmedString(originalDoc?.description);
   const categoryDescriptionAr = assertArabicValue({
     arabic: nextData.descriptionAr ?? originalDoc?.descriptionAr,
-    fieldLabel: "category description",
+    fieldKey: "herizi:field:categoryDescription",
     french: categoryDescription,
+    req,
     required: true
   });
   const categoryDescriptionEn = getTrimmedString(nextData.descriptionEn ?? originalDoc?.descriptionEn);
 
   if (!categoryName) {
-    throw new Error("A category name is required.");
+    throw new Error(tAdmin(req, "herizi:error:categoryNameRequired"));
   }
 
   nextData.name = categoryName;
@@ -167,9 +175,9 @@ const syncCategorySlug: CollectionBeforeValidateHook = async ({ data, originalDo
   nextData.headline = categoryHeadline;
   nextData.headlineAr = categoryHeadlineAr;
   nextData.headlineEn = categoryHeadlineEn;
-  nextData.outlinedPill = categoryOutlinedPill;
-  nextData.outlinedPillAr = categoryOutlinedPillAr;
-  nextData.outlinedPillEn = categoryOutlinedPillEn;
+  nextData.collectionLabel = categoryCollectionLabel;
+  nextData.collectionLabelAr = categoryCollectionLabelAr;
+  nextData.collectionLabelEn = categoryCollectionLabelEn;
   nextData.description = categoryDescription;
   nextData.descriptionAr = categoryDescriptionAr;
   nextData.descriptionEn = categoryDescriptionEn;
@@ -221,7 +229,7 @@ const blockCategoryDeleteWhenInUse: CollectionBeforeDeleteHook = async ({ id, re
   });
 
   if (usageResult.docs.length > 0) {
-    throw new Error("This category is still assigned to one or more products.");
+    throw new Error(tAdmin(req, "herizi:error:categoryInUse"));
   }
 };
 
@@ -243,8 +251,8 @@ export const Categories: CollectionConfig = {
     beforeValidate: [syncCategorySlug]
   },
   labels: {
-    plural: "Categories",
-    singular: "Category"
+    plural: { en: "Categories", fr: "Catégories" },
+    singular: { en: "Category", fr: "Catégorie" }
   },
   fields: [
     {
@@ -253,7 +261,7 @@ export const Categories: CollectionConfig = {
         {
           name: "name",
           type: "text",
-          label: "French name",
+          label: { en: "French name", fr: "Nom (français)" },
           required: true,
           admin: {
             width: "33%"
@@ -262,7 +270,7 @@ export const Categories: CollectionConfig = {
         {
           name: "nameAr",
           type: "text",
-          label: "Arabic name",
+          label: { en: "Arabic name", fr: "Nom (arabe)" },
           required: true,
           admin: {
             width: "33%"
@@ -271,7 +279,7 @@ export const Categories: CollectionConfig = {
         {
           name: "nameEn",
           type: "text",
-          label: "English name",
+          label: { en: "English name", fr: "Nom (anglais)" },
           admin: {
             width: "34%"
           }
@@ -284,8 +292,12 @@ export const Categories: CollectionConfig = {
       required: true,
       unique: true,
       index: true,
+      label: { en: "Slug", fr: "Slug" },
       admin: {
-        description: "Automatically generated from the category name and kept stable after create.",
+        description: {
+          en: "Automatically generated from the category name and kept stable after create.",
+          fr: "Généré automatiquement à partir du nom de la catégorie et conservé tel quel après la création."
+        },
         position: "sidebar",
         readOnly: true
       }
@@ -295,8 +307,12 @@ export const Categories: CollectionConfig = {
       type: "number",
       defaultValue: 0,
       required: true,
+      label: { en: "Sort order", fr: "Ordre d'affichage" },
       admin: {
-        description: "Lower numbers appear first on the storefront.",
+        description: {
+          en: "Lower numbers appear first. The first category also becomes the large flagship plate on the home page.",
+          fr: "Les valeurs les plus basses apparaissent en premier. La première catégorie devient aussi la grande vignette vedette de la page d'accueil."
+        },
         position: "sidebar"
       }
     },
@@ -304,95 +320,117 @@ export const Categories: CollectionConfig = {
       name: "image",
       type: "relationship",
       relationTo: "media",
+      label: { en: "Image", fr: "Image" },
       admin: {
-        description: "Optional storefront image. When empty, the storefront falls back to a placeholder."
-      }
-    },
-    {
-      name: "backgroundImage",
-      type: "relationship",
-      relationTo: "media",
-      admin: {
-        description:
-          "Optional storefront background image. When empty, the storefront falls back to a placeholder."
+        description: {
+          en: "Category image. Use a PNG cut out on a transparent background: the storefront draws its own contact shadow underneath, so the file must not contain one. Falls back to a placeholder when empty.",
+          fr: "Image de la catégorie. Utilisez un PNG détouré sur fond transparent : la boutique dessine sa propre ombre portée, le fichier ne doit donc pas en contenir. Une image de remplacement s'affiche si le champ est vide."
+        }
       }
     },
     {
       name: "headline",
       type: "textarea",
-      label: "French headline",
+      label: { en: "French headline", fr: "Titre (français)" },
       required: true,
       admin: {
-        description: "French spotlight heading. Supports manual line breaks."
+        description: {
+          en: "French heading for the category masthead on the products page. Supports manual line breaks.",
+          fr: "Titre français du bandeau de catégorie sur la page produits. Les sauts de ligne manuels sont pris en charge."
+        }
       }
     },
     {
       name: "headlineAr",
       type: "textarea",
-      label: "Arabic headline",
+      label: { en: "Arabic headline", fr: "Titre (arabe)" },
       required: true,
       admin: {
-        description: "Arabic translation for the spotlight heading."
+        description: {
+          en: "Arabic translation for the category masthead heading.",
+          fr: "Traduction arabe du titre du bandeau de catégorie."
+        }
       }
     },
     {
       name: "headlineEn",
       type: "textarea",
-      label: "English headline",
+      label: { en: "English headline", fr: "Titre (anglais)" },
       admin: {
-        description: "English translation for the spotlight heading."
+        description: {
+          en: "English translation for the category masthead heading.",
+          fr: "Traduction anglaise du titre du bandeau de catégorie."
+        }
       }
     },
     {
-      name: "outlinedPill",
+      name: "collectionLabel",
       type: "text",
-      label: "French outlined pill",
+      label: { en: "French collection label", fr: "Libellé de collection (français)" },
       required: true,
       admin: {
-        description: "French label for the outlined pill above the spotlight heading."
+        description: {
+          en: 'Short French label, e.g. "Collection solaire". Sits above the category name on the home page and above the heading on the products page.',
+          fr: "Libellé français court, par ex. « Collection solaire ». Il s'affiche au-dessus du nom de la catégorie sur la page d'accueil et au-dessus du titre sur la page produits."
+        }
       }
     },
     {
-      name: "outlinedPillAr",
+      name: "collectionLabelAr",
       type: "text",
-      label: "Arabic outlined pill",
+      label: { en: "Arabic collection label", fr: "Libellé de collection (arabe)" },
       required: true,
       admin: {
-        description: "Arabic translation for the outlined pill label."
+        description: {
+          en: "Arabic translation for the collection label.",
+          fr: "Traduction arabe du libellé de collection."
+        }
       }
     },
     {
-      name: "outlinedPillEn",
+      name: "collectionLabelEn",
       type: "text",
-      label: "English outlined pill",
+      label: { en: "English collection label", fr: "Libellé de collection (anglais)" },
       admin: {
-        description: "English translation for the outlined pill label."
+        description: {
+          en: "English translation for the collection label.",
+          fr: "Traduction anglaise du libellé de collection."
+        }
       }
     },
     {
       name: "description",
       type: "textarea",
-      label: "French description",
+      label: { en: "French description", fr: "Description (français)" },
       required: true,
       admin: {
-        description: "French spotlight description."
+        description: {
+          en: "French description. Shown on the flagship category plate on the home page and in the products page masthead.",
+          fr: "Description française. Affichée sur la vignette de catégorie vedette de la page d'accueil et dans le bandeau de la page produits."
+        }
       }
     },
     {
       name: "descriptionAr",
       type: "textarea",
-      label: "Arabic description",
+      label: { en: "Arabic description", fr: "Description (arabe)" },
       required: true,
       admin: {
-        description: "Arabic translation for the category spotlight description."
+        description: {
+          en: "Arabic translation for the category description.",
+          fr: "Traduction arabe de la description de la catégorie."
+        }
       }
     },
     {
       name: "descriptionEn",
       type: "textarea",
-      label: "English description",
+      label: { en: "English description", fr: "Description (anglais)" },
       admin: {
-        description: "English translation for the category spotlight description."
+        description: {
+          en: "English translation for the category description.",
+          fr: "Traduction anglaise de la description de la catégorie."
+        }
       }
     }
   ]

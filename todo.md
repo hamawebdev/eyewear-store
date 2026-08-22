@@ -12,11 +12,11 @@ desktop:
 change the font to addelle with weight 700
 translate to french
 
+language switch in admin 
 
 
 
-
-
+# DELETE API KEY IN CODEJS AND ENV OF GOOGLE SHEET
 
 
 

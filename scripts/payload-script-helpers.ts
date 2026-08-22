@@ -2,10 +2,12 @@ import { createRequire } from "node:module";
 
 export type ScriptPayloadClient = {
   create: (args: Record<string, unknown>) => Promise<unknown>;
+  delete: (args: Record<string, unknown>) => Promise<unknown>;
   find: (args: Record<string, unknown>) => Promise<{ docs: unknown[] }>;
   getByID?: (args: Record<string, unknown>) => Promise<unknown>;
   logger: {
     info: (message: string) => void;
+    warn: (message: string) => void;
   };
   update: (args: Record<string, unknown>) => Promise<unknown>;
 };

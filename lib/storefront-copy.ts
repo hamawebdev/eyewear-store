@@ -77,6 +77,7 @@ export const STOREFRONT_COPY = {
       successBody: "شكرًا لتواصلك معنا. سنرد عليك خلال 24 ساعة.",
       successTitle: "تم إرسال رسالتك بنجاح",
       title: "تواصل معنا",
+      follow: "تابعونا",
       writeMessage: "أرسل لنا رسالة"
     },
     faq: {
@@ -127,6 +128,7 @@ export const STOREFRONT_COPY = {
       creditConnector: "، بالتعاون مع",
       creditPrefix: "الموقع من تطوير",
       copyright: "جميع الحقوق محفوظة.",
+      follow: "تابعونا",
       description:
         "نظارات شمسية، هياكل طبية، نظارات الضوء الأزرق ونظارات القراءة، مختارة من أجل حماية حقيقية من الأشعة، صناعة صادقة وسعر عادل."
     },
@@ -800,6 +802,7 @@ export const STOREFRONT_COPY = {
       successBody: "Merci de nous avoir contactés. Nous vous répondrons sous 24 heures.",
       successTitle: "Message envoyé avec succès",
       title: "Contactez-nous",
+      follow: "Suivez-nous",
       writeMessage: "Envoyez-nous un message"
     },
     faq: {
@@ -850,6 +853,7 @@ export const STOREFRONT_COPY = {
       creditConnector: ", avec",
       creditPrefix: "Site développé par",
       copyright: "Tous droits réservés.",
+      follow: "Suivez-nous",
       description:
         "Lunettes de soleil, montures optiques, anti-lumière bleue et lunettes de lecture, choisies pour une vraie protection UV, une fabrication honnête et un prix juste."
     },
@@ -1514,6 +1518,7 @@ export const STOREFRONT_COPY = {
       successBody: "Thank you for reaching out. We'll reply within 24 hours.",
       successTitle: "Message sent",
       title: "Contact us",
+      follow: "Follow us",
       writeMessage: "Send us a message"
     },
     faq: {
@@ -1564,6 +1569,7 @@ export const STOREFRONT_COPY = {
       creditConnector: ", with",
       creditPrefix: "Site built by",
       copyright: "All rights reserved.",
+      follow: "Follow us",
       description:
         "Sunglasses, optical frames, blue-light glasses and reading glasses, chosen for real UV protection, honest build quality, and a fair price."
     },

@@ -36,8 +36,10 @@ type CatalogProduct = {
 type CatalogCategory = {
   description: LocalizedValue;
   headline: LocalizedValue;
+  /** Repo-relative source picture, uploaded to Payload by `categories:images`. */
+  image?: string;
   name: LocalizedValue;
-  outlinedPill: LocalizedValue;
+  collectionLabel: LocalizedValue;
   products: CatalogProduct[];
   slug: string;
 };
@@ -151,7 +153,7 @@ const loadCatalog = (): CatalogDocument => {
 
     seenCategorySlugs.add(categorySlug);
 
-    (["name", "headline", "outlinedPill", "description"] as const).forEach((field) => {
+    (["name", "headline", "collectionLabel", "description"] as const).forEach((field) => {
       (["fr", "ar", "en"] as const).forEach((locale) => {
         assertNonEmptyString(
           category[field]?.[locale],
@@ -261,9 +263,9 @@ const seedCategories = async ({
       name: category.name.fr,
       nameAr: category.name.ar,
       nameEn: category.name.en,
-      outlinedPill: category.outlinedPill.fr,
-      outlinedPillAr: category.outlinedPill.ar,
-      outlinedPillEn: category.outlinedPill.en,
+      collectionLabel: category.collectionLabel.fr,
+      collectionLabelAr: category.collectionLabel.ar,
+      collectionLabelEn: category.collectionLabel.en,
       slug: category.slug,
       sortOrder: index + 1
     };
@@ -367,9 +369,24 @@ const seedProducts = async ({
   }
 };
 
+// Categories can be rolled out ahead of the product remap, so the taxonomy is
+// in place while products still point at the old categories.
+const IS_CATEGORIES_ONLY = process.argv.includes("--categories-only");
+
 async function seedCatalog() {
   const payload = await loadScriptPayloadClient();
   const catalog = loadCatalog();
+
+  if (IS_CATEGORIES_ONLY) {
+    payload.logger.info(
+      `Seeding ${catalog.categories.length} categories only — products and images are left untouched.`
+    );
+
+    await seedCategories({ catalog, payload });
+
+    payload.logger.info("Successfully seeded catalog categories.");
+    process.exit(0);
+  }
 
   payload.logger.info(
     `Seeding catalog with ${catalog.categories.length} categories and ${catalog.categories.reduce(

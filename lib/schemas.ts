@@ -31,10 +31,9 @@ export const CategorySchema = z.object({
   name: LocalizedTextSchema,
   slug: z.string(),
   image: StorefrontImageSchema,
-  backgroundImage: StorefrontImageSchema,
   description: LocalizedTextSchema,
   headline: LocalizedTextSchema,
-  outlinedPill: LocalizedTextSchema,
+  collectionLabel: LocalizedTextSchema,
   sortOrder: z.number().int()
 });
 

@@ -7,6 +7,10 @@ const MEDIA_DIR = path.resolve(process.cwd(), "media");
 
 export const Media: CollectionConfig = {
   slug: "media",
+  labels: {
+    plural: { en: "Media", fr: "Médias" },
+    singular: { en: "Media file", fr: "Fichier média" },
+  },
   admin: {
     useAsTitle: "filename",
   },
@@ -28,6 +32,7 @@ export const Media: CollectionConfig = {
     {
       name: "alt",
       type: "text",
+      label: { en: "Alt text", fr: "Texte alternatif" },
     },
   ],
 };

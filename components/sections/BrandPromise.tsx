@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * The promise is set as an optician's acuity chart: the claims descend in scale
- * the way the rows of a Snellen chart do. The order is the brand's own — Roya
+ * the way the rows of a Snellen chart do. The order is the brand's own — Herizi
  * competes on UV protection rather than on price (see brand-info.md) — so the
  * descent carries that priority instead of decorating it.
  *

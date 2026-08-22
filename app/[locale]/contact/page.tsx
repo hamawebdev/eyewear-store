@@ -8,8 +8,10 @@ import { useStorefrontLanguage } from "@/components/storefront-language-provider
 import { useForm } from "@/hooks/useForm";
 import { getStorefrontCopy } from "@/lib/storefront-copy";
 import { ContactSchema, type ContactForm } from "@/lib/schemas";
-import { BRAND, toTelHref } from "@/lib/brand";
+import { BRAND, toTelHref, toWhatsappHref, toLocalWhatsappDisplay } from "@/lib/brand";
 import WhatsappButton from "@/components/whatsapp-button";
+import WhatsappIcon from "@/components/ui/whatsapp-icon";
+import SocialLinks from "@/components/social-links";
 
 export default function ContactPage() {
   const { direction, language } = useStorefrontLanguage();
@@ -73,6 +75,31 @@ export default function ContactPage() {
             ))}
           </div>
         )}
+
+        {/* WhatsApp Numbers */}
+        {BRAND.whatsapp.length > 0 && (
+          <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {BRAND.whatsapp.map((number) => (
+              <Button
+                key={number}
+                variant="outline"
+                className="flex h-16 items-center justify-center gap-3 rounded-xl border-gray-200 bg-white text-lg font-medium shadow-sm hover:bg-gray-50"
+                dir="ltr"
+                onClick={() => window.open(toWhatsappHref(number), "_blank", "noopener,noreferrer")}
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#00d757]/15">
+                  <WhatsappIcon className="h-5 w-5 text-[#00d757]" />
+                </div>
+                {toLocalWhatsappDisplay(number)}
+              </Button>
+            ))}
+          </div>
+        )}
+
+        {/* Social profiles */}
+        <div className="mb-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+          <SocialLinks label={copy.contact.follow} className="items-center" />
+        </div>
 
         <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
           <h2 className="mb-6 text-2xl font-semibold text-gray-900">

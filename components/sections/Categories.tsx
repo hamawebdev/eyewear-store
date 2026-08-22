@@ -11,6 +11,7 @@ import { getServerStorefrontLanguage } from "@/lib/storefront-language.server";
 import { shouldSkipImageOptimization } from "@/lib/storefront-image";
 import type { Category } from "@/lib/schemas";
 import type { StorefrontLanguage } from "@/lib/storefront-language";
+import ArrowGlyph from "@/components/ui/arrow-glyph";
 import FadeUpInView from "@/components/ui/fade-up-in-view";
 import { cn } from "@/lib/utils";
 
@@ -23,29 +24,6 @@ const LEAD_LAYOUT_MIN_CATEGORIES = 5;
 
 const SPEC_LABEL = "font-spec uppercase text-muted-foreground";
 const EASE_OUT = "ease-[cubic-bezier(0.22,1,0.36,1)]";
-
-function ArrowGlyph() {
-  return (
-    <svg
-      viewBox="0 0 20 12"
-      aria-hidden="true"
-      className={cn(
-        "h-3 w-5 shrink-0 transition-transform duration-500 rtl:rotate-180",
-        EASE_OUT,
-        "group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
-      )}
-    >
-      <path
-        d="M0 6h17M12 1l5 5-5 5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 /**
  * Text call-to-action. Renders a span so it can sit inside a parent <Link>
@@ -88,7 +66,7 @@ function CategoryPlate({
 }) {
   const name = resolveLocalizedText(category.name, language);
   const label =
-    resolveLocalizedText(category.outlinedPill, language).replace(/\s+/g, " ").trim() || name;
+    resolveLocalizedText(category.collectionLabel, language).replace(/\s+/g, " ").trim() || name;
 
   return (
     <Link

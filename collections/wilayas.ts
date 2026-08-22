@@ -3,10 +3,17 @@ import { ADMIN_COLLECTION_SLUG } from "./access";
 
 export const Wilayas: CollectionConfig = {
     slug: "wilayas",
+    labels: {
+        plural: { en: "Wilayas", fr: "Wilayas" },
+        singular: { en: "Wilaya", fr: "Wilaya" }
+    },
     admin: {
         useAsTitle: "name",
         defaultColumns: ["code", "name", "homeDeliveryPrice", "officeDeliveryPrice"],
-        description: "Manage wilayas and their delivery pricing"
+        description: {
+            en: "Manage wilayas and their delivery pricing",
+            fr: "Gérer les wilayas et leurs tarifs de livraison"
+        }
     },
     access: {
         read: () => true, // Anyone can read wilayas (for checkout)
@@ -20,8 +27,12 @@ export const Wilayas: CollectionConfig = {
             type: "text",
             required: true,
             unique: true,
+            label: { en: "Code", fr: "Code" },
             admin: {
-                description: "The wilaya number (e.g. 01, 16, 31)"
+                description: {
+                    en: "The wilaya number (e.g. 01, 16, 31)",
+                    fr: "Le numéro de la wilaya (ex. 01, 16, 31)"
+                }
             }
         },
         {
@@ -29,24 +40,34 @@ export const Wilayas: CollectionConfig = {
             type: "text",
             required: true,
             unique: true,
+            label: { en: "French name", fr: "Nom (français)" },
             admin: {
-                description: "The French name of the wilaya"
+                description: {
+                    en: "The French name of the wilaya",
+                    fr: "Le nom français de la wilaya"
+                }
             }
         },
         {
             name: "nameAr",
             type: "text",
-            label: "Arabic name",
+            label: { en: "Arabic name", fr: "Nom (arabe)" },
             admin: {
-                description: "The Arabic name of the wilaya"
+                description: {
+                    en: "The Arabic name of the wilaya",
+                    fr: "Le nom arabe de la wilaya"
+                }
             }
         },
         {
             name: "nameEn",
             type: "text",
-            label: "English name",
+            label: { en: "English name", fr: "Nom (anglais)" },
             admin: {
-                description: "The English name of the wilaya"
+                description: {
+                    en: "The English name of the wilaya",
+                    fr: "Le nom anglais de la wilaya"
+                }
             }
         },
         {
@@ -54,8 +75,12 @@ export const Wilayas: CollectionConfig = {
             type: "number",
             required: true,
             min: 0,
+            label: { en: "Home delivery price", fr: "Prix de livraison à domicile" },
             admin: {
-                description: "Home delivery price in DZD"
+                description: {
+                    en: "Home delivery price in DZD",
+                    fr: "Prix de la livraison à domicile en DZD"
+                }
             }
         },
         {
@@ -63,8 +88,12 @@ export const Wilayas: CollectionConfig = {
             type: "number",
             required: true,
             min: 0,
+            label: { en: "Office delivery price", fr: "Prix de livraison au bureau" },
             admin: {
-                description: "Stop desk/Office delivery price in DZD"
+                description: {
+                    en: "Stop desk/Office delivery price in DZD",
+                    fr: "Prix de la livraison en point relais / stop desk en DZD"
+                }
             }
         }
     ]
