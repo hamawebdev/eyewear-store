@@ -116,6 +116,9 @@ export default buildConfig({
     },
     user: ADMIN_COLLECTION_SLUG,
     components: {
+      // Payload's only language control lives on /admin/account, which is easy to
+      // miss. This puts one in the top-right of every admin view.
+      actions: ["/components/payload/AdminLanguageSwitcher"],
       views: {
         login: {
           Component: "/components/payload/AdminLoginView",
