@@ -1,6 +1,7 @@
 import path from "node:path";
 import { buildConfig, type Payload } from "payload";
 import { postgresAdapter } from "@payloadcms/db-postgres";
+import sharp from "sharp";
 import { en } from "@payloadcms/translations/languages/en";
 import { fr } from "@payloadcms/translations/languages/fr";
 import { DEFAULT_ADMIN_LANGUAGE, adminTranslations } from "./lib/admin-i18n";
@@ -86,6 +87,12 @@ const seedAdmin = async (payload: Payload): Promise<void> => {
 export default buildConfig({
   serverURL: SERVER_URL,
   secret: PAYLOAD_SECRET,
+  // Payload gates ALL image processing on this being present (see
+  // node_modules/payload/dist/uploads/generateFileData.js — `if (sharp && ...)`).
+  // Without it the Media collection's formatOptions/resizeOptions are ignored and
+  // the admin's crop tool silently does nothing. Dimensions still get recorded
+  // either way, because those come from `image-size`, not sharp.
+  sharp,
   db: postgresAdapter({
     pool: {
       connectionString: DATABASE_URL
