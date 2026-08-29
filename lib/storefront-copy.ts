@@ -137,7 +137,7 @@ export const STOREFRONT_COPY = {
         { href: "/contact", label: "اتصل بنا" },
         { href: "/products", label: "المنتجات" }
       ],
-      location: "الجزائر العاصمة، الجزائر"
+      location: "برج بوعريريج، الجزائر"
     },
     hero: {
       cta: "اكتشف نظاراتنا",
@@ -622,7 +622,7 @@ export const STOREFRONT_COPY = {
             "إذا كانت لديك أسئلة حول هذه الشروط، يمكنك التواصل معنا عبر:",
             "البريد: legal@store.com",
             "الهاتف: 1-800-STORE-01",
-            "العنوان: 123 Commerce Street, Business City, BC 12345"
+            "العنوان: Rue A Lots, BOUDA 34000"
           ],
           title: "12. معلومات التواصل"
         }
@@ -717,7 +717,7 @@ export const STOREFRONT_COPY = {
             "إذا كان لديك أي سؤال، تواصل معنا عبر:",
             "البريد: privacy@store.com",
             "الهاتف: 1-800-STORE-01",
-            "العنوان: 123 Commerce Street, Business City, BC 12345"
+            "العنوان: Rue A Lots, BOUDA 34000"
           ],
           title: "8. تواصل معنا"
         }
@@ -862,7 +862,7 @@ export const STOREFRONT_COPY = {
         { href: "/contact", label: "Contact" },
         { href: "/products", label: "Produits" }
       ],
-      location: "Alger, Algérie"
+      location: "Bordj Bou Arreridj, Algérie"
     },
     hero: {
       cta: "Découvrir nos lunettes",
@@ -1340,7 +1340,7 @@ export const STOREFRONT_COPY = {
             "Si vous avez des questions sur ces conditions, contactez-nous à :",
             "E-mail : legal@store.com",
             "Téléphone : 1-800-STORE-01",
-            "Adresse : 123 rue du Commerce, Ville d'affaires, BC 12345"
+            "Adresse : Rue A Lots, BOUDA 34000"
           ],
           title: "12. Coordonnées"
         }
@@ -1433,7 +1433,7 @@ export const STOREFRONT_COPY = {
             "Si vous avez des questions, contactez-nous à :",
             "E-mail : privacy@store.com",
             "Téléphone : 1-800-STORE-01",
-            "Adresse : 123 rue du Commerce, Ville d'affaires, BC 12345"
+            "Adresse : Rue A Lots, BOUDA 34000"
           ],
           title: "8. Nous contacter"
         }
@@ -1578,7 +1578,7 @@ export const STOREFRONT_COPY = {
         { href: "/contact", label: "Contact" },
         { href: "/products", label: "Products" }
       ],
-      location: "Algiers, Algeria"
+      location: "Bordj Bou Arreridj, Algeria"
     },
     hero: {
       cta: "Shop eyewear",
@@ -2056,7 +2056,7 @@ export const STOREFRONT_COPY = {
             "If you have questions about these terms, contact us at:",
             "Email: legal@store.com",
             "Phone: 1-800-STORE-01",
-            "Address: 123 Commerce Street, Business City, BC 12345"
+            "Address: Rue A Lots, BOUDA 34000"
           ],
           title: "12. Contact details"
         }
@@ -2149,7 +2149,7 @@ export const STOREFRONT_COPY = {
             "If you have any questions, contact us at:",
             "Email: privacy@store.com",
             "Phone: 1-800-STORE-01",
-            "Address: 123 Commerce Street, Business City, BC 12345"
+            "Address: Rue A Lots, BOUDA 34000"
           ],
           title: "8. Contact us"
         }

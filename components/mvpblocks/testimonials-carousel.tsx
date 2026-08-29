@@ -115,8 +115,8 @@ const defaultTestimonials = [
       hair: "#1F2937"
     }),
     name: "Mehdi T.",
-    username: "@mehdi.alger",
-    role: "Alger"
+    username: "@mehdi.bba",
+    role: "Bordj Bou Arreridj"
   }
 ];
 
