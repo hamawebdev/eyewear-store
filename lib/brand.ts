@@ -25,8 +25,13 @@ export const BRAND = {
   }
 } as const;
 
+/**
+ * `??` only covers an unset NEXT_PUBLIC_APP_URL. A declared-but-empty one (as in
+ * .env, and in any Docker build that omits the build arg) fell through as "",
+ * and `new URL("")` in the root layout's metadataBase failed the whole build.
+ */
 export const getSiteUrl = () =>
-  (process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000").replace(/\/$/, "");
+  (process.env.NEXT_PUBLIC_APP_URL?.trim() || "http://localhost:3000").replace(/\/$/, "");
 
 /** Turns a display number like "0700 00 00 00" into a `tel:` target. */
 export const toTelHref = (phone: string) => `tel:${phone.replace(/\s+/g, "")}`;

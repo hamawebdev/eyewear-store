@@ -18,11 +18,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
     template: `%s | ${BRAND.name}`,
-    default: `${BRAND.name} - Sunglasses, Optical Frames and Blue-Light Glasses`
+    default: `${BRAND.name} - Sunglasses, Optical Frames and Blue-Light Glasses in Bordj Bou Arreridj`
   },
   description:
-    "Shop sunglasses, optical frames, blue-light glasses and reading glasses with real UV400 protection, delivered across Algeria.",
+    "Shop sunglasses, optical frames, blue-light glasses and reading glasses with real UV400 protection from Bordj Bou Arreridj, delivered across Algeria.",
   keywords: [
+    "eyewear Bordj Bou Arreridj",
+    "sunglasses Bordj Bou Arreridj",
+    "opticien Bordj Bou Arreridj",
+    "lunettes Bordj Bou Arreridj",
     "eyewear Algeria",
     "sunglasses Algeria",
     "optical frames",
@@ -31,9 +35,9 @@ export const metadata: Metadata = {
     "buy glasses online"
   ],
   openGraph: {
-    title: `${BRAND.name} - Sunglasses, Optical Frames and Blue-Light Glasses`,
+    title: `${BRAND.name} - Sunglasses, Optical Frames and Blue-Light Glasses in Bordj Bou Arreridj`,
     description:
-      "Sunglasses, optical frames, blue-light glasses and readers, chosen for real UV protection and a fair price. Delivery across Algeria.",
+      "Sunglasses, optical frames, blue-light glasses and readers, chosen for real UV protection and a fair price. Based in Bordj Bou Arreridj, with delivery across Algeria.",
     siteName: BRAND.name,
     locale: "ar_DZ",
     type: "website"
@@ -68,23 +72,33 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             value from Meta Business Manager here when the pixel is set up. */}
         <link
           rel="preload"
-          href="/fonts/Adelle_Bold.woff"
+          href="/fonts/Adelle_Bold.woff2"
           as="font"
-          type="font/woff"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
+        {/* The hero poster is the LCP element. Without fetchPriority the
+            preload starts at Chrome's default "Low" priority for images, and
+            the <img fetchpriority="high"> that later matches it cannot upgrade
+            an already in-flight request — which left the LCP image queued
+            behind the CSS and every JS chunk. These must stay in sync with the
+            <picture> in components/sections/Hero.tsx. A browser that does not
+            support the declared type ignores the preload, so the JPEG fallback
+            path costs nothing here. */}
         <link
           rel="preload"
-          href="/hero-poster-mobile.jpg"
+          href="/hero-poster-mobile.webp"
           as="image"
-          type="image/jpeg"
+          type="image/webp"
+          fetchPriority="high"
           media="(max-width: 767px)"
         />
         <link
           rel="preload"
-          href="/hero-poster.jpg"
+          href="/hero-poster.webp"
           as="image"
-          type="image/jpeg"
+          type="image/webp"
+          fetchPriority="high"
           media="(min-width: 768px)"
         />
       </head>
@@ -105,6 +119,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               ...(getSocialProfiles().length > 0 ? { sameAs: getSocialProfiles() } : {}),
               address: {
                 "@type": "PostalAddress",
+                addressLocality: "Bordj Bou Arreridj",
+                addressRegion: "Bordj Bou Arreridj",
                 addressCountry: "DZ"
               }
             })

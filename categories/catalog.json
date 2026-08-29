@@ -27,7 +27,7 @@
         "ar": "إطارات عريضة ومهيكلة، مصممة لملامح الرجال لتصمد من المكتب إلى الشمس الساطعة.",
         "en": "Wide, structured frames cut for men's faces and built to hold up from the office to full sun."
       },
-      "image": "public/categories/men.jpg",
+      "image": "assets/category-source/men.jpg",
       "products": [
         {
           "slug": "monture-acetate-noire",
@@ -746,7 +746,7 @@
         "ar": "عين القطة، أشكال دائرية وأسيتات رفيع: إطارات خفيفة تبرز العينين دون أن تثقلهما.",
         "en": "Cat-eye, round shapes and slim acetates: light frames that sharpen the eyes without ever weighing them down."
       },
-      "image": "public/categories/women.jpg",
+      "image": "assets/category-source/women.jpg",
       "products": [
         {
           "slug": "oeil-de-chat-sahara",
@@ -1347,7 +1347,7 @@
         "ar": "إطارات مرنة تتحمل ساحة المدرسة، مع عدسات واقية وأذرع لا تنزلق.",
         "en": "Flexible frames that survive the playground, with protective lenses and temples that stay put."
       },
-      "image": "public/categories/kids.jpg",
+      "image": "assets/category-source/kids.jpg",
       "products": [
         {
           "slug": "enfant-flex",
@@ -1497,7 +1497,7 @@
         "ar": "نظارات شمسية تحجب 100% من الأشعة فوق البنفسجية، مختارة لتصمد أمام شمس الجزائر القوية دون التنازل عن الأناقة.",
         "en": "Sunglasses that block 100% of UVA and UVB rays, picked to handle a strong Algerian summer without giving up on style."
       },
-      "image": "public/categories/solaire.jpg",
+      "image": "assets/category-source/solaire.jpg",
       "products": [
         {
           "slug": "aviateur-classique",

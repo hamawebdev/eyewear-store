@@ -10,9 +10,23 @@ export default async function Hero() {
   return (
     <section className="relative w-full bg-background">
       <div className="relative isolate h-hero-viewport w-full overflow-hidden">
-        {/* Poster image shown immediately; video hydrates client-side */}
+        {/* Poster image shown immediately; video hydrates client-side.
+            This <img> is the page's LCP element, so it is preloaded with
+            fetchpriority="high" in app/layout.tsx — keep the two in sync.
+            WebP first (about half the bytes of the JPEG at the same quality);
+            the JPEG stays only as a fallback for engines without WebP. */}
         <picture>
-          <source srcSet="/hero-poster-mobile.jpg" media="(max-width: 767px)" />
+          <source
+            type="image/webp"
+            srcSet="/hero-poster-mobile.webp"
+            media="(max-width: 767px)"
+          />
+          <source
+            type="image/jpeg"
+            srcSet="/hero-poster-mobile.jpg"
+            media="(max-width: 767px)"
+          />
+          <source type="image/webp" srcSet="/hero-poster.webp" />
           <img
             src="/hero-poster.jpg"
             alt=""

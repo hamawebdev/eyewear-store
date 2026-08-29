@@ -30,7 +30,6 @@ const SKIP_LOCALE_PREFIXES = [
   "/robots.txt",
   "/sitemap.xml",
   "/fonts",
-  "/categories",
   "/hero-poster",
   "/placeholder",
   "/logo"

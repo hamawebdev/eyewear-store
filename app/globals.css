@@ -12,6 +12,7 @@
     local("Adelle Bold"),
     local("Adelle-Bold"),
     local("Adelle"),
+    url("/fonts/Adelle_Bold.woff2") format("woff2"),
     url("/fonts/Adelle_Bold.woff") format("woff");
   font-style: normal;
   font-weight: 700;
@@ -24,6 +25,7 @@
     local("Liberation Serif Bold"),
     local("LiberationSerif-Bold"),
     local("Liberation Serif"),
+    url("/fonts/LiberationSerif-Bold.woff2") format("woff2"),
     url("/fonts/LiberationSerif-Bold.ttf") format("truetype");
   font-style: normal;
   font-weight: 700;

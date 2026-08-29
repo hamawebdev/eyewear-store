@@ -1,5 +1,5 @@
 /**
- * Uploads each category's storefront picture from `public/categories/` into the
+ * Uploads each category's storefront picture from `assets/category-source/` into the
  * Payload media collection and links it to that category.
  *
  * IMPORTANT — where you run this matters. Payload copies the uploaded file into

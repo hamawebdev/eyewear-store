@@ -52,3 +52,6 @@ next-env.d.ts
 /.agents/
 /.claude/
 skills-lock.json
+
+# Payload upload dir (Docker volume in production)
+/media/
