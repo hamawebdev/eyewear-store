@@ -1,14 +1,19 @@
 import { getStorefrontCopy } from "@/lib/storefront-copy";
 import {
   getStorefrontDirection,
-  getStorefrontLocale
+  getStorefrontLocale,
+  normalizeStorefrontLanguage
 } from "@/lib/storefront-language";
-import { getServerStorefrontLanguage } from "@/lib/storefront-language.server";
 import type { Metadata } from "next";
 import { buildLocalizedMetadata } from "@/lib/seo";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const language = await getServerStorefrontLanguage();
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const language = normalizeStorefrontLanguage(locale);
   const copy = getStorefrontCopy(language);
 
   return buildLocalizedMetadata({
@@ -20,8 +25,13 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 
-export default async function TermsOfServicePage() {
-  const language = await getServerStorefrontLanguage();
+export default async function TermsOfServicePage({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const language = normalizeStorefrontLanguage(locale);
   const copy = getStorefrontCopy(language);
 
   return (

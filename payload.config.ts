@@ -1,4 +1,5 @@
 import path from "node:path";
+import sharp from "sharp";
 import { buildConfig, type Payload } from "payload";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { en } from "@payloadcms/translations/languages/en";
@@ -95,6 +96,11 @@ export default buildConfig({
     // We enable schema push explicitly for database bootstrap flows like `npm run db:sync`.
     push: SHOULD_PUSH_SCHEMA
   }),
+  // Required for the `imageSizes` derivatives declared in collections/media.ts.
+  // Payload only warns ("image resizing is enabled ... but sharp not installed")
+  // when this is missing and then silently stores the original without
+  // generating any size, so the storefront would keep serving 3000px files.
+  sharp,
   collections: [Admins, Media, Categories, Products, ProductReviews, Wilayas],
   // The admin interface is offered in French and English. Arabic is a content
   // language on the storefront only, so it is intentionally absent here.

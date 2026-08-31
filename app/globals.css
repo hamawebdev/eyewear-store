@@ -261,6 +261,22 @@
     height: calc(100dvh - 4rem);
   }
 
+  /* Route transition. Fades the incoming page in only — see PageTransition in
+     components/layout/app-shell.tsx. Deliberately short: anything longer reads
+     as the page being slow rather than as a transition. */
+  .page-fade-in {
+    animation: page-fade-in 180ms ease-out both;
+  }
+
+  @keyframes page-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   .fade-up-initial {
     opacity: 0;
     transform: translateY(20px);
@@ -270,6 +286,21 @@
   .fade-up-visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* `fade-up-initial` keeps sections at opacity 0 until an IntersectionObserver
+     fires after hydration. For anyone who has asked for reduced motion that is
+     just content withheld for no reason, so they get it immediately. */
+  @media (prefers-reduced-motion: reduce) {
+    .page-fade-in {
+      animation: none;
+    }
+
+    .fade-up-initial {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 
   /* Burger menu CSS transitions (replaces GSAP) */

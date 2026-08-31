@@ -1,5 +1,6 @@
 import { unstable_cache } from "next/cache";
 import type { Where } from "payload";
+import { CACHE_TAGS } from "@/lib/payload/cache-tags";
 import { normalizeProductCategoryRef } from "@/lib/payload/categories";
 import { getPayloadClient } from "@/lib/payload/server";
 import { isStoredStorefrontImage } from "@/lib/storefront-image";
@@ -172,10 +173,18 @@ const findProducts = async (where?: Where) => {
   return Promise.all((result.docs as PayloadProductDocument[]).map((doc) => mapProductDocument(doc)));
 };
 
+/**
+ * Every read below is tagged `CACHE_TAGS.products`, so the `afterChange` /
+ * `afterDelete` hooks in collections/products.ts invalidate all of them in one
+ * call. The `revalidate` windows are only a backstop for anything that writes to
+ * Postgres outside Payload.
+ */
+const PRODUCT_CACHE_OPTIONS = { revalidate: 3600, tags: [CACHE_TAGS.products] };
+
 export const getAllStorefrontProducts = unstable_cache(
   async () => findProducts(),
   ["storefront-products"],
-  { revalidate: 60 }
+  PRODUCT_CACHE_OPTIONS
 );
 
 export const getFeaturedProducts = unstable_cache(
@@ -189,7 +198,27 @@ export const getFeaturedProducts = unstable_cache(
     return products.sort(sortByFeaturedPriority).slice(0, limit);
   },
   ["featured-products"],
-  { revalidate: 60 }
+  PRODUCT_CACHE_OPTIONS
+);
+
+/** Slugs for `generateStaticParams` on /[locale]/products/[id]. */
+export const getStorefrontProductSlugs = unstable_cache(
+  async () => {
+    const payload = await getPayloadClient();
+    const result = await payload.find({
+      collection: "products",
+      depth: 0,
+      overrideAccess: false,
+      pagination: false,
+      select: { slug: true }
+    });
+
+    return (result.docs as Array<{ slug: string }>)
+      .map((doc) => doc.slug)
+      .filter((slug): slug is string => Boolean(slug));
+  },
+  ["storefront-product-slugs"],
+  PRODUCT_CACHE_OPTIONS
 );
 
 export const getStorefrontProductBySlug = async (slug: string) => {
@@ -214,9 +243,32 @@ export const getStorefrontProductBySlug = async (slug: string) => {
       return productDoc ? mapProductDocument(productDoc) : null;
     },
     [`product-${slug}`],
-    { revalidate: 60 }
+    PRODUCT_CACHE_OPTIONS
   )();
 };
+
+/**
+ * Cached per category, not per product.
+ *
+ * This used to load the entire catalogue and filter it in JS, under a key that
+ * included `excludeId` — so every product page built its own cache entry and
+ * every one of them re-ran `sharp` over every image in the store. Filtering the
+ * current product out happens after the cache read, so all products in a
+ * category share one entry.
+ */
+const getCategoryProducts = (categorySlug: string) =>
+  unstable_cache(
+    async () =>
+      (
+        await findProducts({
+          "category.slug": {
+            equals: categorySlug
+          }
+        })
+      ).sort(sortByFeaturedPriority),
+    [`category-products-${categorySlug}`],
+    PRODUCT_CACHE_OPTIONS
+  )();
 
 export const getRelatedProducts = async ({
   categorySlug,
@@ -227,16 +279,7 @@ export const getRelatedProducts = async ({
   excludeId: string;
   limit?: number;
 }) => {
-  return unstable_cache(
-    async () => {
-      const products = await findProducts();
+  const products = await getCategoryProducts(categorySlug);
 
-      return products
-        .filter((product) => product.id !== excludeId && product.category.slug === categorySlug)
-        .sort(sortByFeaturedPriority)
-        .slice(0, limit);
-    },
-    [`related-products-${categorySlug}-${excludeId}`],
-    { revalidate: 60 }
-  )();
+  return products.filter((product) => product.id !== excludeId).slice(0, limit);
 };

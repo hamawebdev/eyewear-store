@@ -5,6 +5,7 @@ import {
   type Category,
   type ProductCategoryRef
 } from "@/lib/schemas";
+import { CACHE_TAGS } from "@/lib/payload/cache-tags";
 import { getPayloadClient } from "@/lib/payload/server";
 import { getPayloadMediaImage } from "@/lib/storefront-image.server";
 import { buildLocalizedText } from "@/lib/storefront-language";
@@ -114,5 +115,7 @@ export const getAllStorefrontCategories = unstable_cache(
     return categories;
   },
   ["storefront-categories"],
-  { revalidate: 60 }
+  // Invalidated by the hooks in collections/categories.ts; the window is a
+  // backstop for writes that bypass Payload.
+  { revalidate: 3600, tags: [CACHE_TAGS.categories] }
 );

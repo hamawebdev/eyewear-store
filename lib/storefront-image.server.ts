@@ -3,7 +3,7 @@ import "server-only";
 import path from "node:path";
 import { cache } from "react";
 import sharp from "sharp";
-import type { PayloadMediaReference } from "@/lib/payload/types";
+import type { PayloadMediaReference, PayloadMediaSize } from "@/lib/payload/types";
 import {
   DEFAULT_PLACEHOLDER_IMAGE,
   StorefrontImageSchema,
@@ -36,7 +36,9 @@ const normalizeStorefrontSrc = (value: string) => {
   return normalizedPath;
 };
 
-const getFilenameFromMedia = (media: PayloadMediaObject) => {
+type MediaFile = Pick<PayloadMediaSize, "filename" | "height" | "url" | "width">;
+
+const getFilenameFromMedia = (media: MediaFile) => {
   if (typeof media.filename === "string" && media.filename.trim()) {
     return path.basename(media.filename.trim());
   }
@@ -52,10 +54,45 @@ const getFilenameFromMedia = (media: PayloadMediaObject) => {
   return null;
 };
 
-const getLocalMediaFilePath = (media: PayloadMediaObject) => {
+const getLocalMediaFilePath = (media: MediaFile) => {
   const filename = getFilenameFromMedia(media);
 
   return filename ? path.join(MEDIA_DIR, filename) : null;
+};
+
+const hasUrl = (size: null | PayloadMediaSize | undefined): size is MediaFile =>
+  Boolean(size && typeof size.url === "string" && size.url.trim());
+
+/**
+ * Picks the derivative to hand to `next/image` as the source.
+ *
+ * The uploads are 3000px wide; the largest slot the storefront renders is the
+ * product detail image at ~50vw, so `detail` (1600px) is as much as any layout
+ * can use. Serving it instead of the original means the optimizer decodes a file
+ * roughly a tenth the size on every cache miss. Falls back down the chain, and
+ * finally to the original, so media uploaded before the derivatives existed (or
+ * anything the backfill missed) still renders.
+ */
+const pickDisplaySource = (media: PayloadMediaObject): MediaFile => {
+  const sizes = media.sizes;
+
+  if (hasUrl(sizes?.detail)) return sizes.detail;
+  if (hasUrl(sizes?.card)) return sizes.card;
+
+  return media;
+};
+
+/**
+ * The blur placeholder is a 24px webp, so it only ever needs the smallest
+ * derivative. Running `sharp` over the 3000px original for this was pure waste.
+ */
+const pickBlurSource = (media: PayloadMediaObject): MediaFile => {
+  const sizes = media.sizes;
+
+  if (hasUrl(sizes?.thumbnail)) return sizes.thumbnail;
+  if (hasUrl(sizes?.card)) return sizes.card;
+
+  return media;
 };
 
 const getLocalImageMetadata = cache(async (absoluteFilePath: string) => {
@@ -124,34 +161,49 @@ export const getPayloadMediaImage = async (
     return clonePlaceholder(altFallback);
   }
 
+  const displaySource = pickDisplaySource(media);
   const src =
-    typeof media.url === "string" && media.url.trim() ? normalizeStorefrontSrc(media.url.trim()) : null;
+    typeof displaySource.url === "string" && displaySource.url.trim()
+      ? normalizeStorefrontSrc(displaySource.url.trim())
+      : null;
 
   if (!src) {
     return clonePlaceholder(altFallback);
   }
 
-  const absoluteFilePath = getLocalMediaFilePath(media);
+  const absoluteFilePath = getLocalMediaFilePath(displaySource);
   const alt =
     typeof media.alt === "string" && media.alt.trim() ? media.alt.trim() : altFallback;
 
+  // Dimensions must describe the file at `src`, not the original, or next/image
+  // reserves the wrong aspect box.
   let width =
-    typeof media.width === "number" && media.width > 0 ? media.width : undefined;
+    typeof displaySource.width === "number" && displaySource.width > 0
+      ? displaySource.width
+      : undefined;
   let height =
-    typeof media.height === "number" && media.height > 0 ? media.height : undefined;
+    typeof displaySource.height === "number" && displaySource.height > 0
+      ? displaySource.height
+      : undefined;
   let blurDataURL: string | undefined;
 
-  if (absoluteFilePath) {
-    try {
-      blurDataURL = await getBlurDataURL(absoluteFilePath);
+  const blurFilePath = getLocalMediaFilePath(pickBlurSource(media));
 
-      if (!width || !height) {
-        const metadata = await getLocalImageMetadata(absoluteFilePath);
-        width ??= metadata.width;
-        height ??= metadata.height;
-      }
+  if (blurFilePath) {
+    try {
+      blurDataURL = await getBlurDataURL(blurFilePath);
     } catch {
       blurDataURL = DEFAULT_PLACEHOLDER_IMAGE.blurDataURL;
+    }
+  }
+
+  if ((!width || !height) && absoluteFilePath) {
+    try {
+      const metadata = await getLocalImageMetadata(absoluteFilePath);
+      width ??= metadata.width;
+      height ??= metadata.height;
+    } catch {
+      // Falls through to the placeholder dimensions below.
     }
   }
 

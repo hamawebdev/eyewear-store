@@ -1,7 +1,7 @@
 "use client";
 
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { useParams, usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -15,7 +15,6 @@ import {
 export default function LanguageSwitcher() {
   const params = useParams();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const currentLocale = (params?.locale as StorefrontLanguage) ?? "ar";
@@ -27,8 +26,13 @@ export default function LanguageSwitcher() {
     const segments = pathname.split("/");
     segments[1] = nextLocale;
     const newPath = segments.join("/");
-    const search = searchParams.toString();
-    const target = search ? `${newPath}?${search}` : newPath;
+    // Read from the live URL rather than `useSearchParams`. This switcher sits in
+    // the navbar on every page, and a render-time search-param read would opt
+    // every storefront route out of prerendering — the query string is only
+    // needed at click time, so reading it here costs nothing and keeps
+    // `?category=` on the products page when the language changes.
+    const search = window.location.search;
+    const target = `${newPath}${search}`;
 
     // Sync cookie for server reads
     document.cookie = `${STOREFRONT_LANGUAGE_COOKIE}=${nextLocale}; path=/; max-age=31536000; samesite=lax`;

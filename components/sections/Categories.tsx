@@ -7,7 +7,6 @@ import {
   getStorefrontDirection,
   resolveLocalizedText
 } from "@/lib/storefront-language";
-import { getServerStorefrontLanguage } from "@/lib/storefront-language.server";
 import { shouldSkipImageOptimization } from "@/lib/storefront-image";
 import type { Category } from "@/lib/schemas";
 import type { StorefrontLanguage } from "@/lib/storefront-language";
@@ -70,7 +69,7 @@ function CategoryPlate({
 
   return (
     <Link
-      href={getCategoryHref(category.slug)}
+      href={getCategoryHref(language, category.slug)}
       className="group focus-visible:outline-accent flex h-full flex-col focus-visible:outline-2 focus-visible:outline-offset-8"
     >
       <div
@@ -132,8 +131,7 @@ function CategoryPlate({
   );
 }
 
-export default async function Categories() {
-  const language = await getServerStorefrontLanguage();
+export default async function Categories({ language }: { language: StorefrontLanguage }) {
   const copy = getStorefrontCopy(language);
   const featuredCategories = await getAllStorefrontCategories();
 
@@ -174,7 +172,7 @@ export default async function Categories() {
                 {copy.categories.lede}
               </p>
               <Link
-                href="/products"
+                href={`/${language}/products`}
                 className="group focus-visible:outline-accent mt-6 inline-flex focus-visible:outline-2 focus-visible:outline-offset-4"
               >
                 <CtaText label={copy.categories.viewAll} />

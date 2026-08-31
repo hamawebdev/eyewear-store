@@ -1,11 +1,14 @@
 import ProductCard from "@/components/ProductCard";
 import { getStorefrontCopy } from "@/lib/storefront-copy";
 import { getFeaturedProducts } from "@/lib/payload/products";
-import { getServerStorefrontLanguage } from "@/lib/storefront-language.server";
+import type { StorefrontLanguage } from "@/lib/storefront-language";
 import FadeUpInView from "@/components/ui/fade-up-in-view";
 
-export default async function FeaturedProducts() {
-  const language = await getServerStorefrontLanguage();
+export default async function FeaturedProducts({
+  language
+}: {
+  language: StorefrontLanguage;
+}) {
   const copy = getStorefrontCopy(language);
   const featuredProducts = await getFeaturedProducts(6);
 

@@ -65,7 +65,7 @@ export default function Navigation({ categories }: { categories: Category[] }) {
               {nav.highlights.map((highlight) => (
                 <ListItem
                   key={highlight.slug}
-                  href={getCategoryHref(highlight.slug)}
+                  href={getCategoryHref(language, highlight.slug)}
                   title={highlight.title}
                 >
                   {highlight.body}
@@ -82,7 +82,7 @@ export default function Navigation({ categories }: { categories: Category[] }) {
                 <ListItem
                   key={category.slug}
                   title={resolveLocalizedText(category.name, language)}
-                  href={getCategoryHref(category.slug)}
+                  href={getCategoryHref(language, category.slug)}
                 >
                   {resolveLocalizedText(category.description, language)}
                 </ListItem>

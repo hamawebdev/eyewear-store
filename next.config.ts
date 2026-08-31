@@ -43,7 +43,20 @@ const nextConfig: NextConfig = {
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
   images: {
-    formats: ["image/avif", "image/webp"],
+    // WebP only. AVIF is 5-20x slower to encode than WebP for a marginal size
+    // win, and every product image is optimized on demand on a host that is
+    // already oversubscribed — the encode was showing up as multi-second image
+    // loads on the category grid.
+    formats: ["image/webp"],
+    // Trimmed to the widths the storefront's `sizes` attributes actually ask
+    // for. Each extra breakpoint is another source image the optimizer has to
+    // decode and re-encode on first request.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [96, 128, 256, 384],
+    // app/media/[...filename]/route.ts already serves uploads as
+    // `immutable, max-age=31536000`, so optimized variants can be held for as
+    // long as the on-disk cache survives.
+    minimumCacheTTL: 31536000,
     remotePatterns: [
       {
         protocol: "https",
@@ -54,6 +67,10 @@ const nextConfig: NextConfig = {
   experimental: {
     // Reduce webpack memory footprint — critical for Payload admin bundling
     webpackMemoryOptimizations: true,
+    // The storefront and the admin each own a root layout now, so there is no
+    // shared layout for Next to wrap a 404 in when a path matches neither tree.
+    // This points those at app/global-not-found.tsx.
+    globalNotFound: true,
   },
   webpack: (config) => {
     // Allow resolving .js extensions to .ts files for ESM compatibility

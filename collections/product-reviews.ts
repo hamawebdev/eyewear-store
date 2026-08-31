@@ -6,6 +6,7 @@ import type {
   PayloadRequest,
 } from "payload";
 import { isAdmin } from "./access";
+import { revalidateProductReviews } from "./hooks/revalidateStorefront";
 
 type ProductRelationship =
   | {
@@ -158,8 +159,8 @@ export const ProductReviews: CollectionConfig = {
     update: isAdmin,
   },
   hooks: {
-    afterChange: [afterChange],
-    afterDelete: [afterDelete],
+    afterChange: [afterChange, revalidateProductReviews],
+    afterDelete: [afterDelete, revalidateProductReviews],
     beforeValidate: [enforceReviewDefaults],
   },
   labels: {

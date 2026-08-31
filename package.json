@@ -15,7 +15,9 @@
     "seed:categories": "tsx scripts/seed-catalog.ts --categories-only",
     "seed:categories:fresh": "tsx scripts/seed-categories.ts",
     "categories:cleanup": "tsx scripts/cleanup-legacy-categories.ts",
-    "categories:images": "tsx scripts/upload-category-images.ts"
+    "categories:images": "tsx scripts/upload-category-images.ts",
+    "media:backfill": "tsx scripts/backfill-media-sizes.ts",
+    "media:verify": "tsx scripts/verify-media-sizes.ts"
   },
   "dependencies": {
     "@fontsource/rubik": "^5.2.8",

@@ -280,6 +280,11 @@ export const STOREFRONT_COPY = {
       title: "آراء العملاء",
       writeReview: "اكتب مراجعة"
     },
+    notFoundPage: {
+      body: "الرابط الذي فتحته لم يعد متاحًا أو تم نقله.",
+      cta: "العودة إلى المتجر",
+      heading: "الصفحة غير موجودة"
+    },
     productsPage: {
       allCategories: "كل المنتجات",
       allPrices: "كل الأسعار",
@@ -1005,6 +1010,11 @@ export const STOREFRONT_COPY = {
       title: "Avis clients",
       writeReview: "Rédiger un avis"
     },
+    notFoundPage: {
+      body: "Le lien que vous avez ouvert n'existe plus ou a été déplacé.",
+      cta: "Retour à la boutique",
+      heading: "Page introuvable"
+    },
     productsPage: {
       allCategories: "Toutes les catégories",
       allPrices: "Tous les prix",
@@ -1720,6 +1730,11 @@ export const STOREFRONT_COPY = {
       submissionError: "We couldn't submit your review right now. Please try again.",
       title: "Customer reviews",
       writeReview: "Write a review"
+    },
+    notFoundPage: {
+      body: "The link you opened no longer exists or has moved.",
+      cta: "Back to the shop",
+      heading: "Page not found"
     },
     productsPage: {
       allCategories: "All categories",

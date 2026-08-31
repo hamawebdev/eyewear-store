@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import LocalizedLink from "@/components/localized-link";
 import { useStorefrontLanguage } from "@/components/storefront-language-provider";
 import { BRAND } from "@/lib/brand";
 import { getStorefrontCopy } from "@/lib/storefront-copy";
@@ -33,7 +33,7 @@ export function FullScreenMenu({ isOpen, onClose }: FullScreenMenuProps) {
                             key={index}
                             className="fullscreen-menu-item text-center"
                         >
-                            <Link
+                            <LocalizedLink
                                 href={item.href}
                                 className="block transition-opacity duration-200 hover:opacity-70"
                                 tabIndex={isOpen ? 0 : -1}
@@ -49,7 +49,7 @@ export function FullScreenMenu({ isOpen, onClose }: FullScreenMenuProps) {
                                 }}
                             >
                                 {item.label}
-                            </Link>
+                            </LocalizedLink>
                         </li>
                     ))}
                 </ul>

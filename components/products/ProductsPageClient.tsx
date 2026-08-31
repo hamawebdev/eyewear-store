@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense, useCallback, useMemo, useState } from "react";
 import { Filter } from "lucide-react";
+import ProductsQuerySync, {
+  type ProductsQueryFilters
+} from "@/components/products/ProductsQuerySync";
 import { useStorefrontLanguage } from "@/components/storefront-language-provider";
 import type { Category, Product } from "@/lib/schemas";
 import ProductCard from "@/components/ProductCard";
@@ -34,23 +36,6 @@ const PRICE_RANGES: Record<string, (price: number) => boolean> = {
   "over-10000": (price) => price > 10000
 };
 
-/**
- * Reads a repeatable facet from the URL (`?shape=round,aviator`), keeping only
- * values the catalogue actually defines.
- */
-const parseFacetParam = (raw: null | string, allowed: readonly string[]) => {
-  if (!raw) {
-    return [];
-  }
-
-  const allowedSet = new Set(allowed);
-
-  return raw
-    .split(",")
-    .map((value) => value.trim())
-    .filter((value) => allowedSet.has(value));
-};
-
 const toggleValue = (values: string[], value: string) =>
   values.includes(value) ? values.filter((entry) => entry !== value) : [...values, value];
 
@@ -62,7 +47,6 @@ export default function ProductsPageClient({
   products: Product[];
 }) {
   const { direction, language } = useStorefrontLanguage();
-  const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [priceRange, setPriceRange] = useState("all");
   const [sortBy, setSortBy] = useState("featured");
@@ -81,6 +65,10 @@ export default function ProductsPageClient({
     ],
     [categories, copy.productsPage.allCategories, language]
   );
+  const categorySlugs = useMemo(
+    () => new Set(categories.map((category) => category.slug)),
+    [categories]
+  );
 
   // Only offer facet values that at least one product actually carries, keeping
   // the canonical ordering from lib/eyewear.
@@ -97,34 +85,18 @@ export default function ProductsPageClient({
     return FRAME_COLORS.filter((color) => present.has(color));
   }, [products]);
 
-  const categoryFromQuery = searchParams.get("category");
-  const shapeFromQuery = searchParams.get("shape");
-  const genderFromQuery = searchParams.get("gender");
-  const colorFromQuery = searchParams.get("color");
-
-  useEffect(() => {
-    if (!categoryFromQuery) {
-      setSelectedCategory("all");
-      return;
-    }
-
-    const isKnownCategory = categoryOptions.some(
-      (category) => category.value === categoryFromQuery
-    );
-    setSelectedCategory(isKnownCategory ? categoryFromQuery : "all");
-  }, [categoryFromQuery, categoryOptions]);
-
-  useEffect(() => {
-    setSelectedShapes(parseFacetParam(shapeFromQuery, FRAME_SHAPES));
-  }, [shapeFromQuery]);
-
-  useEffect(() => {
-    setSelectedGenders(parseFacetParam(genderFromQuery, GENDERS));
-  }, [genderFromQuery]);
-
-  useEffect(() => {
-    setSelectedColors(parseFacetParam(colorFromQuery, FRAME_COLORS));
-  }, [colorFromQuery]);
+  // `ProductsQuerySync` owns the `useSearchParams` read (see the note there);
+  // this just receives what it found. Held in a `useCallback` so the sync effect
+  // only re-runs when the URL actually changes.
+  const applyQueryFilters = useCallback(
+    ({ category, colors, genders, shapes }: ProductsQueryFilters) => {
+      setSelectedCategory(category && categorySlugs.has(category) ? category : "all");
+      setSelectedShapes(shapes);
+      setSelectedGenders(genders);
+      setSelectedColors(colors);
+    },
+    [categorySlugs]
+  );
 
   const hasActiveFilters =
     selectedCategory !== "all" ||
@@ -217,6 +189,9 @@ export default function ProductsPageClient({
 
   return (
     <>
+      <Suspense fallback={null}>
+        <ProductsQuerySync onChange={applyQueryFilters} />
+      </Suspense>
       {selectedCategory !== "all" && (
         <ProductsCategorySpotlight
           activeCategory={selectedCategory}

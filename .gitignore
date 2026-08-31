@@ -55,3 +55,7 @@ skills-lock.json
 
 # Payload upload dir (Docker volume in production)
 /media/
+
+# Point-in-time media relationship snapshot for `npm run media:verify -- --baseline`.
+# Regenerate before a backfill; not worth versioning.
+media-snapshot.json

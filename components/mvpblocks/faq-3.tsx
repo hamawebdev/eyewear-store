@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LocalizedLink from "@/components/localized-link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Mail } from "lucide-react";
@@ -164,14 +164,14 @@ export default function Faq3() {
           <p className="text-muted-foreground mb-4 text-xs">
             {copy.faq.contactDescription}
           </p>
-          <Link
+          <LocalizedLink
             href="/contact"
             className={cn(
               "bg-primary text-primary-foreground hover:bg-primary/90 inline-flex rounded-md px-4 py-2 text-sm font-medium transition-colors duration-200"
             )}
           >
             {copy.faq.contactCta}
-          </Link>
+          </LocalizedLink>
         </motion.div>
       </div>
     </section>

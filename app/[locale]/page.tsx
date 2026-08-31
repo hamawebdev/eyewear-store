@@ -6,8 +6,13 @@ import FeaturedProducts from "@/components/sections/FeaturedProducts";
 import LazyTestimonials from "@/components/sections/LazyTestimonials";
 import LazyFaq from "@/components/sections/LazyFaq";
 import FadeUpInView from "@/components/ui/fade-up-in-view";
+import { normalizeStorefrontLanguage } from "@/lib/storefront-language";
 
-export const dynamic = "force-dynamic";
+/**
+ * Prerendered; the catalogue sections are revalidated by the Payload hooks in
+ * collections/{products,categories}.ts, so this window is only a backstop.
+ */
+export const revalidate = 3600;
 
 function CategoriesSkeleton() {
   return (
@@ -75,18 +80,25 @@ function FeaturedProductsSkeleton() {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const language = normalizeStorefrontLanguage(locale);
+
   return (
     <main className="homepage-serif">
-      <Hero />
+      <Hero language={language} />
       <FadeUpInView>
-        <BrandPromise />
+        <BrandPromise language={language} />
       </FadeUpInView>
       <Suspense fallback={<CategoriesSkeleton />}>
-        <Categories />
+        <Categories language={language} />
       </Suspense>
       <Suspense fallback={<FeaturedProductsSkeleton />}>
-        <FeaturedProducts />
+        <FeaturedProducts language={language} />
       </Suspense>
       {/* Client feedback section hidden for now (not deleted) — re-enable by uncommenting. */}
       {/* <LazyTestimonials /> */}

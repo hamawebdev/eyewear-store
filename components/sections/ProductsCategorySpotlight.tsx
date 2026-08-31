@@ -39,7 +39,7 @@ export default function ProductsCategorySpotlight({
     badgeLabel:
       resolveLocalizedText(category.collectionLabel, language).replace(/\s+/g, " ").trim() ||
       resolveLocalizedText(category.name, language),
-    link: getCategoryHref(category.slug)
+    link: getCategoryHref(language, category.slug)
   }));
   const [currentSlide, setCurrentSlide] = useState(() => getSlideIndex(activeCategory, categories));
   const [isAnimating, setIsAnimating] = useState(false);

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LocalizedLink from "@/components/localized-link";
 import { usePathname } from "next/navigation";
 import { ShoppingCart } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
@@ -43,7 +43,7 @@ export default function Navbar() {
           {/* Right Pills (Language + Cart) */}
           <div className="pointer-events-auto flex items-center gap-3">
             <LanguageSwitcher />
-            <Link
+            <LocalizedLink
               href="/cart"
               aria-label={copy.navbar.cartAriaLabel}
               className="flex items-center justify-center bg-white rounded-full shadow-[0_4px_24px_rgb(0,0,0,0.12)] p-[14px] relative hover:-translate-y-0.5 transition-all duration-300 group"
@@ -54,7 +54,7 @@ export default function Navbar() {
                   {itemCount}
                 </span>
               )}
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
       </header>

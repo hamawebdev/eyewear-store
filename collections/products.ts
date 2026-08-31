@@ -1,4 +1,5 @@
 import type { CollectionBeforeValidateHook, CollectionConfig, PayloadRequest } from "payload";
+import { revalidateProducts } from "./hooks/revalidateStorefront";
 import { slugifyText } from "@/lib/slug";
 import {
   FRAME_COLOR_LABELS_FR,
@@ -397,6 +398,8 @@ export const Products: CollectionConfig = {
     update: isAdmin
   },
   hooks: {
+    afterChange: [revalidateProducts],
+    afterDelete: [revalidateProducts],
     beforeValidate: [syncProductPricing]
   },
   fields: [

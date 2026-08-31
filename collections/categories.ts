@@ -4,6 +4,7 @@ import type {
   CollectionConfig,
   PayloadRequest
 } from "payload";
+import { revalidateCategories } from "./hooks/revalidateStorefront";
 import { slugifyText } from "@/lib/slug";
 import { tAdmin, type AdminFieldKey } from "@/lib/admin-i18n";
 import { isAdmin } from "./access";
@@ -247,6 +248,8 @@ export const Categories: CollectionConfig = {
   },
   defaultSort: "sortOrder",
   hooks: {
+    afterChange: [revalidateCategories],
+    afterDelete: [revalidateCategories],
     beforeDelete: [blockCategoryDeleteWhenInUse],
     beforeValidate: [syncCategorySlug]
   },

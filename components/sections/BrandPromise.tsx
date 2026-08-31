@@ -1,7 +1,6 @@
 import { BRAND } from "@/lib/brand";
 import { getStorefrontCopy } from "@/lib/storefront-copy";
-import { getStorefrontDirection } from "@/lib/storefront-language";
-import { getServerStorefrontLanguage } from "@/lib/storefront-language.server";
+import { getStorefrontDirection, type StorefrontLanguage } from "@/lib/storefront-language";
 import { cn } from "@/lib/utils";
 
 /**
@@ -19,8 +18,7 @@ const CLAIM_SCALE = [
   "text-[1.0625rem] sm:text-xl lg:text-[1.6rem]"
 ];
 
-export default async function BrandPromise() {
-  const language = await getServerStorefrontLanguage();
+export default function BrandPromise({ language }: { language: StorefrontLanguage }) {
   const copy = getStorefrontCopy(language);
   const brandMark = language === "ar" ? BRAND.nameAr : BRAND.name;
 

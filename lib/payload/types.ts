@@ -1,9 +1,26 @@
+/** One generated derivative from `upload.imageSizes` in collections/media.ts. */
+export type PayloadMediaSize = {
+  filename?: null | string;
+  height?: null | number;
+  mimeType?: null | string;
+  url?: null | string;
+  width?: null | number;
+};
+
+/** Derivative names must match `upload.imageSizes` in collections/media.ts. */
+export type PayloadMediaSizes = {
+  card?: null | PayloadMediaSize;
+  detail?: null | PayloadMediaSize;
+  thumbnail?: null | PayloadMediaSize;
+};
+
 export type PayloadMediaReference =
   | {
     id: number | string;
     alt?: null | string;
     height?: null | number;
     mimeType?: null | string;
+    sizes?: null | PayloadMediaSizes;
     url?: null | string;
     filename?: null | string;
     width?: null | number;

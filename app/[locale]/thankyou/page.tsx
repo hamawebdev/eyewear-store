@@ -1,10 +1,15 @@
+import { normalizeStorefrontLanguage } from "@/lib/storefront-language";
 import { Button } from "@/components/ui/button";
 import { getStorefrontCopy } from "@/lib/storefront-copy";
-import { getServerStorefrontLanguage } from "@/lib/storefront-language.server";
 import LocalizedLink from "@/components/localized-link";
 
-export default async function ThankYouPage() {
-  const language = await getServerStorefrontLanguage();
+export default async function ThankYouPage({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const language = normalizeStorefrontLanguage(locale);
   const copy = getStorefrontCopy(language);
 
   return (

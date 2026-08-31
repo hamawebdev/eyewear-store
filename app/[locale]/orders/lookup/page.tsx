@@ -1,6 +1,6 @@
+import { normalizeStorefrontLanguage } from "@/lib/storefront-language";
 import { Suspense } from "react";
 import { getStorefrontCopy } from "@/lib/storefront-copy";
-import { getServerStorefrontLanguage } from "@/lib/storefront-language.server";
 import OrderLookupClient from "./order-lookup-client";
 
 const LookupFallback = ({ loadingLabel }: { loadingLabel: string }) => (
@@ -11,8 +11,13 @@ const LookupFallback = ({ loadingLabel }: { loadingLabel: string }) => (
   </div>
 );
 
-export default async function OrderLookupPage() {
-  const language = await getServerStorefrontLanguage();
+export default async function OrderLookupPage({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const language = normalizeStorefrontLanguage(locale);
   const copy = getStorefrontCopy(language);
 
   return (

@@ -4,7 +4,11 @@ import { notFound } from "next/navigation";
 import ProductDetailPage, { ProductDetailSecondary } from "@/app/[locale]/products/[id]/product-detail";
 import { BRAND, getSiteUrl } from "@/lib/brand";
 import { getApprovedProductReviews } from "@/lib/payload/product-reviews";
-import { getRelatedProducts, getStorefrontProductBySlug } from "@/lib/payload/products";
+import {
+  getRelatedProducts,
+  getStorefrontProductBySlug,
+  getStorefrontProductSlugs
+} from "@/lib/payload/products";
 import { isStoredStorefrontImage } from "@/lib/storefront-image";
 import {
   isStorefrontLanguage,
@@ -12,7 +16,28 @@ import {
   STOREFRONT_LANGUAGE_VALUES
 } from "@/lib/storefront-language";
 
-export const dynamic = "force-dynamic";
+/**
+ * Prerendered per locale so a click from the category grid is served from the
+ * prefetched payload instead of a fresh render. Product writes revalidate this
+ * through the hooks in collections/products.ts.
+ */
+export const revalidate = 3600;
+
+/** A product added after the last build still renders, then gets cached. */
+export const dynamicParams = true;
+
+/** See the note on `generateStaticParams` in app/[locale]/layout.tsx. */
+export async function generateStaticParams() {
+  if (!process.env.DATABASE_URL) {
+    return [];
+  }
+
+  const slugs = await getStorefrontProductSlugs();
+
+  return STOREFRONT_LANGUAGE_VALUES.flatMap((locale) =>
+    slugs.map((slug) => ({ id: slug, locale }))
+  );
+}
 
 export async function generateMetadata({
   params

@@ -1,6 +1,5 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { PATHNAME_HEADER } from "@/lib/admin-routes";
 import {
   DEFAULT_STOREFRONT_LANGUAGE,
   STOREFRONT_LANGUAGE_COOKIE,
@@ -37,13 +36,6 @@ const SKIP_LOCALE_PREFIXES = [
 
 const hasFileExtension = (pathname: string) => /\.[a-zA-Z0-9]+$/.test(pathname);
 
-const passThrough = (request: NextRequest, pathname: string) => {
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set(PATHNAME_HEADER, pathname);
-
-  return NextResponse.next({ request: { headers: requestHeaders } });
-};
-
 const shouldSkipLocaleRouting = (pathname: string) => {
   if (hasFileExtension(pathname)) return true;
   return SKIP_LOCALE_PREFIXES.some((prefix) => pathname.startsWith(prefix));
@@ -69,19 +61,26 @@ export function middleware(request: NextRequest) {
 
   // Skip locale routing for static files, admin, API, etc.
   if (shouldSkipLocaleRouting(pathname)) {
-    return passThrough(request, pathname);
+    return NextResponse.next();
   }
 
   const detectedLocale = getLocaleFromPathname(pathname);
 
-  // If already has a valid locale prefix, sync cookie and pass through
+  // If already has a valid locale prefix, sync cookie and pass through. The
+  // cookie is only written when it actually changes: the storefront pages are
+  // prerendered now, and a Set-Cookie on every single response would stop any
+  // proxy in front of the app from reusing them.
   if (detectedLocale) {
-    const response = passThrough(request, pathname);
-    response.cookies.set(STOREFRONT_LANGUAGE_COOKIE, detectedLocale, {
-      path: "/",
-      maxAge: 31536000,
-      sameSite: "lax"
-    });
+    const response = NextResponse.next();
+
+    if (request.cookies.get(STOREFRONT_LANGUAGE_COOKIE)?.value !== detectedLocale) {
+      response.cookies.set(STOREFRONT_LANGUAGE_COOKIE, detectedLocale, {
+        path: "/",
+        maxAge: 31536000,
+        sameSite: "lax"
+      });
+    }
+
     return response;
   }
 

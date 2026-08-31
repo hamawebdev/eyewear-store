@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { getStorefrontCopy } from "@/lib/storefront-copy";
-import { getServerStorefrontLanguage } from "@/lib/storefront-language.server";
+import type { StorefrontLanguage } from "@/lib/storefront-language";
 import HeroVideo from "./HeroVideo";
 
-export default async function Hero() {
-  const language = await getServerStorefrontLanguage();
+export default function Hero({ language }: { language: StorefrontLanguage }) {
   const copy = getStorefrontCopy(language);
 
   return (
@@ -53,8 +52,11 @@ export default async function Hero() {
           </h1>
 
           <div className="mt-7 flex flex-wrap items-center justify-center gap-4 sm:mt-9 sm:gap-6">
+            {/* Locale-prefixed: a bare `/products` would be 307'd by
+                middleware.ts, costing an extra round trip on every click and
+                wasting the prefetch. */}
             <Link
-              href="/products"
+              href={`/${language}/products`}
               className="bg-accent text-accent-foreground hover:bg-accent/90 inline-flex items-center gap-3 rounded-full px-7 py-3 text-lg font-semibold sm:px-9 sm:py-4 sm:text-2xl"
             >
               {copy.hero.cta}
