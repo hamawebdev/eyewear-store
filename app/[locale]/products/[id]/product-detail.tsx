@@ -207,12 +207,21 @@ export default function ProductDetailPage({ product }: Props) {
         {activeProductImage ? (
           <div className="space-y-4">
             <div className="aspect-square [transform:translateZ(0)] overflow-hidden rounded-xl bg-gray-100">
+              {/* `priority` alone only drops `loading="lazy"`; in Next 15 it does
+                  NOT set fetchpriority — get-img-props passes the caller's prop
+                  through verbatim. Without it this image and the preload link
+                  Next emits for it both start at Chrome's default "Low" priority
+                  for images, so the browser fetched the four gallery thumbnails
+                  ahead of it and the main photo landed last: 6.7s vs 0.8s
+                  measured on production. Same fix as the hero poster in
+                  app/[locale]/layout.tsx. */}
               <div className="relative h-full w-full">
                 <Image
                   src={activeProductImage.src}
                   alt={activeProductImage.alt}
                   fill
                   priority
+                  fetchPriority="high"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                   unoptimized={shouldSkipImageOptimization(activeProductImage.src)}

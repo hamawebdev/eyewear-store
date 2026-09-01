@@ -48,11 +48,19 @@ const nextConfig: NextConfig = {
     // already oversubscribed — the encode was showing up as multi-second image
     // loads on the category grid.
     formats: ["image/webp"],
-    // Trimmed to the widths the storefront's `sizes` attributes actually ask
-    // for. Each extra breakpoint is another source image the optimizer has to
-    // decode and re-encode on first request.
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [96, 128, 256, 384],
+    // Every distinct width is a separate on-demand encode from a 3000x2000
+    // source (~0.75s each on this host) and a separate cache entry, so a wide
+    // ladder means visitors keep missing each other's cached variants. These are
+    // the rungs the storefront's `sizes` attributes actually land on:
+    //   640/828  - cards and the product image on phones
+    //   1200     - the product image at 50vw on a desktop viewport
+    //   1920     - retina desktop, and the `src` fallback
+    // Dropping 750 and 1080 costs at most one rung of sharpness on a few
+    // viewports and removes a third of the variants.
+    deviceSizes: [640, 828, 1200, 1920],
+    // Only the gallery thumbnails use these (120px display, so 128 at 1x and
+    // 256 at 2x); 384 covers the 25vw phone layout.
+    imageSizes: [128, 256, 384],
     // app/media/[...filename]/route.ts already serves uploads as
     // `immutable, max-age=31536000`, so optimized variants can be held for as
     // long as the on-disk cache survives.

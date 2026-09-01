@@ -87,8 +87,18 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 # Create the media dir and symlink AFTER all COPY commands so the symlink is not
 # overwritten by the public-dir copy layer.
-RUN mkdir -p /app/media \
-    && chown nextjs:nodejs /app/media
+#
+# `.next/cache` is created here too, and this is load-bearing. It holds the
+# image optimizer's output, and it is NOT part of the build output we copy in,
+# so the container starts with it absent and every optimized variant is
+# re-encoded from a 3000x2000 source after each deploy (~0.75s each, measured).
+# The fix is a Dokploy volume mounted at /app/.next/cache — but Docker creates a
+# missing mountpoint owned by root, and the server runs as `nextjs`, which would
+# leave the optimizer unable to write and silently fall back to re-encoding on
+# every single request. Creating it with the right owner first means the volume
+# inherits that ownership instead.
+RUN mkdir -p /app/media /app/.next/cache \
+    && chown -R nextjs:nodejs /app/media /app/.next
 
 USER nextjs
 
